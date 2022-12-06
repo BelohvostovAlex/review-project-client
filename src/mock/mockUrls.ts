@@ -2,6 +2,10 @@ export const GOOGLE_OAUTH_USER_INFO_URL =
   "https://www.googleapis.com/oauth2/v3/userinfo";
 
 export const API_SERVER_URL = "http://localhost:5000";
+export const CLOUDINARY_URL =
+  "cloudinary://365141586139643:q9IOQbqommbKGHWSMMdYnRiZUL8@dujpbjyhd";
+export const CLOUDINARY_UPLOAD_URL =
+  "https://api.cloudinary.com/v1_1/dujpbjyhd/image/upload";
 
 export const googleClientId =
   "3597899066-u5a5bri40pv3hs6ohcg8dv4r14goa2pl.apps.googleusercontent.com";
@@ -14,6 +18,7 @@ export const AUTH_URLS = {
   SIGNIN: "/auth/signin",
   SIGNUP: "/auth/signup",
   SIGNOUT: "/auth/signout",
+  GET_USER_BY_ID: "/auth/users/",
 };
 
 export const TAGS_URLS = {
@@ -29,4 +34,9 @@ export const ART_ITEMS_URLS = {
 export const REVIEWS_URLS = {
   GET_REVIEWS: "/reviews",
   CREATE_REVIEW: "/reviews",
+};
+
+export const CATEGORY_URLS = {
+  GET_CATEGORIES: "/category",
+  CREATE_CATEGORY: "/category",
 };

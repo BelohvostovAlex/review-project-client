@@ -8,4 +8,5 @@ export interface reviewServiceCreateReviewInput {
   category: string;
   tags: ITag[];
   grade: number;
+  image: string;
 }

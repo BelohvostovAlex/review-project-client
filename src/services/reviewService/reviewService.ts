@@ -14,7 +14,7 @@ export const reviewServiceGetReviews = async (): Promise<
 export const reviewServiceCreateReview = async (
   data: reviewServiceCreateReviewInput
 ): Promise<AxiosResponse<IReview>> => {
-  const { title, artItem, category, creator, grade, tags, text } = data;
+  const { title, artItem, category, creator, grade, tags, text, image } = data;
   return $api.post(REVIEWS_URLS.CREATE_REVIEW, {
     title,
     artItem,
@@ -23,5 +23,6 @@ export const reviewServiceCreateReview = async (
     grade,
     tags,
     text,
+    image,
   });
 };

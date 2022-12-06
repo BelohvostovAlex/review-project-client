@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios";
 import $api from "../../http";
 
 import { AUTH_URLS } from "../../mock/mockUrls";
+import { IUser } from "../../models/IUser";
 import { AuthResponse } from "../../models/response/AuthResponse";
 import { authServiceSignInInput, authServiceSignUpInput } from "./interfaces";
 
@@ -25,4 +26,10 @@ export const authServiceSignIn = async (
 
 export const authServiceSignOut = async (): Promise<void> => {
   return $api.post(AUTH_URLS.SIGNOUT);
+};
+
+export const authServiceGetUser = async (
+  id: string
+): Promise<AxiosResponse<IUser>> => {
+  return $api.get(AUTH_URLS.GET_USER_BY_ID + id);
 };

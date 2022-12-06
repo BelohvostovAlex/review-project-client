@@ -16,4 +16,11 @@ export const makeStyles = () => ({
     flexWrap: "wrap",
     padding: "15px 0px",
   },
+  reviewImageWrapper: {
+    width: "70%",
+    height: "auto",
+  },
+  reviewImage: {
+    width: "100%",
+  },
 });

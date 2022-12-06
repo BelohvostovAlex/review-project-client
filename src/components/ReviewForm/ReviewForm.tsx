@@ -5,38 +5,41 @@ import { Autocomplete, Box, Stack, TextField, Typography } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
 import { AppCreatableAutoComplete } from "../AppCreatableAutocomplete/AppCreatableAutoComplete";
 import { AppTag } from "../AppTag/AppTag";
+import { AppUploadImg } from "../AppUploadImg/AppUploadImg";
+import { AppAlert } from "../AppAlert/AppAlert";
+import { AppRating } from "../AppRating/AppRating";
 
 import { artItemsServiceCreateItem } from "../../services/artItemsService/artItemsService";
+import { reviewServiceCreateReview } from "../../services/reviewService/reviewService";
 import { tagServiceCreateTag } from "../../services/tagService/tagService";
 import { useFetchItems } from "../../hooks/useFetchTags";
 import { useFetchArtItems } from "../../hooks/useFetchArtItems";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { useFetchCategoriesOptions } from "../../hooks/useFetchCategoriesOptions";
 
 import { AppRatingSize } from "../AppRating/interface";
 import { ReviewFormInputs } from "./interface";
-import { categoryOptions } from "../../mock/options";
 import { makeStyles } from "./styles";
-import { AppRating } from "../AppRating/AppRating";
-import { reviewServiceCreateReview } from "../../services/reviewService/reviewService";
-import { useAppSelector } from "../../hooks/useAppSelector";
 import { ITag } from "../../models/ITag";
 import { IArtItem } from "../../models/IArtItem";
-import { AppAlert } from "../AppAlert/AppAlert";
 import { AppAlertSeverity } from "../AppAlert/interface";
 
 export const ReviewForm: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth);
   const [tags, handleAddTag] = useFetchItems();
   const [artItems, handleAddArtItem] = useFetchArtItems();
+  const categoryOptions = useFetchCategoriesOptions();
   const [currentTags, setCurrentTags] = useState<ITag[]>([]);
   const [currentArtItem, setCurrentArtItem] = useState<IArtItem | null>(null);
   const [grade, setGrade] = useState(1);
+  const [image, setImage] = useState("");
   const style = makeStyles();
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitted },
+    formState: { errors, isSubmitSuccessful },
   } = useForm<ReviewFormInputs>({ mode: "onBlur" });
 
   const onSubmit: SubmitHandler<ReviewFormInputs> = async (data) => {
@@ -50,10 +53,12 @@ export const ReviewForm: React.FC = () => {
       creator: user.id,
       grade: grade,
       tags: currentTags,
+      image: image,
     });
 
     if (newReview) {
       setGrade(1);
+      setImage("");
       reset();
     }
   };
@@ -68,7 +73,7 @@ export const ReviewForm: React.FC = () => {
         const isExistTag = prev.find(
           (currentTag) => currentTag.title === tag.title
         );
-        console.log(prev);
+
         if (isExistTag) return prev;
         return [...prev, tag];
       });
@@ -81,6 +86,10 @@ export const ReviewForm: React.FC = () => {
 
   const handleGrade = (rating: number) => {
     setGrade(rating);
+  };
+
+  const handleImage = (image: string) => {
+    setImage(image);
   };
 
   return (
@@ -107,6 +116,7 @@ export const ReviewForm: React.FC = () => {
           )}
           groupBy={(option) => option.firstLetter}
           getOptionLabel={(option) => option.title}
+          isOptionEqualToValue={(option, value) => option.title === value.title}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -140,6 +150,12 @@ export const ReviewForm: React.FC = () => {
           error={!!errors.text}
           helperText={!!errors.text && errors.text?.message}
         />
+        <AppUploadImg handleImage={handleImage} />
+        {image && (
+          <Box sx={style.reviewImageWrapper}>
+            <Box component="img" src={image} sx={style.reviewImage} />
+          </Box>
+        )}
         <Typography>Your grade:</Typography>
         <AppRating
           max={10}
@@ -148,7 +164,6 @@ export const ReviewForm: React.FC = () => {
           rating={grade}
           size={AppRatingSize.LARGE}
         />
-
         <AppCreatableAutoComplete
           items={tags}
           handleAddItem={handleAddTag}
@@ -163,21 +178,23 @@ export const ReviewForm: React.FC = () => {
           helperText={!!errors.tags && errors.tags?.message}
         />
         <Stack direction="row" spacing={1} sx={style.tagsWrapper}>
-          {currentTags.map(({ title }) => (
+          {currentTags.map(({ title, _id }) => (
             <AppTag
               onClick={() => handleDeleteCurrentTag(title)}
               title={title}
-              key={title}
+              key={_id}
             />
           ))}
         </Stack>
         <AppButton text="Create" type="submit" />
       </Box>
-      <AppAlert
-        text="Your review was successfully created!"
-        severity={AppAlertSeverity.SUCCESS}
-        open={isSubmitted}
-      />
+      {isSubmitSuccessful && (
+        <AppAlert
+          text="Your review was successfully created!"
+          severity={AppAlertSeverity.SUCCESS}
+          open={true}
+        />
+      )}
     </>
   );
 };

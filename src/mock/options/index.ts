@@ -1,9 +1,11 @@
-const reviewCategories = ["games", "movies", "books"];
+import { ICategory } from "../../models/ICategory";
 
-export const categoryOptions = reviewCategories.map((option) => {
-  const firstLetter = option[0].toUpperCase();
-  return {
-    firstLetter: /[0-9]/.test(firstLetter) ? "0-9" : firstLetter,
-    title: option,
-  };
-});
+export const handleCategoryOptions = (options: ICategory[]) => {
+  return options.map((option) => {
+    const firstLetter = option.title[0].toUpperCase();
+    return {
+      firstLetter: /[0-9]/.test(firstLetter) ? "0-9" : firstLetter,
+      title: option.title,
+    };
+  });
+};

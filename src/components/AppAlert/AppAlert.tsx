@@ -12,6 +12,7 @@ export const AppAlert: React.FC<AppAlertProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(() => (open ? true : false));
   const handleClose = () => setIsOpen(false);
+  console.log(isOpen);
 
   const style = makeStyles();
   return (

@@ -5,6 +5,7 @@ export interface IReview {
   artItem: string;
   text: string;
   category: string;
+  image: string;
   tags: string[];
   grade: number;
   likes: string[];

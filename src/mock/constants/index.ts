@@ -8,3 +8,5 @@ export const APP_PROFILE_MENU = [
   { text: "Profile", path: AppPathes.MAIN },
   { text: "New Review", path: AppPathes.NEW_REVIEW },
 ];
+
+export const APP_CLOUDINARY_CLOUD_NAME = "dujpbjyhd";
