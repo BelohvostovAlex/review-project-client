@@ -17,7 +17,17 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    like: (state, action: PayloadAction<string>) => {
+      if (state.user.likedReviews.includes(action.payload)) {
+        state.user.likedReviews = state.user.likedReviews.filter(
+          (item) => item !== action.payload
+        );
+      } else {
+        state.user.likedReviews.push(action.payload);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       authSignIn.fulfilled,
@@ -29,6 +39,7 @@ export const authSlice = createSlice({
       }
     );
     builder.addCase(authSignIn.pending, (state) => {
+      state.user = {} as IUser;
       state.isAuth = false;
       state.isError = "";
       state.isLoading = true;
@@ -49,6 +60,7 @@ export const authSlice = createSlice({
       }
     );
     builder.addCase(authSignUp.pending, (state) => {
+      state.user = {} as IUser;
       state.isAuth = false;
       state.isError = "";
       state.isLoading = true;
@@ -76,6 +88,6 @@ export const authSlice = createSlice({
   },
 });
 
-// export const {} = authSlice.actions;
+export const { like } = authSlice.actions;
 
 export default authSlice.reducer;

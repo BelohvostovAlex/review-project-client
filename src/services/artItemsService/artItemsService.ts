@@ -11,6 +11,12 @@ export const artItemsServiceGetAllItems = async (): Promise<
   return $api.get(ART_ITEMS_URLS.GET_ITEMS);
 };
 
+export const artItemsServiceGetArtItem = async (
+  id: string
+): Promise<AxiosResponse<IArtItem>> => {
+  return $api.get(ART_ITEMS_URLS.GET_ITEM_BY_ID + id);
+};
+
 export const artItemsServiceCreateItem = async (
   data: artItemsServiceCreateTagInput
 ): Promise<AxiosResponse<IArtItem>> => {

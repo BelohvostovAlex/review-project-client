@@ -29,11 +29,13 @@ export const TAGS_URLS = {
 export const ART_ITEMS_URLS = {
   GET_ITEMS: "/art-items",
   CREATE_ITEM: "/art-items",
+  GET_ITEM_BY_ID: "/art-items/",
 };
 
 export const REVIEWS_URLS = {
   GET_REVIEWS: "/reviews",
   CREATE_REVIEW: "/reviews",
+  LIKE_REVIEW: "/reviews/like/",
 };
 
 export const CATEGORY_URLS = {

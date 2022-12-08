@@ -11,6 +11,12 @@ export const reviewServiceGetReviews = async (): Promise<
   return $api.get(REVIEWS_URLS.GET_REVIEWS);
 };
 
+export const reviewServiceGetReview = async (
+  id: string
+): Promise<AxiosResponse<IReview>> => {
+  return $api.get(REVIEWS_URLS.GET_REVIEWS + `/${id}`);
+};
+
 export const reviewServiceCreateReview = async (
   data: reviewServiceCreateReviewInput
 ): Promise<AxiosResponse<IReview>> => {
@@ -25,4 +31,11 @@ export const reviewServiceCreateReview = async (
     text,
     image,
   });
+};
+
+export const reviewServiceLikeReview = async (
+  reviewId: string,
+  id: string
+): Promise<AxiosResponse<IReview[]>> => {
+  return $api.patch(REVIEWS_URLS.LIKE_REVIEW + reviewId, { likeId: id });
 };

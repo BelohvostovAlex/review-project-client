@@ -5,6 +5,7 @@ import { Main } from "../../pages/Main/Main";
 import { NewReview } from "../../pages/NewReview/NewReview";
 import { NotFound } from "../../pages/NotFound/NotFound";
 import { Registration } from "../../pages/Registration/Registration";
+import { Review } from "../../pages/Review/Review";
 
 export interface IRoute {
   path: string;
@@ -18,6 +19,7 @@ export enum AppPathes {
   REGISTRATION = "/signup",
   NOT_FOUND = "/not-found",
   NEW_REVIEW = "/new-review",
+  REVIEW = "/reviews/:id",
 }
 
 export const publicRoutes: IRoute[] = [
@@ -26,6 +28,7 @@ export const publicRoutes: IRoute[] = [
   { path: AppPathes.MAIN, element: Main },
   { path: AppPathes.NOT_FOUND, element: NotFound },
   { path: AppPathes.NEW_REVIEW, element: NewReview },
+  { path: AppPathes.REVIEW, element: Review },
 ];
 export const privateRoutes: IRoute[] = [];
 

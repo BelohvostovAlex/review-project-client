@@ -12,10 +12,27 @@ const initialState: ReviewState = {
   isError: "",
 };
 
+interface likedReviewPayload {
+  id: string;
+  userId: string;
+}
+
 export const reviewSlice = createSlice({
   name: "review",
   initialState,
-  reducers: {},
+  reducers: {
+    likedReview: (state, action: PayloadAction<likedReviewPayload>) => {
+      const { id, userId } = action.payload;
+      const currentReview = state.reviews.find((review) => review._id === id);
+      if (currentReview!.likes.includes(userId)) {
+        currentReview!.likes = currentReview!.likes.filter(
+          (like) => like !== userId
+        );
+      } else {
+        currentReview?.likes.push(userId);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       getReviewsThunk.fulfilled,
@@ -26,6 +43,7 @@ export const reviewSlice = createSlice({
       }
     );
     builder.addCase(getReviewsThunk.pending, (state) => {
+      state.reviews = [] as IReview[];
       state.isError = "";
       state.isLoading = true;
     });
@@ -37,6 +55,6 @@ export const reviewSlice = createSlice({
   },
 });
 
-// export const {} = authSlice.actions;
+export const { likedReview } = reviewSlice.actions;
 
 export default reviewSlice.reducer;
