@@ -1,12 +1,27 @@
-import React from "react";
+import React, { Suspense, useMemo } from "react";
 
-import { AppRouter } from "./components/AppRouter/AppRouter";
-import { AppLayout } from "./layout/AppLayout/AppLayout";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { themeSettings } from "./theme/theme";
+
+import { AppLoader } from "./components/AppLoader/AppLoader";
+import { useAppSelector } from "./hooks/useAppSelector";
+
+const AppLayout = React.lazy(() => import("./layout/AppLayout/AppLayout"));
+const AppRouter = React.lazy(() => import("./components/AppRouter/AppRouter"));
 
 export const App: React.FC = () => {
+  const { mode } = useAppSelector((state) => state.auth);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+
   return (
-    <AppLayout>
-      <AppRouter />
-    </AppLayout>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Suspense fallback={<AppLoader open={true} />}>
+        <AppLayout>
+          <AppRouter />
+        </AppLayout>
+      </Suspense>
+    </ThemeProvider>
   );
 };

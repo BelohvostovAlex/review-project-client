@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { Autocomplete, Box, Stack, TextField, Typography } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
@@ -8,59 +9,96 @@ import { AppTag } from "../AppTag/AppTag";
 import { AppUploadImg } from "../AppUploadImg/AppUploadImg";
 import { AppAlert } from "../AppAlert/AppAlert";
 import { AppRating } from "../AppRating/AppRating";
+import { SimpleMdeReact } from "react-simplemde-editor";
 
 import { artItemsServiceCreateItem } from "../../services/artItemsService/artItemsService";
-import { reviewServiceCreateReview } from "../../services/reviewService/reviewService";
+import {
+  reviewServiceCreateReview,
+  reviewServiceUpdateReview,
+} from "../../services/reviewService/reviewService";
 import { tagServiceCreateTag } from "../../services/tagService/tagService";
 import { useFetchItems } from "../../hooks/useFetchTags";
 import { useFetchArtItems } from "../../hooks/useFetchArtItems";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useFetchCategoriesOptions } from "../../hooks/useFetchCategoriesOptions";
+import { useMarkdownOptions } from "./config/useMarkdownOptions";
+import { handleTextForm } from "./config/handleTextForm";
 
-import { AppRatingSize } from "../AppRating/interface";
-import { ReviewFormInputs } from "./interface";
-import { makeStyles } from "./styles";
 import { ITag } from "../../models/ITag";
 import { IArtItem } from "../../models/IArtItem";
+import { AppRatingSize } from "../AppRating/interface";
 import { AppAlertSeverity } from "../AppAlert/interface";
+import { ReviewFormInputs, ReviewFormProps } from "./interface";
+import { makeStyles } from "./styles";
+import "easymde/dist/easymde.min.css";
 
-export const ReviewForm: React.FC = () => {
+export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
   const { user } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
   const [tags, handleAddTag] = useFetchItems();
   const [artItems, handleAddArtItem] = useFetchArtItems();
   const categoryOptions = useFetchCategoriesOptions();
   const [currentTags, setCurrentTags] = useState<ITag[]>([]);
   const [currentArtItem, setCurrentArtItem] = useState<IArtItem | null>(null);
+  const [text, setText] = useState<string>("");
   const [grade, setGrade] = useState(1);
   const [image, setImage] = useState("");
+  const formTextValues = handleTextForm(isEdit || false);
   const style = makeStyles();
+
+  const options = useMarkdownOptions();
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitSuccessful },
-  } = useForm<ReviewFormInputs>({ mode: "onBlur" });
+  } = useForm<ReviewFormInputs>({
+    mode: "onBlur",
+  });
 
   const onSubmit: SubmitHandler<ReviewFormInputs> = async (data) => {
-    const { title, category, text } = data;
+    const { title, category } = data;
     const artItemId = currentArtItem!._id;
-    const newReview = await reviewServiceCreateReview({
-      title,
-      artItem: artItemId!,
-      category,
-      text,
-      creator: user.id,
-      grade: grade,
-      tags: currentTags,
-      image: image,
-    });
 
-    if (newReview) {
-      setGrade(1);
-      setImage("");
-      reset();
+    if (isEdit) {
+      await reviewServiceUpdateReview(review!._id, {
+        title,
+        artItem: artItemId!,
+        category,
+        text,
+        creator: user.id,
+        grade: grade,
+        tags: currentTags,
+        image: image,
+      });
+
+      resetFormToInitialVal(review!._id);
+    } else {
+      const newReview = await reviewServiceCreateReview({
+        title,
+        artItem: artItemId!,
+        category,
+        text,
+        creator: user.id,
+        grade: grade,
+        tags: currentTags,
+        image: image,
+      });
+
+      const { _id } = newReview.data;
+      resetFormToInitialVal(_id);
     }
+  };
+
+  const resetFormToInitialVal = (id: string) => {
+    setGrade(1);
+    setImage("");
+    reset();
+    setTimeout(() => {
+      navigate(`/reviews/${id}`);
+    }, 1500);
   };
 
   const handleDeleteCurrentTag = (tag: string) => {
@@ -92,6 +130,34 @@ export const ReviewForm: React.FC = () => {
     setImage(image);
   };
 
+  const onTextChange = useCallback((value: string) => {
+    setText(value);
+  }, []);
+
+  useEffect(() => {
+    if (!isEdit) {
+      reset();
+      setText("");
+      setGrade(0);
+      setCurrentTags([]);
+      setCurrentArtItem(null);
+    }
+    if (isEdit && review) {
+      setCurrentTags(review.tags);
+      setCurrentArtItem(review.artItem);
+      setImage(review.image);
+      setText(review.text);
+      setGrade(review.grade);
+      setValue("title", review.title);
+      setValue("category", review.category);
+      setValue(
+        "tags",
+        review.tags.map((tag) => tag.title)
+      );
+      setValue("artItem", review.title);
+    }
+  }, [isEdit]);
+
   return (
     <>
       <Box
@@ -100,8 +166,8 @@ export const ReviewForm: React.FC = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TextField
-          label="Review Title"
-          placeholder="My Review for Harry Potter"
+          label={formTextValues.title.label}
+          placeholder={formTextValues.title.placeholder}
           variant="outlined"
           type="text"
           {...register("title", { required: "Title is required" })}
@@ -117,6 +183,9 @@ export const ReviewForm: React.FC = () => {
           groupBy={(option) => option.firstLetter}
           getOptionLabel={(option) => option.title}
           isOptionEqualToValue={(option, value) => option.title === value.title}
+          defaultValue={
+            isEdit ? { title: review!.category, firstLetter: "" } : null
+          }
           renderInput={(params) => (
             <TextField
               {...params}
@@ -133,22 +202,19 @@ export const ReviewForm: React.FC = () => {
           handleAddCurrentItems={handleAddCurrentArtItem}
           createCallBack={artItemsServiceCreateItem}
           item="artItem"
-          textFieldTitle="Choose Art Item.."
-          dialogueText=" Did you miss any art of piece in our list? Please, add it!"
-          dialogueTitle="Add a new Art Item"
+          textFieldTitle={formTextValues.artItem.textFieldTitle}
+          dialogueText={formTextValues.artItem.dialogueText}
+          dialogueTitle={formTextValues.artItem.dialogueTitle}
           register={register}
           error={!!errors.artItem}
           helperText={!!errors.artItem && errors.artItem?.message}
+          artItem={(review && review.artItem) || undefined}
         />
-        <TextField
-          label="Review text"
-          multiline
-          rows={4}
-          sx={style.textField}
-          {...register("text", { required: "Text review is required" })}
-          placeholder="As for me Harry Potter is amazing movie, because..."
-          error={!!errors.text}
-          helperText={!!errors.text && errors.text?.message}
+        <SimpleMdeReact
+          value={text}
+          onChange={onTextChange}
+          options={options}
+          style={style.textField}
         />
         <AppUploadImg handleImage={handleImage} />
         {image && (
@@ -170,9 +236,9 @@ export const ReviewForm: React.FC = () => {
           handleAddCurrentItems={handleAddCurrentTags}
           createCallBack={tagServiceCreateTag}
           item="tag"
-          textFieldTitle="Enter tags.."
-          dialogueText=" Did you miss any tag in our list? Please, add it!"
-          dialogueTitle="Add a new Tag"
+          textFieldTitle={formTextValues.tags.textFieldTitle}
+          dialogueText={formTextValues.tags.dialogueText}
+          dialogueTitle={formTextValues.tags.dialogueTitle}
           register={register}
           error={!!errors.tags}
           helperText={!!errors.tags && errors.tags?.message}
@@ -186,11 +252,11 @@ export const ReviewForm: React.FC = () => {
             />
           ))}
         </Stack>
-        <AppButton text="Create" type="submit" />
+        <AppButton text={formTextValues.submitBtn} type="submit" />
       </Box>
       {isSubmitSuccessful && (
         <AppAlert
-          text="Your review was successfully created!"
+          text={formTextValues.alertText}
           severity={AppAlertSeverity.SUCCESS}
           open={true}
         />

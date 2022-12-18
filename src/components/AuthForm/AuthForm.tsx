@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 
 import { Box, TextField, Typography } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
@@ -7,15 +8,17 @@ import { AppButtonLink } from "../Buttons/AppButtonLink";
 import { AuthGoogle } from "../AuthGoogle/AuthGoogle";
 import { AppLoader } from "../AppLoader/AppLoader";
 
+import { useAppSelector } from "../../hooks/useAppSelector";
+
+import { AppPathes } from "../AppRouter/interfaces";
 import { AuthFormProps, FormInputs } from "./interfaces";
 import { makeStyles } from "./styles";
-import { useAppSelector } from "../../hooks/useAppSelector";
 
 export const AuthForm: React.FC<AuthFormProps> = ({
   signUp = true,
   onFormSubmit,
 }) => {
-  const { isLoading } = useAppSelector((state) => state.auth);
+  const { isLoading, isAuth } = useAppSelector((state) => state.auth);
   const style = makeStyles();
 
   const {
@@ -33,6 +36,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({
 
   if (isLoading) {
     return <AppLoader open={true} />;
+  }
+
+  if (!isLoading && isAuth) {
+    return <Navigate to={AppPathes.MAIN} />;
   }
 
   return (

@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { publicRoutes, AppPathes } from "./interfaces";
 
-export const AppRouter: React.FC = () => {
+const AppRouter: React.FC = () => {
   const { isAuth, isLoading, isError } = useAppSelector((state) => state.auth);
 
   console.log("isAuth", isAuth);
@@ -19,3 +19,5 @@ export const AppRouter: React.FC = () => {
     </Routes>
   );
 };
+
+export default AppRouter;

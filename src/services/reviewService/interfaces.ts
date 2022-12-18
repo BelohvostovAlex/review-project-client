@@ -10,3 +10,11 @@ export interface reviewServiceCreateReviewInput {
   grade: number;
   image: string;
 }
+
+export interface reviewServiceGetReviewsInput {
+  page?: number;
+  limit?: number;
+  search?: string;
+  sort?: string;
+  category?: string;
+}

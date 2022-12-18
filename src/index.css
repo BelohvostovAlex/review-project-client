@@ -15,3 +15,22 @@ code {
 a {
   text-decoration: none;
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* track */
+::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+/* Handle on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

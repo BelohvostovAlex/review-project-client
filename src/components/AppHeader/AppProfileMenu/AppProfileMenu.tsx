@@ -9,10 +9,13 @@ import {
   MenuItem,
   IconButton,
   Stack,
+  useTheme,
 } from "@mui/material";
 
+import { tokens } from "../../../theme/theme";
 import { useAppSelector } from "../../../hooks/useAppSelector";
 import { stringAvatar } from "../../../helpers/stringAvatar";
+
 import { APP_PROFILE_MENU } from "../../../mock/constants";
 import { AppProfileMenuProps } from "./interface";
 import { makeStyles } from "./styles";
@@ -21,7 +24,14 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
   const { user } = useAppSelector((state) => state.auth);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
-  const style = makeStyles();
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const style = makeStyles({
+    profileAvaBg:
+      theme.palette.mode === "dark"
+        ? colors.lightGreen[500]
+        : colors.primary[500],
+  });
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -37,7 +47,7 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
       <Tooltip title={title}>
         <IconButton onClick={handleOpenUserMenu} sx={style.avaBtn}>
           <Stack>
-            <Avatar>{stringAvatar(user.username)}</Avatar>
+            <Avatar sx={style.profileAva}>{stringAvatar(user.username)}</Avatar>
           </Stack>
         </IconButton>
       </Tooltip>

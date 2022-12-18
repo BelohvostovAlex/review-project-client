@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { TextField, Autocomplete } from "@mui/material";
 import { AppDialogue } from "../AppDialogue/AppDialogue";
 
+import { choosePlaceholder, chooseRegisterTextField } from "./config";
 import {
   AppArtItemsAutoCompleteProps,
   AppTagsAutoCompleteProps,
@@ -11,7 +12,6 @@ import {
 import { ITag } from "../../models/ITag";
 import { IArtItem } from "../../models/IArtItem";
 import { makeStyles } from "./styles";
-import { choosePlaceholder, chooseRegisterTextField } from "./config";
 
 export const AppCreatableAutoComplete: React.FC<
   AppTagsAutoCompleteProps | AppArtItemsAutoCompleteProps
@@ -27,6 +27,7 @@ export const AppCreatableAutoComplete: React.FC<
   register,
   error,
   helperText,
+  artItem,
 }) => {
   const [dialogValue, setDialogValue] = useState({
     title: "",
@@ -45,8 +46,8 @@ export const AppCreatableAutoComplete: React.FC<
   };
 
   const handleSubmit = async () => {
-    const isExistTag = items.find((item) => item.title === dialogValue.title);
-    if (isExistTag) return;
+    const isExist = items.find((item) => item.title === dialogValue.title);
+    if (isExist) return;
     const { data } = await createCallBack({ title: dialogValue.title });
 
     handleAddItem(data);
@@ -55,14 +56,23 @@ export const AppCreatableAutoComplete: React.FC<
   };
 
   useEffect(() => {
+    if (item === "artItem") {
+      setValue(artItem || null);
+    }
+    // eslint-disable-next-line
+  }, [item]);
+
+  useEffect(() => {
     handleAddCurrentItems(value);
-  }, [value]);
+  }, [value, handleAddCurrentItems]);
 
   return (
     <>
       <Autocomplete
+        freeSolo={true}
         sx={style.autoCompleteWrapper}
         value={value}
+        defaultValue={value}
         onChange={(event, newValue) => {
           if (typeof newValue === "string") {
             setTimeout(() => {
@@ -83,7 +93,6 @@ export const AppCreatableAutoComplete: React.FC<
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        freeSolo
         options={items}
         filterOptions={(options, params) => {
           const filter = chooseFilter(item!);

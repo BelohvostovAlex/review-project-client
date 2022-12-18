@@ -17,6 +17,7 @@ interface AutoCompleteProps {
   register?: UseFormRegister<ReviewFormInputs>;
   error?: boolean;
   helperText?: string | false | undefined;
+  artItem?: IArtItem;
 }
 
 export interface AppTagsAutoCompleteProps extends AutoCompleteProps {

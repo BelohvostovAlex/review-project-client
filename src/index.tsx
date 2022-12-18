@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { App } from "./App";
 
 import { store, persistor } from "./store";
+import "./i18n";
 
 import { googleClientId } from "./mock/mockUrls";
 import "./index.css";

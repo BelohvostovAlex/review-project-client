@@ -1,4 +1,6 @@
 import { SxProps } from "@mui/material";
+import { DefaultTFuncReturn } from "i18next";
+import { IReview } from "../../models/IReview";
 
 export enum AppButtonVariant {
   OUTLINED = "outlined",
@@ -16,10 +18,11 @@ export enum AppButtonColor {
   SECONDARY = "secondary",
 }
 
+export type AppButtonSize = "small" | "large" | "medium";
 export type AppButtonType = "button" | "submit" | "reset" | undefined;
 
 export interface AppButtonProps {
-  text: string;
+  text: string | React.ReactElement | DefaultTFuncReturn;
   styles?: SxProps;
   variant?: AppButtonVariant;
   color?: AppButtonColor;
@@ -27,8 +30,10 @@ export interface AppButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   startIcon?: React.ReactElement;
+  size?: AppButtonSize;
 }
 
 export interface AppButtonLinkProps extends AppButtonProps {
   path: string;
+  state?: IReview;
 }

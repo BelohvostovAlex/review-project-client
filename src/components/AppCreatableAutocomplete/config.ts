@@ -3,6 +3,6 @@ export const chooseRegisterTextField = (item: string) => {
 };
 export const choosePlaceholder = (item: string) => {
   return item === "artItem"
-    ? "As for me Harry Potter is amazing movie, because..."
+    ? "Harry Potter and the secret chamber"
     : "Cool, Superb, Awesome, Low, Funny";
 };

@@ -13,6 +13,7 @@ export const makeStyles = () => ({
   },
   tagsWrapper: {
     display: "flex",
+    alignItems: "center",
     flexWrap: "wrap",
     padding: "15px 0px",
   },

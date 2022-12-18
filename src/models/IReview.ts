@@ -1,12 +1,15 @@
+import { IArtItem } from "./IArtItem";
+import { ITag } from "./ITag";
+
 export interface IReview {
   _id: string;
   creator: string;
   title: string;
-  artItem: string;
+  artItem: IArtItem;
   text: string;
   category: string;
   image: string;
-  tags: string[];
+  tags: ITag[];
   grade: number;
   likes: string[];
   createdAt: string;

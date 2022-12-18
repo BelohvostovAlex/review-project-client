@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { AuthState } from "./interfaces";
-import { IUser } from "../../../models/IUser";
 import { authSignIn } from "./thunks/authSignInThunk";
 import { authSignUp } from "./thunks/authSignUpThunk";
 import { authSignOut } from "./thunks/authSignOutThunk";
 
+import { AuthState } from "./interfaces";
+import { IUser } from "../../../models/IUser";
+
 const initialState: AuthState = {
   user: {} as IUser,
+  mode: "light",
+  lang: "en",
   isAuth: false,
   isLoading: false,
   isError: "",
@@ -26,6 +29,16 @@ export const authSlice = createSlice({
       } else {
         state.user.likedReviews.push(action.payload);
       }
+    },
+    addRatedArtItem: (state, action: PayloadAction<string>) => {
+      !state.user.ratedArtItems.includes(action.payload) &&
+        state.user.ratedArtItems.push(action.payload);
+    },
+    changeTheme: (state) => {
+      state.mode = state.mode === "light" ? "dark" : "light";
+    },
+    changeLang: (state, action: PayloadAction<string>) => {
+      state.lang = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -88,6 +101,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { like } = authSlice.actions;
+export const { like, addRatedArtItem, changeTheme, changeLang } =
+  authSlice.actions;
 
 export default authSlice.reducer;

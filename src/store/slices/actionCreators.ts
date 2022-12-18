@@ -1,15 +1,17 @@
 import { authSignIn } from "./authSlice/thunks/authSignInThunk";
 import { authSignOut } from "./authSlice/thunks/authSignOutThunk";
 import { authSignUp } from "./authSlice/thunks/authSignUpThunk";
-import { getReviewsThunk } from "./reviewSlice/thunks/getReviewsThunk";
 import { like } from "./authSlice/authSlice";
-import { likedReview } from "./reviewSlice/reviewSlice";
+import { addRatedArtItem } from "./authSlice/authSlice";
+import { changeTheme } from "./authSlice/authSlice";
+import { changeLang } from "./authSlice/authSlice";
 
 export const allActionCreators = {
   authSignIn,
   authSignOut,
   authSignUp,
-  getReviewsThunk,
   like,
-  likedReview,
+  addRatedArtItem,
+  changeLang,
+  changeTheme,
 };

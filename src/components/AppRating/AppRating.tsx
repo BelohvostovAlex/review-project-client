@@ -4,6 +4,7 @@ import { Box, Typography, Rating } from "@mui/material";
 
 import { AppRatingProps, AppRatingSize } from "./interface";
 import { makeStyle } from "./styles";
+import { ratingSubTitle } from "./config";
 
 export const AppRating: React.FC<AppRatingProps> = ({
   defaultValue = 1,
@@ -13,7 +14,8 @@ export const AppRating: React.FC<AppRatingProps> = ({
   size = AppRatingSize.MEDIUM,
 }) => {
   const style = makeStyle();
-  const stars = rating && rating > 1 ? "stars" : "star";
+  const stars = ratingSubTitle(rating || 0);
+
   return (
     <Box sx={style.ratingWrapper}>
       <Rating
@@ -26,7 +28,7 @@ export const AppRating: React.FC<AppRatingProps> = ({
         }}
       />
       <Typography component="legend" sx={style.ratingInfo}>
-        {rating} {stars}
+        {rating !== 0 && rating} {stars}
       </Typography>
     </Box>
   );

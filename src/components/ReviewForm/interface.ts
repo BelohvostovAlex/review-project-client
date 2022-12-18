@@ -1,3 +1,5 @@
+import { IReview } from "../../models/IReview";
+
 export type ReviewFormInputs = {
   title: string;
   artItem: string;
@@ -6,3 +8,8 @@ export type ReviewFormInputs = {
   tags: string[];
   image?: string;
 };
+
+export interface ReviewFormProps {
+  isEdit?: boolean;
+  review?: IReview;
+}

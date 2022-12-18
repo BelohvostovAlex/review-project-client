@@ -1,0 +1,16 @@
+{
+  "Lang": {
+    "1": "Lang"
+  },
+  "Reviews": {
+    "1": "Reviews"
+  },
+  "HeaderButtons": {
+    "1": "Sign In",
+    "2": "Sign Up",
+    "3": "Sign Out"
+  },
+  "ProfileMenu": {
+    "1": "Open profile settings"
+  }
+}

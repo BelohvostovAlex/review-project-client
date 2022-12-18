@@ -12,13 +12,12 @@ export const AppAlert: React.FC<AppAlertProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(() => (open ? true : false));
   const handleClose = () => setIsOpen(false);
-  console.log(isOpen);
 
   const style = makeStyles();
   return (
     <Snackbar
       sx={style.alertWrapper}
-      autoHideDuration={4000}
+      autoHideDuration={2000}
       open={isOpen}
       onClose={handleClose}
     >

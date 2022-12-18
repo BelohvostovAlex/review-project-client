@@ -3,30 +3,37 @@ import { useNavigate } from "react-router-dom";
 
 import {
   Box,
-  Typography,
   Divider,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
+  useTheme,
 } from "@mui/material";
 
-import { APP_HEADER_TITLE, APP_NAV_MENU } from "../../../../mock/constants";
+import { APP_LOGO, APP_NAV_MENU } from "../../../../mock/constants";
+import { tokens } from "../../../../theme/theme";
+
 import { AppDrawerMenuProps } from "./interface";
 import { makeStyles } from "./styles";
 
 export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
-  const style = makeStyles();
+  const style = makeStyles({
+    AppDrawerLogoColor:
+      theme.palette.mode === "dark"
+        ? colors.lightGreen[500]
+        : colors.primary[500],
+  });
 
   const handleItemOnClick = (path: string) => {
     navigate(path);
   };
   return (
     <Box onClick={onClick} sx={style.appDrawerMenuWrapper}>
-      <Typography variant="h6" sx={style.appDrawerTitle}>
-        {APP_HEADER_TITLE}
-      </Typography>
+      <APP_LOGO sx={style.appDrawerLogo} />
       <Divider />
       <List>
         {APP_NAV_MENU.map((item) => (

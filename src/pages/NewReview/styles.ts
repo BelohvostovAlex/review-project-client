@@ -1,6 +1,6 @@
 export const makeStyles = () => ({
   newReviewWrapper: {
-    padding: "20px 0px",
+    padding: "20px",
   },
   newReviewTitle: {
     textAlign: "center",

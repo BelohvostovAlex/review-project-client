@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 
 import { uploadFileService } from "../../services/uploadFileService/uploadFileService";
+import { tokens } from "../../theme/theme";
 
 import { AppUploadImgProps } from "./interface";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -10,9 +11,17 @@ import { makeStyles } from "./styles";
 
 export const AppUploadImg: React.FC<AppUploadImgProps> = ({ handleImage }) => {
   const [drag, setDrag] = useState(false);
-  const style = makeStyles({ drag: drag });
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const style = makeStyles({
+    drag: drag,
+    uploadWrapperBorder:
+      theme.palette.mode === "dark"
+        ? colors.lightGreen[500]
+        : colors.primary[500],
+  });
 
-  const title = drag ? "Please Drop here" : "Upload an image";
+  const title = drag ? "Please Drop here" : "Drag an image here";
 
   const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();

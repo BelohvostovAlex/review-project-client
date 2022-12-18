@@ -1,6 +1,8 @@
 import React from "react";
 
-import { Drawer } from "@mui/material";
+import { Drawer, useTheme } from "@mui/material";
+
+import { tokens } from "../../../theme/theme";
 
 import { AppDrawerProps } from "./interfaces";
 import { makeStyles } from "./styles";
@@ -12,7 +14,9 @@ export const AppDrawer: React.FC<AppDrawerProps> = ({
   drawerWidth = "240px",
   variant = "temporary",
 }) => {
-  const style = makeStyles({ drawerWidth });
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const style = makeStyles({ drawerWidth, drawerBgColor: colors.grey[800] });
   return (
     <Drawer
       variant={variant}
