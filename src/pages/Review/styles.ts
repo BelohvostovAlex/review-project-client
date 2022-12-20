@@ -11,16 +11,31 @@ export const makeStyles = () => ({
   },
   reviewBackBtn: {
     position: "fixed",
-    top: "15vh",
-    left: "15vh",
-    paddingRight: "5px",
-    paddingLeft: "15px",
-    minWidth: "30px",
-    display: "flex",
+    top: "13vh",
+    left: "10vh",
   },
   relatedReviewsTitle: {
     textAlign: "center",
     marginTop: "40px",
     marginBottom: "20px",
+  },
+  commentsBlockWrapper: {
+    margin: "20px 0px",
+  },
+  commentsBlockTitle: {
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: "20px",
+    marginBottom: "10px",
+  },
+  commentForm: {
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+    width: "60%",
+  },
+  commentTextField: {
+    width: "100%",
+    marginBottom: "10px",
   },
 });

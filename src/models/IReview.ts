@@ -1,4 +1,5 @@
 import { IArtItem } from "./IArtItem";
+import { IComment } from "./IComment";
 import { ITag } from "./ITag";
 
 export interface IReview {
@@ -8,6 +9,7 @@ export interface IReview {
   artItem: IArtItem;
   text: string;
   category: string;
+  comments: IComment[];
   image: string;
   tags: ITag[];
   grade: number;

@@ -1,3 +1,5 @@
+import { SxProps } from "@mui/material";
+
 export enum AppTagVariant {
   OUTLINED = "outlined",
   FILLED = "filled",
@@ -5,7 +7,9 @@ export enum AppTagVariant {
 
 export interface AppTagProps {
   title: string;
+  isDelete?: boolean;
   variant?: AppTagVariant;
-  onClick?: (tag: string) => void;
-  isTagTitle?: boolean;
+  onDelete?: (tag: string) => void;
+  onClick?: () => void;
+  styles?: SxProps;
 }

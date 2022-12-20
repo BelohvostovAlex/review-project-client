@@ -24,4 +24,7 @@ export const makeStyles = () => ({
   reviewImage: {
     width: "100%",
   },
+  reviewRatingWrapper: {
+    display: "flex",
+  },
 });

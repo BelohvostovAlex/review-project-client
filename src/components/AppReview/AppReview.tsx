@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -25,13 +26,13 @@ import { tokens } from "../../theme/theme";
 import { useGetUser } from "../../hooks/useGetUser";
 
 import { handleLikeIcon, handleStarIcon } from "./config";
+import { AppPathes } from "../AppRouter/interfaces";
 import { AppRatingSize } from "../AppRating/interface";
 import { AppReviewProps } from "./interface";
 import EditIcon from "@mui/icons-material/Edit";
 import imagePlaceHolder from "../../assets/images/image-placeholder.jpg";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { makeStyles } from "./styles";
-import { AppPathes } from "../AppRouter/interfaces";
 
 export const AppReview: React.FC<AppReviewProps> = ({
   review,
@@ -43,9 +44,9 @@ export const AppReview: React.FC<AppReviewProps> = ({
   likedReview,
   handleFullReviewLikes,
 }) => {
-  const { user } = useAppSelector((state) => state.auth);
-  const theme = useTheme();
+  const { user, isAuth } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+  const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const style = makeStyles({
     isFull,
@@ -77,6 +78,10 @@ export const AppReview: React.FC<AppReviewProps> = ({
   const croppedText = isFull ? text : handleReviewCardText(text, 135);
 
   const handleLikeReview = async () => {
+    if (!isAuth) {
+      navigate(AppPathes.LOGIN);
+      return;
+    }
     like(_id);
     if (!isFull && !isRelated) {
       likedReview!(_id, user.id);
@@ -119,12 +124,12 @@ export const AppReview: React.FC<AppReviewProps> = ({
             component="div"
             sx={style.cardTitleWrapper}
           >
-            <Typography variant="h5" sx={style.cardTitle}>
-              {croppedTitle}
+            <Box sx={style.cardTitle}>
+              <ReactMarkdown children={croppedTitle} />
               <Box component="span" sx={style.cardTitleRating}>
                 {artItem?.averageRating} <StarIcon />
               </Box>
-            </Typography>
+            </Box>
           </Typography>
           <Typography sx={style.cardReviewCreatorWrapper}>
             Author: {reviewCreator.username} {reviewCreatorLikes}
@@ -138,18 +143,14 @@ export const AppReview: React.FC<AppReviewProps> = ({
           >
             {category}
           </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={style.cardText}
-          >
-            {croppedText}
-          </Typography>
+          <Box sx={style.cardText}>
+            <ReactMarkdown children={croppedText} />
+          </Box>
           <Box sx={style.cardGrade}>Author's grade: {grade}</Box>
           {isFull && (
             <Box sx={style.cardTagsWrapper}>
               {tags.map((tag) => (
-                <AppTag key={tag._id} title={tag.title} isTagTitle={false} />
+                <AppTag key={tag._id} title={tag.title} />
               ))}
             </Box>
           )}

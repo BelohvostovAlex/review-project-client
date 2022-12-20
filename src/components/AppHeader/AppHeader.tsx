@@ -31,6 +31,7 @@ import { APP_LOGO } from "../../mock/constants";
 import { AppPathes } from "../AppRouter/interfaces";
 import { AppHeaderProps } from "./interfaces";
 import { makeStyles } from "./styles";
+import { AppSearch } from "../AppSearch/AppSearch";
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
   const { isAuth, isError } = useAppSelector((state) => state.auth);
@@ -87,6 +88,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
             )}
           </IconButton>
           <AppLangSelect />
+          <AppSearch />
           <AppNavMenu />
           {!isAuth ? (
             <Box>

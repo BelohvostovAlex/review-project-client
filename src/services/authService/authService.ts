@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import $api from "../../http";
 
 import { AUTH_URLS } from "../../mock/mockUrls";
@@ -32,4 +32,12 @@ export const authServiceGetUser = async (
   id: string
 ): Promise<AxiosResponse<IUser>> => {
   return $api.get(AUTH_URLS.GET_USER_BY_ID + id);
+};
+
+export const authServiceRefreshToken = async (): Promise<
+  AxiosResponse<AuthResponse>
+> => {
+  return axios.get(process.env.REACT_APP_SERVER_URL + AUTH_URLS.REFRESH_TOKEN, {
+    withCredentials: true,
+  });
 };

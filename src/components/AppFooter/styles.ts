@@ -6,7 +6,10 @@ interface makeStylesProps {
 export const makeStyles = (props: makeStylesProps) => ({
   footerWrapper: {
     width: "100%",
-    marginTop: "30px",
+    position: "absolute",
+    bottom: "0px",
+    left: "0px",
+    right: "0px",
     display: "flex",
     paddingBottom: "10px",
     paddingTop: "20px",

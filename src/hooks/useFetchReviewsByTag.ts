@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { reviewServiceGetReviews } from "../services/reviewService/reviewService";
+import { reviewServiceGetReviewsByTag } from "../services/reviewService/reviewService";
 import { IReview } from "../models/IReview";
 import { handleLike } from "../helpers/handleLike";
 
-interface useFetchReviewsOutput {
+interface useFetchReviewsByTagOutput {
   reviews: IReview[];
   limit: number;
   page: number;
@@ -15,17 +15,13 @@ interface useFetchReviewsOutput {
   handlePage: (e: React.ChangeEvent<unknown>, value: number) => void;
 }
 
-interface UseFetchReviewsProps {
-  sort?: string;
-  category?: string;
-  search?: string;
+interface UseFetchReviewsByTagProps {
+  tag: string;
 }
 
-export const useFetchReviews = ({
-  category,
-  sort,
-  search,
-}: UseFetchReviewsProps): useFetchReviewsOutput => {
+export const useFetchReviewsByTag = ({
+  tag,
+}: UseFetchReviewsByTagProps): useFetchReviewsByTagOutput => {
   const [reviews, setReviews] = useState([] as IReview[]);
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
@@ -35,13 +31,7 @@ export const useFetchReviews = ({
 
   const getReviews = async () => {
     try {
-      const { data } = await reviewServiceGetReviews({
-        limit,
-        page,
-        search,
-        sort,
-        category,
-      });
+      const { data } = await reviewServiceGetReviewsByTag({ tag, page, limit });
 
       if (data) setIsLoading(false);
 

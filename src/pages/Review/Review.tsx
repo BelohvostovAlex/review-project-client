@@ -1,41 +1,55 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { io } from "socket.io-client";
+import type { Socket } from "socket.io-client";
 
-import { Box, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { AppReview } from "../../components/AppReview/AppReview";
+import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
+import { AppSkeletonReviewCard } from "../../components/AppSkeletonReviewCard/AppSkeletonReviewCard";
 import { AppButton } from "../../components/Buttons/AppButton";
+import { AppComment } from "../../components/AppComment/AppComment";
 
 import { useGetCurrentReview } from "../../hooks/useGetCurrentReview";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { useInput } from "../../hooks/useInput";
 import { artItemsServiceRateItem } from "../../services/artItemsService/artItemsService";
 import { addRatedArtItem } from "../../store/slices/authSlice/authSlice";
-import { reviewServiceGetRelatedReviews } from "../../services/reviewService/reviewService";
+import {
+  reviewServiceCreateComment,
+  reviewServiceGetRelatedReviews,
+} from "../../services/reviewService/reviewService";
 
-import { IReview } from "../../models/IReview";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { ReviewProps } from "./interface";
-import { makeStyles } from "./styles";
-import { AppSkeletonReviewCard } from "../../components/AppSkeletonReviewCard/AppSkeletonReviewCard";
 import { handleLike } from "../../helpers/handleLike";
+import { IReview } from "../../models/IReview";
+import { ReviewProps } from "./interface";
+import { IComment } from "../../models/IComment";
+import { AppPathes } from "../../components/AppRouter/interfaces";
+import { makeStyles } from "./styles";
 
 export const Review: React.FC<ReviewProps> = () => {
   const { id } = useParams();
-  const [rating, setRating] = useState(0);
-  const [relatedReviews, setRelatedReviews] = useState([] as IReview[]);
-  const { user } = useAppSelector((state) => state.auth);
-  const [currentReview, isLoading, handleFullReviewLikes] = useGetCurrentReview(
-    id!,
-    user.id
-  );
-
   const navigate = useNavigate();
+  const [socket, setSocket] = useState<Socket | null>(null);
+  const [arrivalComment, setArrivalComment] = useState({} as IComment);
+  const [rating, setRating] = useState(0);
+  const [commentText, handleCommentText, clearCommentText] = useInput("");
+  const [relatedReviews, setRelatedReviews] = useState([] as IReview[]);
+  const { user, isAuth } = useAppSelector((state) => state.auth);
+  const {
+    currentReview,
+    isLoading,
+    handleFullReviewLikes,
+    handleReviewComments,
+  } = useGetCurrentReview(id!, user.id);
+
   const style = makeStyles();
 
-  const goBack = () => {
-    navigate(-1);
-  };
-
   const handleRating = async (rate: number) => {
+    if (!isAuth) {
+      navigate(AppPathes.LOGIN);
+      return;
+    }
     setRating((prev) => (prev = rate));
     const updatedArtItem = await artItemsServiceRateItem({
       id: currentReview.artItem._id!,
@@ -71,19 +85,60 @@ export const Review: React.FC<ReviewProps> = () => {
     }
   }, [currentReview, getRelatedReviews, getCurrentRating]);
 
+  useEffect(() => {
+    setSocket(io(process.env.REACT_APP_SOCKET_URL!));
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("getComment", (data) => {
+        setArrivalComment({
+          _id: Date.now().toString(),
+          sender: data.sender,
+          text: data.text,
+          review: data.review,
+          time: new Date(),
+        });
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (currentReview && arrivalComment) {
+      handleReviewComments(arrivalComment);
+    }
+    // eslint-disable-next-line
+  }, [arrivalComment]);
+
   const likeRelatedReview = (id: string, userId: string) => {
     setRelatedReviews((prev) => {
       return handleLike(prev, id, userId);
     });
   };
 
+  const onSubmitComment = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!isAuth) {
+      navigate(AppPathes.LOGIN);
+      return;
+    }
+    socket!.emit("sendComment", {
+      sender: user,
+      review: currentReview._id,
+      text: commentText,
+    });
+    await reviewServiceCreateComment({
+      id: currentReview._id,
+      userId: user.id,
+      text: commentText,
+    });
+
+    clearCommentText();
+  };
+
   return (
     <Box sx={style.reviewWrapper}>
-      <AppButton
-        onClick={goBack}
-        text={<ArrowBackIosIcon />}
-        styles={style.reviewBackBtn}
-      />
+      <AppButtonBack styles={style.reviewBackBtn} />
       {isLoading && <AppSkeletonReviewCard isFull={true} />}
       {currentReview.creator && !isLoading && (
         <AppReview
@@ -94,6 +149,39 @@ export const Review: React.FC<ReviewProps> = () => {
           handleFullReviewLikes={handleFullReviewLikes}
         />
       )}
+      <Box sx={style.commentsBlockWrapper}>
+        {!isLoading && isAuth && (
+          <>
+            <Typography variant="h5" sx={style.commentsBlockTitle}>
+              Leave the comment:
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={onSubmitComment}
+              sx={style.commentForm}
+            >
+              <TextField
+                value={commentText}
+                onChange={handleCommentText}
+                multiline
+                rows={4}
+                sx={style.commentTextField}
+              />
+              <AppButton text="Send" type="submit" />
+            </Box>
+          </>
+        )}
+        {currentReview.comments && (
+          <>
+            <Typography variant="h5" sx={style.commentsBlockTitle}>
+              Comments:
+            </Typography>
+            {currentReview.comments.map((comment) => (
+              <AppComment comment={comment} key={comment._id} />
+            ))}
+          </>
+        )}
+      </Box>
       {relatedReviews.length > 0 && !isLoading && (
         <Box>
           <Typography sx={style.relatedReviewsTitle} variant="h3">

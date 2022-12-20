@@ -1,15 +1,17 @@
 import { useState } from "react";
 
 type UseInput = [
-  string | number,
-  (e: React.ChangeEvent<HTMLInputElement>) => void,
+  string,
+  (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
   () => void
 ];
 
-export const useInput = (initialValue: string | number): UseInput => {
+export const useInput = (initialValue: string): UseInput => {
   const [value, setValue] = useState(initialValue);
 
-  const handleValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleValue = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setValue(e.target.value);
   };
 

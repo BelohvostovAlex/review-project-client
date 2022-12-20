@@ -16,14 +16,16 @@ export const AppMainSection: React.FC<AppMainSectionProps> = ({
   title,
   sort,
   category,
+  search,
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const style = makeStyles({ mainSectionTitleWrapperBg: colors.grey[700] });
 
-  const { reviews, error, isLoading, likedReview } = useFetchReviews({
+  const { reviews, isLoading, likedReview } = useFetchReviews({
     sort,
     category,
+    search,
   });
   return (
     <>

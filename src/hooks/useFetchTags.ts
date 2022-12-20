@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { tagServiceGetAllTags } from "../services/tagService/tagService";
 import { ITag } from "../models/ITag";
 
-export const useFetchItems = (): [ITag[], (item: ITag) => void] => {
+export const useFetchTags = (): [ITag[], (item: ITag) => void] => {
   const [items, setItems] = useState<ITag[]>([]);
 
   const fetchItems = async () => {

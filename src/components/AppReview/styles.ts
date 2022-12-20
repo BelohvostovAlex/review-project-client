@@ -7,8 +7,8 @@ export const makeStyles = ({ isFull, cardTitleColor }: makeStylesProps) => ({
   cardWrapper: {
     width: isFull ? "100%" : "340px",
     height: "auto",
-    minHeight: "505px",
-    margin: "10px",
+    minHeight: "548.5px",
+    margin: isFull ? "10px 0px" : "10px",
   },
   cardTitleWrapper: {
     display: "flex",
@@ -22,6 +22,7 @@ export const makeStyles = ({ isFull, cardTitleColor }: makeStylesProps) => ({
     justifyContent: "space-between",
     fontSize: isFull ? "36px" : "inherit",
     color: cardTitleColor,
+    margin: "10px 0px",
   },
   cardTitleRating: {
     marginLeft: "10px",
@@ -45,7 +46,7 @@ export const makeStyles = ({ isFull, cardTitleColor }: makeStylesProps) => ({
     margin: isFull ? "20px 0px" : "10px 0px",
   },
   cardContent: {
-    minHeight: isFull ? "200px" : "300px",
+    minHeight: isFull ? "200px" : "334px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",

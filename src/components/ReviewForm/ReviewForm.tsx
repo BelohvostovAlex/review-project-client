@@ -9,7 +9,6 @@ import { AppTag } from "../AppTag/AppTag";
 import { AppUploadImg } from "../AppUploadImg/AppUploadImg";
 import { AppAlert } from "../AppAlert/AppAlert";
 import { AppRating } from "../AppRating/AppRating";
-import { SimpleMdeReact } from "react-simplemde-editor";
 
 import { artItemsServiceCreateItem } from "../../services/artItemsService/artItemsService";
 import {
@@ -17,11 +16,10 @@ import {
   reviewServiceUpdateReview,
 } from "../../services/reviewService/reviewService";
 import { tagServiceCreateTag } from "../../services/tagService/tagService";
-import { useFetchItems } from "../../hooks/useFetchTags";
+import { useFetchTags } from "../../hooks/useFetchTags";
 import { useFetchArtItems } from "../../hooks/useFetchArtItems";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useFetchCategoriesOptions } from "../../hooks/useFetchCategoriesOptions";
-import { useMarkdownOptions } from "./config/useMarkdownOptions";
 import { handleTextForm } from "./config/handleTextForm";
 
 import { ITag } from "../../models/ITag";
@@ -30,23 +28,19 @@ import { AppRatingSize } from "../AppRating/interface";
 import { AppAlertSeverity } from "../AppAlert/interface";
 import { ReviewFormInputs, ReviewFormProps } from "./interface";
 import { makeStyles } from "./styles";
-import "easymde/dist/easymde.min.css";
 
 export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
   const { user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
-  const [tags, handleAddTag] = useFetchItems();
+  const [tags, handleAddTag] = useFetchTags();
   const [artItems, handleAddArtItem] = useFetchArtItems();
   const categoryOptions = useFetchCategoriesOptions();
   const [currentTags, setCurrentTags] = useState<ITag[]>([]);
   const [currentArtItem, setCurrentArtItem] = useState<IArtItem | null>(null);
-  const [text, setText] = useState<string>("");
   const [grade, setGrade] = useState(1);
   const [image, setImage] = useState("");
   const formTextValues = handleTextForm(isEdit || false);
   const style = makeStyles();
-
-  const options = useMarkdownOptions();
 
   const {
     register,
@@ -59,7 +53,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
   });
 
   const onSubmit: SubmitHandler<ReviewFormInputs> = async (data) => {
-    const { title, category } = data;
+    const { title, category, text } = data;
     const artItemId = currentArtItem!._id;
 
     if (isEdit) {
@@ -130,14 +124,9 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
     setImage(image);
   };
 
-  const onTextChange = useCallback((value: string) => {
-    setText(value);
-  }, []);
-
   useEffect(() => {
     if (!isEdit) {
       reset();
-      setText("");
       setGrade(0);
       setCurrentTags([]);
       setCurrentArtItem(null);
@@ -146,10 +135,10 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
       setCurrentTags(review.tags);
       setCurrentArtItem(review.artItem);
       setImage(review.image);
-      setText(review.text);
       setGrade(review.grade);
       setValue("title", review.title);
       setValue("category", review.category);
+      setValue("text", review.text);
       setValue(
         "tags",
         review.tags.map((tag) => tag.title)
@@ -210,11 +199,17 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
           helperText={!!errors.artItem && errors.artItem?.message}
           artItem={(review && review.artItem) || undefined}
         />
-        <SimpleMdeReact
-          value={text}
-          onChange={onTextChange}
-          options={options}
-          style={style.textField}
+        <TextField
+          label={formTextValues.text.label}
+          placeholder={formTextValues.text.placeholder}
+          variant="outlined"
+          multiline
+          rows={6}
+          type="text"
+          {...register("text", { required: "Text is required" })}
+          sx={style.textField}
+          error={!!errors.text}
+          helperText={!!errors.text && errors.text?.message}
         />
         <AppUploadImg handleImage={handleImage} />
         {image && (
@@ -223,13 +218,16 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
           </Box>
         )}
         <Typography>Your grade:</Typography>
-        <AppRating
-          max={10}
-          defaultValue={grade}
-          onChange={handleGrade}
-          rating={grade}
-          size={AppRatingSize.LARGE}
-        />
+        <Box sx={style.reviewRatingWrapper}>
+          <AppRating
+            max={10}
+            defaultValue={grade}
+            onChange={handleGrade}
+            rating={grade}
+            size={AppRatingSize.LARGE}
+          />
+          <AppButton onClick={() => handleGrade(0)} text="zero" />
+        </Box>
         <AppCreatableAutoComplete
           items={tags}
           handleAddItem={handleAddTag}
@@ -246,7 +244,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
         <Stack direction="row" spacing={1} sx={style.tagsWrapper}>
           {currentTags.map(({ title, _id }) => (
             <AppTag
-              onClick={() => handleDeleteCurrentTag(title)}
+              onDelete={() => handleDeleteCurrentTag(title)}
               title={title}
               key={_id}
             />

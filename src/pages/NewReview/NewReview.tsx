@@ -1,10 +1,10 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 import { Box, Typography } from "@mui/material";
 import { ReviewForm } from "../../components/ReviewForm/ReviewForm";
-import { AppButton } from "../../components/Buttons/AppButton";
+import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 
@@ -13,13 +13,8 @@ import { makeStyles } from "./styles";
 
 export const NewReview: React.FC = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
-  const navigate = useNavigate();
   const location = useLocation();
   const style = makeStyles();
-
-  const goBack = () => {
-    navigate(-1);
-  };
 
   const isEdit = location.state;
 
@@ -27,7 +22,7 @@ export const NewReview: React.FC = () => {
 
   return (
     <Box sx={style.newReviewWrapper}>
-      <AppButton onClick={goBack} text="Go back" />
+      <AppButtonBack styles={style.newReviewBackBtn} />
       <Typography sx={style.newReviewTitle}>
         {isEdit ? "Edit" : "Create"} a review
       </Typography>

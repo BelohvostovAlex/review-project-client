@@ -5,8 +5,11 @@ interface makeStylesProps {
 }
 
 export const makeStyles = (props: makeStylesProps) => ({
-  tag: {
-    margin: "5px",
+  backBtnWrapper: {
+    paddingRight: "5px",
+    paddingLeft: "15px",
+    minWidth: "30px",
+    display: "flex",
     ...props.styles,
   },
 });

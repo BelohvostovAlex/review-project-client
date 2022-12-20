@@ -102,7 +102,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
         <>
           <Typography>Need an Account? Sign Up</Typography>
           <AppButtonLink
-            path="/registration"
+            path={AppPathes.REGISTRATION}
             text="Sign up"
             styles={style.signUpBtn}
           />
@@ -111,7 +111,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
         <>
           <Typography>Already have an account? Sign In</Typography>
           <AppButtonLink
-            path="/login"
+            path={AppPathes.LOGIN}
             text="Sign In"
             styles={style.signUpBtn}
           />
