@@ -19,6 +19,7 @@ import {
   reviewServiceCreateComment,
   reviewServiceGetRelatedReviews,
 } from "../../services/reviewService/reviewService";
+import { useReviewText } from "./config/useReviewText";
 
 import { handleLike } from "../../helpers/handleLike";
 import { IReview } from "../../models/IReview";
@@ -42,7 +43,7 @@ export const Review: React.FC<ReviewProps> = () => {
     handleFullReviewLikes,
     handleReviewComments,
   } = useGetCurrentReview(id!, user.id);
-
+  const reviewText = useReviewText();
   const style = makeStyles();
 
   const handleRating = async (rate: number) => {
@@ -153,7 +154,7 @@ export const Review: React.FC<ReviewProps> = () => {
         {!isLoading && isAuth && (
           <>
             <Typography variant="h5" sx={style.commentsBlockTitle}>
-              Leave the comment:
+              {reviewText.commentTitle}:
             </Typography>
             <Box
               component="form"
@@ -167,25 +168,27 @@ export const Review: React.FC<ReviewProps> = () => {
                 rows={4}
                 sx={style.commentTextField}
               />
-              <AppButton text="Send" type="submit" />
+              <AppButton text={reviewText.commentSend} type="submit" />
             </Box>
           </>
         )}
         {currentReview.comments && (
           <>
             <Typography variant="h5" sx={style.commentsBlockTitle}>
-              Comments:
+              {reviewText.comments}:
             </Typography>
-            {currentReview.comments.map((comment) => (
-              <AppComment comment={comment} key={comment._id} />
-            ))}
+            {currentReview.comments
+              .slice(currentReview.comments.length - 10)
+              .map((comment) => (
+                <AppComment comment={comment} key={comment._id} />
+              ))}
           </>
         )}
       </Box>
       {relatedReviews.length > 0 && !isLoading && (
         <Box>
           <Typography sx={style.relatedReviewsTitle} variant="h3">
-            Related reviews:
+            {reviewText.relatedReviews}:
           </Typography>
           <Box sx={style.relatedReviews}>
             {relatedReviews.map((item, i) => (

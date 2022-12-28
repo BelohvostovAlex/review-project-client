@@ -1,16 +1,165 @@
 {
   "Lang": {
-    "1": "Язык"
+    "title": "Язык"
   },
-  "Reviews": {
-    "1": "Отзывы"
+  "NavButtons": {
+    "0": "Обзоры"
   },
-  "HeaderButtons": {
-    "1": "Войти",
-    "2": "Регистрация",
-    "3": "Выйти"
+  "AuthButtons": {
+    "signIn": "Войти",
+    "signUp": "Регистрация",
+    "signOut": "Выйти"
   },
   "ProfileMenu": {
-    "1": "Открыть настройки профиля"
+    "0": "Открыть настройки профиля",
+    "1": "Профиль",
+    "2": "Создать обзор"
+  },
+  "Search": {
+    "placeholder": "Поиск"
+  },
+  "ReviewCard": {
+    "buttonMore": "Подробнее",
+    "author": "Автор",
+    "authorGrade": "Оценка автора"
+  },
+  "Reviews": {
+    "title": {
+      "0": "Нет обзоров",
+      "1": "Пожалуйста, создайте обзор"
+    },
+    "button": "См. больше",
+    "reviewSectionTitle": {
+      "recent": "Самые свежие",
+      "rated": "Самые популярные",
+      "tagsCloud": "Облако тэгов"
+    },
+    "reviewsPageTitle": "Все обзоры"
+  },
+  "Rating": {
+    "single": "звезда",
+    "plural": "звезд",
+    "rate-now": "оценить сейчас"
+  },
+  "NewReview": {
+    "formButton": {
+      "edit": "Изменить",
+      "create": "Создать"
+    },
+    "review": "обзор",
+    "uploadImg": {
+      "drag": "Наведите изображение сюда",
+      "drop": "Пожалуйста, бросьте тут"
+    }
+  },
+  "AuthForm": {
+    "title": {
+      "signin": "Войти",
+      "signup": "Регистрация"
+    },
+    "usernameField": {
+      "label": "Имя",
+      "placeholder": "Алекс Флексбокс",
+      "required": "Необходимо имя"
+    },
+    "emailField": {
+      "label": "Эл.адрес",
+      "placeholder": "flexbox@gmail.com",
+      "required": "Необходим эл.адрес"
+    },
+    "passwordField": {
+      "label": "Пароль",
+      "required": "Необходим пароль",
+      "minLength": "Минимум 3 символа",
+      "maxLength": "Максимум 20 символов"
+    },
+    "signInWithGoogle": "Войти с Google",
+    "signInWithTwitter": "Войти с Twitter",
+    "needAcc": "Нужен аккаунт? Зарегистрируйтесь",
+    "alreadyHaveAcc": "Уже есть аккаунт? Войдите"
+  },
+  "Dialogue": {
+    "title": "Название",
+    "buttons": {
+      "add": "Добавить",
+      "cancel": "Отмена"
+    }
+  },
+  "Comment": {
+    "title": "Оставить комментарий",
+    "send": "Отправить",
+    "comments": "Комментарии"
+  },
+  "RelatedReviews": {
+    "title": "Похожие отзывы"
+  },
+  "ReviewForm": {
+    "titleField": {
+      "label": "Название отзыва",
+      "placeholder": "Отзыв на Гарри Поттера",
+      "required": "Необходимо название"
+    },
+    "categoryField": {
+      "label": "Выберите категорию",
+      "required": "Необходимо выбрать категорию"
+    },
+    "textField": {
+      "label": "Тект обзора",
+      "placeholder": "Для меня Гарри Поттер любимый фильм, потому что..",
+      "required": "Необходим текст"
+    },
+    "grade": {
+      "title": "Ваш грейд",
+      "buttonText": "ноль"
+    },
+    "artItemField": {
+      "label": "Произведение",
+      "placeholder": "Гарри Поттер и Тайная комната",
+      "required": "Необходимо произведение",
+      "textFieldTitle": "Выберите произведение..",
+      "dialogueText": "Не находите произведение в нашем списке? Пожалуйста, добавьте его!",
+      "dialogueTitle": "Добавить новое произведение"
+    },
+    "tagsField": {
+      "label": "Тэги",
+      "placeholder": "Cool, Superb, Awesome, Low, Funny",
+      "required": "Необходимы тэги",
+      "textFieldTitle": "Введите тэги..",
+      "dialogueText": "Не находите тэг в нашем списке? Пожалуйста, добавьте его!",
+      "dialogueTitle": "Добавить новый тэг"
+    },
+    "alert": {
+      "edit": "Ваше отзыв успешно изменен!",
+      "create": "Ваш отзыв успешно создан!"
+    },
+    "submitBtn": {
+      "edit": "Изменить",
+      "create": "Создать"
+    }
+  },
+  "AppTable": {
+    "id": "ID",
+    "grade": "Грейд",
+    "artItem": "Произведение",
+    "rating": "Рейтинг",
+    "text": "Текст",
+    "category": "Категория",
+    "likes": "Лайки",
+    "createdAt": "Создано",
+    "updatedAt": "Обновлено",
+    "image": "Картинка",
+    "tags": "Тэги"
+  },
+  "NotFound": {
+    "text": "Не найдено"
+  },
+  "Profile": {
+    "greeting": "Здравствуй",
+    "myReviews": "Мои отзывы",
+    "noReviewsTitle": "Нет отзывов",
+    "noReviewsSubtitle": "Создайте отзыв и он появится в таблице. Вы,также, можете изменить, удалить отзыв в любое время"
+  },
+  "Footer": {
+    "title": "Copyright © 2022 - Все права защищены"
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { Box, Pagination, Stack, Typography } from "@mui/material";
 import { AppReview } from "../../components/AppReview/AppReview";
@@ -9,6 +10,7 @@ import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonB
 import { useFetchReviews } from "../../hooks/useFetchReviews";
 
 import { makeStyles } from "./styles";
+import { useReviewText } from "./config/useReviewText";
 
 export const Reviews: React.FC = () => {
   const { sort } = useParams();
@@ -16,6 +18,7 @@ export const Reviews: React.FC = () => {
     useFetchReviews({
       sort,
     });
+  const reviewText = useReviewText();
   const style = makeStyles();
 
   return (
@@ -23,7 +26,7 @@ export const Reviews: React.FC = () => {
       <Box sx={style.reviewsTitleWrapper}>
         <AppButtonBack styles={style.reviewsBackBtn} />
         <Typography sx={style.reviewsPageTitle} variant="h4">
-          Check all reviews here
+          {reviewText.title}
         </Typography>
       </Box>
       <Box sx={style.reviewsWrapper}>

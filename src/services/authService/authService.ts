@@ -24,14 +24,32 @@ export const authServiceSignIn = async (
   return $api.post<AuthResponse>(AUTH_URLS.SIGNIN, { email, password });
 };
 
+export const authServiceSignInWithSocialMedia = async (): Promise<
+  AxiosResponse<AuthResponse>
+> => {
+  return $api.get<AuthResponse>(AUTH_URLS.GET_USER_SOCIAL_MEDIA);
+};
+
 export const authServiceSignOut = async (): Promise<void> => {
   return $api.post(AUTH_URLS.SIGNOUT);
+};
+
+export const authServiceSignOutWithSocialMedia = async (): Promise<
+  AxiosResponse<string>
+> => {
+  return $api.get(AUTH_URLS.SIGNOUT_WITH_SOCIAL_MEDIA);
 };
 
 export const authServiceGetUser = async (
   id: string
 ): Promise<AxiosResponse<IUser>> => {
   return $api.get(AUTH_URLS.GET_USER_BY_ID + id);
+};
+
+export const authServiceGetUsers = async (): Promise<
+  AxiosResponse<IUser[]>
+> => {
+  return $api.get(AUTH_URLS.GET_USER_BY_ID);
 };
 
 export const authServiceRefreshToken = async (): Promise<

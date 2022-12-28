@@ -11,6 +11,7 @@ import {
 } from "../../services/reviewService/reviewService";
 import { useFetchCreatorReviews } from "../../hooks/useFetchCreatorReviews";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { useProfileText } from "./config/useProfileText";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -22,6 +23,7 @@ import { GridRowId } from "@mui/x-data-grid";
 import { AppButton } from "../../components/Buttons/AppButton";
 import { AppButtonLink } from "../../components/Buttons/AppButtonLink";
 import { IReview } from "../../models/IReview";
+import { AppLoader } from "../../components/AppLoader/AppLoader";
 
 export const Profile: React.FC = () => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
@@ -29,6 +31,7 @@ export const Profile: React.FC = () => {
   const [creatorLikes, setCreatorLikes] = useState(0);
   const [selected, setSelected] = useState([] as GridRowId[]);
   const [editReview, setEditReview] = useState({} as IReview);
+  const profileText = useProfileText();
   const style = makeStyles();
 
   const getCreatorLikes = async () => {
@@ -55,15 +58,17 @@ export const Profile: React.FC = () => {
 
   if (!isAuth) return <Navigate to={AppPathes.MAIN} />;
 
+  if (isLoading) return <AppLoader open={true} />;
+
   return (
     <Box sx={style.profileWrapper}>
       <Typography variant="h3" sx={style.profileTitle}>
-        Hello, {user.username} {creatorLikes}
+        {profileText.greeting}, {user.username} {creatorLikes}
         <FavoriteIcon sx={style.profileLikeIcon} /> !
       </Typography>
       {reviews.length > 0 ? (
         <Box>
-          <Typography>My reviews</Typography>
+          <Typography>{profileText.myReviews}</Typography>
           <Box sx={style.profileControlBtnsWrapper}>
             <AppButtonLink text={<AddBoxIcon />} path={AppPathes.NEW_REVIEW} />
             <AppButtonLink
@@ -83,8 +88,8 @@ export const Profile: React.FC = () => {
         </Box>
       ) : (
         <AppBanner
-          title="No reviews"
-          text="Create a review and all your reviews will appear here in the table. You also can edit, delete it at anytime"
+          title={profileText.noReviewsTitle}
+          text={profileText.noReviewsSubtitle}
         />
       )}
     </Box>

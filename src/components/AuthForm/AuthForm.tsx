@@ -5,20 +5,26 @@ import { Navigate } from "react-router-dom";
 import { Box, TextField, Typography } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
 import { AppButtonLink } from "../Buttons/AppButtonLink";
-import { AuthGoogle } from "../AuthGoogle/AuthGoogle";
 import { AppLoader } from "../AppLoader/AppLoader";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { useActions } from "../../hooks/useActions";
+import { useAuthFormText } from "./config/useAuthFormText";
 
+import { AUTH_URLS } from "../../mock/mockUrls";
 import { AppPathes } from "../AppRouter/interfaces";
 import { AuthFormProps, FormInputs } from "./interfaces";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import GoogleIcon from "@mui/icons-material/Google";
 import { makeStyles } from "./styles";
 
 export const AuthForm: React.FC<AuthFormProps> = ({
   signUp = true,
   onFormSubmit,
 }) => {
-  const { isLoading, isAuth } = useAppSelector((state) => state.auth);
+  const { isLoading, isAuth, user } = useAppSelector((state) => state.auth);
+  const { enteredViaSocial } = useActions();
+  const authFormText = useAuthFormText(signUp);
   const style = makeStyles();
 
   const {
@@ -34,8 +40,28 @@ export const AuthForm: React.FC<AuthFormProps> = ({
     reset();
   };
 
+  const googleLogin = () => {
+    window.open(
+      process.env.REACT_APP_SERVER_URL + AUTH_URLS.SIGNIN_WITH_GOOGLE,
+      "_self"
+    );
+    enteredViaSocial(true);
+  };
+
+  const twitterLogin = () => {
+    window.open(
+      process.env.REACT_APP_SERVER_URL + AUTH_URLS.SIGNIN_WITH_TWITTER,
+      "_self"
+    );
+    enteredViaSocial(true);
+  };
+
   if (isLoading) {
     return <AppLoader open={true} />;
+  }
+
+  if (!isLoading && isAuth && user.role == 1) {
+    return <Navigate to={AppPathes.ADMIN} />;
   }
 
   if (!isLoading && isAuth) {
@@ -48,44 +74,46 @@ export const AuthForm: React.FC<AuthFormProps> = ({
       sx={style.formWrapper}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Typography sx={style.fromTitle}>
-        {signUp ? "Sign Up" : "Sign In"}
-      </Typography>
+      <Typography sx={style.formTitle}>{authFormText.title}</Typography>
       {signUp && (
         <TextField
-          label="Username"
-          placeholder="Alex Flexbox"
+          label={authFormText.username.label}
+          placeholder={authFormText.username.placeholder}
           variant="outlined"
           type="text"
-          {...register("username", { required: "Username is required" })}
+          {...register("username", {
+            required: authFormText.username.required,
+          })}
           sx={style.textField}
           error={!!errors.username}
           helperText={!!errors.username && errors.username?.message}
         />
       )}
       <TextField
-        label="Email"
-        placeholder="flexbox@gmail.com"
+        label={authFormText.email.label}
+        placeholder={authFormText.email.placeholder}
         variant="outlined"
         type="email"
-        {...register("email", { required: "Email is required" })}
+        {...register("email", {
+          required: authFormText.email.required,
+        })}
         sx={style.textField}
         error={!!errors.email}
         helperText={!!errors.email && errors.email?.message}
       />
       <TextField
-        label="Password"
+        label={authFormText.password.label}
         type="password"
         variant="outlined"
         {...register("password", {
-          required: "Password is required",
+          required: authFormText.password.required,
           minLength: {
             value: 3,
-            message: "Minimum 3 symbols",
+            message: authFormText.password.minLength,
           },
           maxLength: {
             value: 20,
-            message: "Maximum 20 symbols",
+            message: authFormText.password.maxLength,
           },
         })}
         sx={style.textField}
@@ -94,25 +122,38 @@ export const AuthForm: React.FC<AuthFormProps> = ({
       />
       <AppButton
         type="submit"
-        text={signUp ? "Sign Up" : "Sign In"}
+        text={authFormText.submitBtn}
         disabled={!isValid}
       />
-      {!signUp && <AuthGoogle />}
+      {!signUp && (
+        <>
+          <AppButton
+            startIcon={<GoogleIcon />}
+            text={authFormText.googleBtn}
+            onClick={googleLogin}
+          />
+          <AppButton
+            startIcon={<TwitterIcon />}
+            text={authFormText.twitterBtn}
+            onClick={twitterLogin}
+          />
+        </>
+      )}
       {!signUp ? (
         <>
-          <Typography>Need an Account? Sign Up</Typography>
+          <Typography>{authFormText.needAcc}</Typography>
           <AppButtonLink
             path={AppPathes.REGISTRATION}
-            text="Sign up"
+            text={authFormText.signUp}
             styles={style.signUpBtn}
           />
         </>
       ) : (
         <>
-          <Typography>Already have an account? Sign In</Typography>
+          <Typography>{authFormText.alreadyAcc}</Typography>
           <AppButtonLink
             path={AppPathes.LOGIN}
-            text="Sign In"
+            text={authFormText.singIn}
             styles={style.signUpBtn}
           />
         </>

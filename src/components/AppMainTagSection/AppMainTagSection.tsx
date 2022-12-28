@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { Box, Typography, useTheme } from "@mui/material";
 import { AppTag } from "../AppTag/AppTag";
@@ -13,6 +14,7 @@ export const AppMainTagSection: React.FC<AppMainSectionProps> = ({ title }) => {
   const [tags] = useFetchTags();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { t } = useTranslation();
   const style = makeStyles({ tagSectionTitleWrapperBg: colors.grey[700] });
 
   const handleTagClick = (id: string) => {};
@@ -30,7 +32,7 @@ export const AppMainTagSection: React.FC<AppMainSectionProps> = ({ title }) => {
           styles={style.tag}
         />
       ))}
-      {tags.length > 4 && <AppButton text="More" />}
+      {tags.length > 4 && <AppButton text={t("Reviews.button")} />}
     </Box>
   );
 };

@@ -8,7 +8,7 @@ export const makeStyles = () => ({
     justifyContent: "center",
     marginTop: "20px",
   },
-  fromTitle: {
+  formTitle: {
     fontSize: "24px",
     marginBottom: "10px",
   },

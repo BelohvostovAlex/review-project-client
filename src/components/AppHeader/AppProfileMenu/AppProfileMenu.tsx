@@ -19,6 +19,7 @@ import { stringAvatar } from "../../../helpers/stringAvatar";
 import { APP_PROFILE_MENU } from "../../../mock/constants";
 import { AppProfileMenuProps } from "./interface";
 import { makeStyles } from "./styles";
+import { useTranslation } from "react-i18next";
 
 export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
   const { user } = useAppSelector((state) => state.auth);
@@ -26,6 +27,7 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { t } = useTranslation();
   const style = makeStyles({
     profileAvaBg:
       theme.palette.mode === "dark"
@@ -67,12 +69,12 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
         open={Boolean(anchorElUser)}
         onClose={() => setAnchorElUser(null)}
       >
-        {APP_PROFILE_MENU.map((item) => (
+        {APP_PROFILE_MENU.map((item, i) => (
           <MenuItem
             key={item.text}
             onClick={() => handleCloseUserMenu(item.path)}
           >
-            {item.text}
+            {t(`ProfileMenu.${i + 1}`)}
           </MenuItem>
         ))}
       </Menu>

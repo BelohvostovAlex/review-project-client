@@ -15,4 +15,11 @@ export const makeStyles = () => ({
   commentAuthorWrapper: {
     marginLeft: "10px",
   },
+  commentAuthorInfo: {
+    display: "flex",
+    alignItems: "center",
+  },
+  commentAuthorLike: {
+    fontSize: "14px",
+  },
 });

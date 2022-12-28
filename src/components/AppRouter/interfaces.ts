@@ -24,6 +24,7 @@ export enum AppPathes {
   REVIEW = "/reviews/:id",
   REVIEWS = "/reviews/all/:sort",
   PROFILE = "/profile",
+  ADMIN = "/admin",
 }
 
 export const publicRoutes: IRoute[] = [

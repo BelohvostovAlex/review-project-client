@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Box, Typography, useTheme } from "@mui/material";
 
@@ -8,6 +9,7 @@ import { tokens } from "../../theme/theme";
 import { AppUploadImgProps } from "./interface";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { makeStyles } from "./styles";
+import { useAppUploadImgText } from "./config/useAppUploadImgText";
 
 export const AppUploadImg: React.FC<AppUploadImgProps> = ({ handleImage }) => {
   const [drag, setDrag] = useState(false);
@@ -21,7 +23,7 @@ export const AppUploadImg: React.FC<AppUploadImgProps> = ({ handleImage }) => {
         : colors.primary[500],
   });
 
-  const title = drag ? "Please Drop here" : "Drag an image here";
+  const { title } = useAppUploadImgText(drag);
 
   const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();

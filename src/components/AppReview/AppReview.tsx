@@ -24,8 +24,9 @@ import { useActions } from "../../hooks/useActions";
 import { reviewServiceLikeReview } from "../../services/reviewService/reviewService";
 import { tokens } from "../../theme/theme";
 import { useGetUser } from "../../hooks/useGetUser";
+import { useAppReviewText } from "./config/useAppReviewText";
 
-import { handleLikeIcon, handleStarIcon } from "./config";
+import { handleLikeIcon, handleStarIcon } from "./config/config";
 import { AppPathes } from "../AppRouter/interfaces";
 import { AppRatingSize } from "../AppRating/interface";
 import { AppReviewProps } from "./interface";
@@ -48,6 +49,7 @@ export const AppReview: React.FC<AppReviewProps> = ({
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const appReviewText = useAppReviewText();
   const style = makeStyles({
     isFull,
     cardTitleColor:
@@ -132,7 +134,8 @@ export const AppReview: React.FC<AppReviewProps> = ({
             </Box>
           </Typography>
           <Typography sx={style.cardReviewCreatorWrapper}>
-            Author: {reviewCreator.username} {reviewCreatorLikes}
+            {appReviewText.reviewAuthor}: {reviewCreator.username}{" "}
+            {reviewCreatorLikes}
             <FavoriteIcon sx={style.cardReviewCreatorIcon} />
           </Typography>
           <Typography
@@ -146,7 +149,9 @@ export const AppReview: React.FC<AppReviewProps> = ({
           <Box sx={style.cardText}>
             <ReactMarkdown children={croppedText} />
           </Box>
-          <Box sx={style.cardGrade}>Author's grade: {grade}</Box>
+          <Box sx={style.cardGrade}>
+            {appReviewText.authorGrade}: {grade}
+          </Box>
           {isFull && (
             <Box sx={style.cardTagsWrapper}>
               {tags.map((tag) => (
@@ -164,7 +169,10 @@ export const AppReview: React.FC<AppReviewProps> = ({
               size={AppRatingSize.LARGE}
             />
           ) : (
-            <AppButtonLink text="More" path={"/reviews/" + _id} />
+            <AppButtonLink
+              text={appReviewText.buttonMore}
+              path={"/reviews/" + _id}
+            />
           )}
           <IconButton aria-label="add to favorites" onClick={handleLikeReview}>
             <LikeIcon />

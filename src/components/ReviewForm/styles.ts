@@ -20,9 +20,17 @@ export const makeStyles = () => ({
   reviewImageWrapper: {
     width: "70%",
     height: "auto",
+    position: "relative",
   },
   reviewImage: {
     width: "100%",
+    position: "relative",
+  },
+  reviewImageBtn: {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+    minWidth: "fit-content",
   },
   reviewRatingWrapper: {
     display: "flex",

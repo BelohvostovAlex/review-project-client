@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -21,24 +20,26 @@ import { AppBurgerMenu } from "./AppBurgerMenu/AppBurgerMenu";
 import { AppDrawer } from "./AppDrawer/AppDrawer";
 import { AppDrawerMenu } from "./AppDrawer/AppDrawerMenu/AppDrawerMenu";
 import { AppLangSelect } from "../AppLangSelect/AppLangSelect";
+import { AppSearch } from "../AppSearch/AppSearch";
 
 import { tokens } from "../../theme/theme";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useActions } from "../../hooks/useActions";
+import { authServiceSignOutWithSocialMedia } from "../../services/authService/authService";
+import { useTextHeader } from "./config/useTextHeader";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 import { APP_LOGO } from "../../mock/constants";
 import { AppPathes } from "../AppRouter/interfaces";
 import { AppHeaderProps } from "./interfaces";
 import { makeStyles } from "./styles";
-import { AppSearch } from "../AppSearch/AppSearch";
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
-  const { isAuth, isError } = useAppSelector((state) => state.auth);
+  const { isAuth, isError, viaSocial } = useAppSelector((state) => state.auth);
   const { authSignOut, changeTheme } = useActions();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const headerText = useTextHeader();
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -53,10 +54,15 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
         : colors.primary[500],
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.checked;
-    if (!value) {
+    if (!value && !viaSocial) {
       authSignOut();
+    }
+
+    if (!value && viaSocial) {
+      const response = await authServiceSignOutWithSocialMedia();
+      if (response.data === "done") authSignOut();
     }
   };
 
@@ -92,13 +98,10 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
           <AppNavMenu />
           {!isAuth ? (
             <Box>
-              <AppButtonLink
-                path={AppPathes.LOGIN}
-                text={t("HeaderButtons.1")}
-              />
+              <AppButtonLink path={AppPathes.LOGIN} text={headerText.signIn} />
               <AppButtonLink
                 path={AppPathes.REGISTRATION}
-                text={t("HeaderButtons.2")}
+                text={headerText.signUp}
               />
             </Box>
           ) : (
@@ -113,10 +116,10 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
                       sx={style.headerSwitch}
                     />
                   }
-                  label={isAuth ? t("HeaderButtons.3") : t("HeaderButtons.2")}
+                  label={isAuth ? headerText.signOut : headerText.signIn}
                 />
               </FormGroup>
-              <AppProfileMenu title={t("ProfileMenu.1")} />
+              <AppProfileMenu title={headerText.profileTitle} />
             </Box>
           )}
         </Toolbar>

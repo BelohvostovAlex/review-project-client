@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -20,13 +20,14 @@ import { useFetchTags } from "../../hooks/useFetchTags";
 import { useFetchArtItems } from "../../hooks/useFetchArtItems";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useFetchCategoriesOptions } from "../../hooks/useFetchCategoriesOptions";
-import { handleTextForm } from "./config/handleTextForm";
+import { useHandleTextForm } from "./config/useHandleTextForm";
 
 import { ITag } from "../../models/ITag";
 import { IArtItem } from "../../models/IArtItem";
 import { AppRatingSize } from "../AppRating/interface";
 import { AppAlertSeverity } from "../AppAlert/interface";
 import { ReviewFormInputs, ReviewFormProps } from "./interface";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { makeStyles } from "./styles";
 
 export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
@@ -39,7 +40,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
   const [currentArtItem, setCurrentArtItem] = useState<IArtItem | null>(null);
   const [grade, setGrade] = useState(1);
   const [image, setImage] = useState("");
-  const formTextValues = handleTextForm(isEdit || false);
+  const formTextValues = useHandleTextForm(isEdit || false);
   const style = makeStyles();
 
   const {
@@ -159,7 +160,9 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
           placeholder={formTextValues.title.placeholder}
           variant="outlined"
           type="text"
-          {...register("title", { required: "Title is required" })}
+          {...register("title", {
+            required: formTextValues.title.required,
+          })}
           sx={style.textField}
           error={!!errors.title}
           helperText={!!errors.title && errors.title?.message}
@@ -178,8 +181,10 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Choose category"
-              {...register("category", { required: "Category is required" })}
+              label={formTextValues.category.label}
+              {...register("category", {
+                required: formTextValues.category.required,
+              })}
               error={!!errors.category}
               helperText={!!errors.category && errors.category?.message}
             />
@@ -206,7 +211,9 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
           multiline
           rows={6}
           type="text"
-          {...register("text", { required: "Text is required" })}
+          {...register("text", {
+            required: formTextValues.text.required,
+          })}
           sx={style.textField}
           error={!!errors.text}
           helperText={!!errors.text && errors.text?.message}
@@ -215,9 +222,14 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
         {image && (
           <Box sx={style.reviewImageWrapper}>
             <Box component="img" src={image} sx={style.reviewImage} />
+            <AppButton
+              text={<HighlightOffIcon />}
+              onClick={() => handleImage("")}
+              styles={style.reviewImageBtn}
+            />
           </Box>
         )}
-        <Typography>Your grade:</Typography>
+        <Typography>{formTextValues.grade.title}:</Typography>
         <Box sx={style.reviewRatingWrapper}>
           <AppRating
             max={10}
@@ -226,7 +238,10 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
             rating={grade}
             size={AppRatingSize.LARGE}
           />
-          <AppButton onClick={() => handleGrade(0)} text="zero" />
+          <AppButton
+            onClick={() => handleGrade(0)}
+            text={formTextValues.grade.buttonText}
+          />
         </Box>
         <AppCreatableAutoComplete
           items={tags}

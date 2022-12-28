@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { Box, Typography, useTheme } from "@mui/material";
 import { AppBanner } from "../AppBanner/AppBanner";
@@ -11,6 +12,7 @@ import { useFetchReviews } from "../../hooks/useFetchReviews";
 
 import { AppMainSectionProps } from "./interface";
 import { makeStyles } from "./styles";
+import { useMainSectionText } from "./config/useMainSectionText";
 
 export const AppMainSection: React.FC<AppMainSectionProps> = ({
   title,
@@ -20,6 +22,7 @@ export const AppMainSection: React.FC<AppMainSectionProps> = ({
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const reviewsText = useMainSectionText();
   const style = makeStyles({ mainSectionTitleWrapperBg: colors.grey[700] });
 
   const { reviews, isLoading, likedReview } = useFetchReviews({
@@ -33,11 +36,17 @@ export const AppMainSection: React.FC<AppMainSectionProps> = ({
         <Typography sx={style.mainSectionTitle} variant="h3">
           {title}
         </Typography>
-        <AppButtonLink text="Check More" path={"/reviews/all" + `/${sort}`} />
+        <AppButtonLink
+          text={reviewsText.button}
+          path={"/reviews/all" + `/${sort}`}
+        />
       </Box>
       <Box sx={style.mainSectionReviewsWrapper}>
         {!isLoading && reviews.length < 1 && (
-          <AppBanner title="No reviews" text="Please create one.." />
+          <AppBanner
+            title={reviewsText.appBannerTitle}
+            text={reviewsText.appBannerText}
+          />
         )}
         {isLoading &&
           [1, 2, 3, 4].map((_, i) => <AppSkeletonReviewCard key={i} />)}

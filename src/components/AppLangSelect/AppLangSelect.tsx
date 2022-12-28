@@ -26,7 +26,7 @@ export const AppLangSelect: React.FC = () => {
   return (
     <FormControl sx={{ m: 1, minWidth: 80 }}>
       <InputLabel id="demo-simple-select-autowidth-label">
-        {t("Lang.1")}
+        {t("Lang.title")}
       </InputLabel>
       <Select
         labelId="demo-simple-select-autowidth-label"

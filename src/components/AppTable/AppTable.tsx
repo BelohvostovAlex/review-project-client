@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
+import { useAppTableConfig } from "./config/config";
+
 import { makeStyles } from "./styles";
-import { columns } from "./config";
 import { AppTableProps } from "./interface";
 
 export const AppTable: React.FC<AppTableProps> = ({
@@ -14,6 +15,7 @@ export const AppTable: React.FC<AppTableProps> = ({
 }) => {
   const style = makeStyles();
   const navigate = useNavigate();
+  const { columns } = useAppTableConfig();
   return (
     <Box sx={style.tableWrapper}>
       <DataGrid

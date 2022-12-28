@@ -1,16 +1,165 @@
 {
   "Lang": {
-    "1": "Lang"
+    "title": "Lang"
   },
-  "Reviews": {
-    "1": "Reviews"
+  "NavButtons": {
+    "0": "Reviews"
   },
-  "HeaderButtons": {
-    "1": "Sign In",
-    "2": "Sign Up",
-    "3": "Sign Out"
+  "AuthButtons": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
   },
   "ProfileMenu": {
-    "1": "Open profile settings"
+    "0": "Open profile settings",
+    "1": "Profile",
+    "2": "New Review"
+  },
+  "Search": {
+    "placeholder": "Search"
+  },
+  "ReviewCard": {
+    "buttonMore": "More",
+    "author": "Author",
+    "authorGrade": "Author's grade"
+  },
+  "Reviews": {
+    "title": {
+      "0": "No reviews",
+      "1": "Please, create one"
+    },
+    "button": "Check More",
+    "reviewSectionTitle": {
+      "recent": "The Most Recent",
+      "rated": "The Most Rated",
+      "tagsCloud": "Tags Cloud"
+    },
+    "reviewsPageTitle": "Check all reviews here"
+  },
+  "Rating": {
+    "single": "star",
+    "plural": "stars",
+    "rate-now": "rate now"
+  },
+  "NewReview": {
+    "formButton": {
+      "edit": "Edit",
+      "create": "Create"
+    },
+    "review": "a review",
+    "uploadImg": {
+      "drag": "Drag an image here",
+      "drop": "Please Drop here"
+    }
+  },
+  "AuthForm": {
+    "title": {
+      "signin": "Sign In",
+      "signup": "Sign Up"
+    },
+    "usernameField": {
+      "label": "Username",
+      "placeholder": "Alex Flexbox",
+      "required": "Username is required"
+    },
+    "emailField": {
+      "label": "Email",
+      "placeholder": "flexbox@gmail.com",
+      "required": "Email is required"
+    },
+    "passwordField": {
+      "label": "Password",
+      "required": "Password is required",
+      "minLength": "Minimum 3 symbols",
+      "maxLength": "Maximum 20 symbols"
+    },
+    "signInWithGoogle": "Sign In with Google",
+    "signInWithTwitter": "Sign In with Twitter",
+    "needAcc": "Need an Account? Sign Up",
+    "alreadyHaveAcc": "Already have an account? Sign In"
+  },
+  "Dialogue": {
+    "title": "Title",
+    "buttons": {
+      "add": "Add",
+      "cancel": "Cancel"
+    }
+  },
+  "Comment": {
+    "title": "Leave the comment",
+    "send": "Send",
+    "comments": "Comments"
+  },
+  "RelatedReviews": {
+    "title": "Related reviews"
+  },
+  "ReviewForm": {
+    "titleField": {
+      "label": "Review Title",
+      "placeholder": "My Review for Harry Potter",
+      "required": "Title is required"
+    },
+    "categoryField": {
+      "label": "Choose category",
+      "required": "Category is required"
+    },
+    "textField": {
+      "label": "Review text",
+      "placeholder": "As for me Harry Potter is my favourite movie, because..",
+      "required": "Text is required"
+    },
+    "grade": {
+      "title": "Your grade",
+      "buttonText": "zero"
+    },
+    "artItemField": {
+      "label": "Art Item",
+      "placeholder": "Harry Potter and the secret chamber",
+      "required": "Art Item is required",
+      "textFieldTitle": "Choose Art Item..",
+      "dialogueText": "Did you miss any art of piece in our list? Please, add it!",
+      "dialogueTitle": "Add a new Art Item"
+    },
+    "tagsField": {
+      "label": "Tags",
+      "placeholder": "Cool, Superb, Awesome, Low, Funny",
+      "required": "Tags - required",
+      "textFieldTitle": "Enter tags..",
+      "dialogueText": "Did you miss any tag in our list? Please, add it!",
+      "dialogueTitle": "Add a new Tag"
+    },
+    "alert": {
+      "edit": "Your review was successfully updated!",
+      "create": "Your review was successfully created!"
+    },
+    "submitBtn": {
+      "edit": "Edit",
+      "create": "Create"
+    }
+  },
+  "AppTable": {
+    "id": "ID",
+    "grade": "Grade",
+    "artItem": "Art Item",
+    "rating": "Rating",
+    "text": "Text",
+    "category": "Category",
+    "likes": "Likes",
+    "createdAt": "CreatedAt",
+    "updatedAt": "UpdatedAt",
+    "image": "Image",
+    "tags": "Tags"
+  },
+  "NotFound": {
+    "text": "Not found"
+  },
+  "Profile": {
+    "greeting": "Hello",
+    "myReviews": "My reviews",
+    "noReviewsTitle": "No reviews",
+    "noReviewsSubtitle": "Create a review and all your reviews will appear here in the table. You also can edit, delete it at anytime"
+  },
+  "Footer": {
+    "title": "Copyright © 2022 - All right reserved"
   }
 }

@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import $api from "../../http";
 
 import { GridRowId } from "@mui/x-data-grid";
@@ -17,8 +17,9 @@ export const reviewServiceGetReviews = async (
   data: reviewServiceGetReviewsInput
 ): Promise<AxiosResponse<ReviewsResponse>> => {
   const { page = 1, limit = 10, search = "", sort = "", category = "" } = data;
-  return $api.get(
-    REVIEWS_URLS.GET_REVIEWS +
+  return axios.get(
+    process.env.REACT_APP_SERVER_URL +
+      REVIEWS_URLS.GET_REVIEWS +
       `?page=${page}&limit=${limit}&search=${search}&sort=${sort}&category=${category}`
   );
 };
@@ -35,7 +36,9 @@ export const reviewServiceGetReviewsByTag = async (
 export const reviewServiceGetReview = async (
   id: string
 ): Promise<AxiosResponse<IReview>> => {
-  return $api.get(REVIEWS_URLS.GET_REVIEWS + `/${id}`);
+  return axios.get(
+    process.env.REACT_APP_SERVER_URL + REVIEWS_URLS.GET_REVIEWS + `/${id}`
+  );
 };
 
 export const reviewServiceGetCreatorLikes = async (
@@ -70,7 +73,11 @@ export const reviewServiceLikeReview = async (
 export const reviewServiceGetRelatedReviews = async (
   id: string
 ): Promise<AxiosResponse<IReview[]>> => {
-  return $api.get(REVIEWS_URLS.GET_RELATED_REVIEWS + `/${id}`);
+  return axios.get(
+    process.env.REACT_APP_SERVER_URL +
+      REVIEWS_URLS.GET_RELATED_REVIEWS +
+      `/${id}`
+  );
 };
 
 export const reviewServiceGetCreatorReviews = async (

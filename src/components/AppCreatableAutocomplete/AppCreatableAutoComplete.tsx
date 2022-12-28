@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import { TextField, Autocomplete } from "@mui/material";
 import { AppDialogue } from "../AppDialogue/AppDialogue";
 
-import { choosePlaceholder, chooseRegisterTextField } from "./config";
+import {
+  useCreatableAutoCompleteText,
+  chooseRegisterTextField,
+} from "./config";
 import {
   AppArtItemsAutoCompleteProps,
   AppTagsAutoCompleteProps,
@@ -36,7 +39,7 @@ export const AppCreatableAutoComplete: React.FC<
   const [open, toggleOpen] = useState(false);
   const style = makeStyles();
   const registerTextField = chooseRegisterTextField(item!);
-  const placeholder = choosePlaceholder(item!);
+  const textInfo = useCreatableAutoCompleteText(item!);
 
   const handleClose = () => {
     setDialogValue({
@@ -101,7 +104,7 @@ export const AppCreatableAutoComplete: React.FC<
           if (params.inputValue !== "") {
             filtered.push({
               inputValue: params.inputValue,
-              title: `Add "${params.inputValue}"`,
+              title: `${textInfo.add} "${params.inputValue}"`,
             });
           }
 
@@ -124,11 +127,11 @@ export const AppCreatableAutoComplete: React.FC<
             {...params}
             label={textFieldTitle}
             {...register!(registerTextField, {
-              required: `${registerTextField} - required`,
+              required: textInfo.required,
             })}
             error={error}
             helperText={helperText}
-            placeholder={placeholder}
+            placeholder={textInfo.placeholder}
           />
         )}
       />

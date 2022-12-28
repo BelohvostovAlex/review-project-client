@@ -1,20 +1,15 @@
-export const GOOGLE_OAUTH_USER_INFO_URL =
-  "https://www.googleapis.com/oauth2/v3/userinfo";
-
 // export const CLOUDINARY_UPLOAD_URL =
 //   "https://api.cloudinary.com/v1_1/dujpbjyhd/image/upload";
-
-export const googleClientId =
-  "3597899066-u5a5bri40pv3hs6ohcg8dv4r14goa2pl.apps.googleusercontent.com";
-// export const githubClientId = "c8b95ac3b4532ae10a42";
-// export const githubClientSecret = "40e04e6c5f68002217b809a8214e1a8ffc9c82d9";
-
 export const AUTH_URLS = {
   SIGNIN: "/auth/signin",
+  SIGNIN_WITH_GOOGLE: "/auth/google",
+  SIGNIN_WITH_TWITTER: "/auth/twitter",
   SIGNUP: "/auth/signup",
   SIGNOUT: "/auth/signout",
+  SIGNOUT_WITH_SOCIAL_MEDIA: "/auth/social-logout",
   GET_USER_BY_ID: "/auth/users/",
   REFRESH_TOKEN: "/auth/refresh",
+  GET_USER_SOCIAL_MEDIA: "/auth/get-user",
 };
 
 export const TAGS_URLS = {

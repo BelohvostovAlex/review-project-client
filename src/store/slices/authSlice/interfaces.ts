@@ -8,4 +8,7 @@ export interface AuthState {
   isError: any;
   mode: PaletteMode;
   lang: string;
+  viaSocial: boolean;
+  withGoogle: boolean;
+  withTwitter: boolean;
 }

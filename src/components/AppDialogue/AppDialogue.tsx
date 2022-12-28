@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
 import { AppDialogueProps } from "./interfaces";
+import { useDialogText } from "./config/useDialogText";
 
 export const AppDialogue: React.FC<AppDialogueProps> = ({
   open,
@@ -20,6 +21,7 @@ export const AppDialogue: React.FC<AppDialogueProps> = ({
   dialogueText,
   dialogueTitle,
 }) => {
+  const textInfo = useDialogText();
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{dialogueTitle}</DialogTitle>
@@ -34,14 +36,14 @@ export const AppDialogue: React.FC<AppDialogueProps> = ({
               title: e.target.value,
             })
           }
-          label="title"
+          label={textInfo.title}
           type="text"
           variant="standard"
         />
       </DialogContent>
       <DialogActions>
-        <AppButton onClick={onClose} text="Cancel" />
-        <AppButton onClick={onClick} text="Add" />
+        <AppButton onClick={onClose} text={textInfo.buttons.cancel} />
+        <AppButton onClick={onClick} text={textInfo.buttons.add} />
       </DialogActions>
     </Dialog>
   );

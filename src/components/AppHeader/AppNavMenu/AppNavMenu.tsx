@@ -12,11 +12,11 @@ export const AppNavMenu: React.FC = () => {
   const style = makeStyles();
   return (
     <Box sx={style.navWrapper} component="nav">
-      {APP_NAV_MENU.map((item) => (
+      {APP_NAV_MENU.map((item, i) => (
         <AppButtonLink
           key={item.text}
           path={item.path}
-          text={t(`${item.text}.1`)}
+          text={t(`NavButtons.${i}`)}
         />
       ))}
     </Box>

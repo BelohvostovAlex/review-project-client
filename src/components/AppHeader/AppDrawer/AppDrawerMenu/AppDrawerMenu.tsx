@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -20,6 +21,7 @@ import { makeStyles } from "./styles";
 export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const style = makeStyles({
     AppDrawerLogoColor:
@@ -36,14 +38,14 @@ export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
       <APP_LOGO sx={style.appDrawerLogo} />
       <Divider />
       <List>
-        {APP_NAV_MENU.map((item) => (
+        {APP_NAV_MENU.map((item, i) => (
           <ListItem
             key={item.text}
             disablePadding
             onClick={() => handleItemOnClick(item.path)}
           >
             <ListItemButton sx={style.listItemBtn}>
-              <ListItemText primary={item.text} />
+              <ListItemText primary={t(`NavButtons.${i}`)} />
             </ListItemButton>
           </ListItem>
         ))}

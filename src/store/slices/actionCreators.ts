@@ -5,6 +5,8 @@ import { like } from "./authSlice/authSlice";
 import { addRatedArtItem } from "./authSlice/authSlice";
 import { changeTheme } from "./authSlice/authSlice";
 import { changeLang } from "./authSlice/authSlice";
+import { authSignInWithSocialMedia } from "./authSlice/thunks/authSignInWithSocialMediaThunk";
+import { enteredViaSocial } from "./authSlice/authSlice";
 
 export const allActionCreators = {
   authSignIn,
@@ -14,4 +16,6 @@ export const allActionCreators = {
   addRatedArtItem,
   changeLang,
   changeTheme,
+  authSignInWithSocialMedia,
+  enteredViaSocial,
 };

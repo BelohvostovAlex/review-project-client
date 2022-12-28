@@ -45,6 +45,7 @@ export const makeStyles = (props: makeStylesProps) => ({
   },
   modeBtn: {
     width: "40px",
+    height: "40px",
     background: props.modeBtnColor,
     marginRight: "20px",
     "&:hover": {
