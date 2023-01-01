@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import { Box, Typography, useTheme } from "@mui/material";
 import { AppTag } from "../AppTag/AppTag";

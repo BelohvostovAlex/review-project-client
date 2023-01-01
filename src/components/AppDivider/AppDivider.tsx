@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Chip, Divider, Box } from "@mui/material";
+import { Divider, Box } from "@mui/material";
 
 import { AppDividerProps } from "./interface";
 import { makeStyles } from "./styles";

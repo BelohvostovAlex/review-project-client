@@ -61,7 +61,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
     return <AppLoader open={true} />;
   }
 
-  if (!isLoading && isAuth && user.role == 1) {
+  if (!isLoading && isAuth && user.role === 1) {
     return <Navigate to={AppPathes.ADMIN} />;
   }
 

@@ -26,7 +26,7 @@ export const useFetchCreatorReviews = (id: string) => {
 
   useEffect(() => {
     getReviews(id);
-  }, []);
+  }, [id]);
 
   return { reviews, isLoading, handleReviews };
 };

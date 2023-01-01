@@ -101,7 +101,11 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
           <AppNavMenu />
           {!isAuth ? (
             <Box>
-              <AppButtonLink path={AppPathes.LOGIN} text={headerText.signIn} />
+              <AppButtonLink
+                path={AppPathes.LOGIN}
+                text={headerText.signIn}
+                styles={style.headerLoginBtn}
+              />
               <AppButtonLink
                 path={AppPathes.REGISTRATION}
                 text={headerText.signUp}

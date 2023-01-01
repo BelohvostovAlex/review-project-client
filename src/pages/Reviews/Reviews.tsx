@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import { Box, Pagination, Stack, Typography } from "@mui/material";
 import { AppReview } from "../../components/AppReview/AppReview";

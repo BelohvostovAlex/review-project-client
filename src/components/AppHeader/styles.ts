@@ -48,6 +48,9 @@ export const makeStyles = (props: makeStylesProps) => ({
     fontSize: "24px",
     marginLeft: "10px",
   },
+  headerLoginBtn: {
+    marginRight: "10px",
+  },
   modeBtn: {
     width: "40px",
     height: "40px",
