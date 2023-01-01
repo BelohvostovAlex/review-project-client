@@ -53,6 +53,9 @@ export const authSlice = createSlice({
     enteredWithTwitter: (state, action: PayloadAction<boolean>) => {
       state.withTwitter = action.payload;
     },
+    handleLoading: (state) => {
+      state.isLoading = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -173,6 +176,7 @@ export const {
   enteredViaSocial,
   enteredWithTwitter,
   enteredWithGoogle,
+  handleLoading,
 } = authSlice.actions;
 
 export default authSlice.reducer;
