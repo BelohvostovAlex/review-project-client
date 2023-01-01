@@ -3,6 +3,10 @@ export const makeStyles = () => ({
     padding: "20px",
     width: "100%",
   },
+  profileSkeletonWrapper: {
+    width: "90%",
+    margin: "0 auto",
+  },
   profileTitle: {
     display: "flex",
     alignItems: "center",

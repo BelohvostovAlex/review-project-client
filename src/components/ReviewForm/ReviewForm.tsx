@@ -2,13 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Autocomplete, Box, Stack, TextField, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  SelectChangeEvent,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
 import { AppCreatableAutoComplete } from "../AppCreatableAutocomplete/AppCreatableAutoComplete";
 import { AppTag } from "../AppTag/AppTag";
 import { AppUploadImg } from "../AppUploadImg/AppUploadImg";
 import { AppAlert } from "../AppAlert/AppAlert";
 import { AppRating } from "../AppRating/AppRating";
+import { AppCreatorSelect } from "../AppCreatorSelect/AppCreatorSelect";
 
 import { artItemsServiceCreateItem } from "../../services/artItemsService/artItemsService";
 import {
@@ -37,11 +45,13 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
   const [artItems, handleAddArtItem] = useFetchArtItems();
   const categoryOptions = useFetchCategoriesOptions();
   const [currentTags, setCurrentTags] = useState<ITag[]>([]);
+  const [author, setAuthor] = useState("");
   const [currentArtItem, setCurrentArtItem] = useState<IArtItem | null>(null);
   const [grade, setGrade] = useState(1);
   const [image, setImage] = useState("");
   const formTextValues = useHandleTextForm(isEdit || false);
   const style = makeStyles();
+  const isAdmin = user.role === 1;
 
   const {
     register,
@@ -63,7 +73,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
         artItem: artItemId!,
         category,
         text,
-        creator: user.id,
+        creator: !isAdmin ? user.id : author,
         grade: grade,
         tags: currentTags,
         image: image,
@@ -76,7 +86,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
         artItem: artItemId!,
         category,
         text,
-        creator: user.id,
+        creator: !isAdmin ? user.id : author,
         grade: grade,
         tags: currentTags,
         image: image,
@@ -125,6 +135,11 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
     setImage(image);
   };
 
+  const handleAuthor = (e: SelectChangeEvent) => {
+    const value = e.target.value;
+    setAuthor(value);
+  };
+
   useEffect(() => {
     if (!isEdit) {
       reset();
@@ -145,6 +160,10 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
         review.tags.map((tag) => tag.title)
       );
       setValue("artItem", review.title);
+    }
+
+    if (isEdit && review && isAdmin) {
+      setAuthor(review.creator);
     }
   }, [isEdit]);
 
@@ -167,6 +186,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
           error={!!errors.title}
           helperText={!!errors.title && errors.title?.message}
         />
+        {isAdmin && <AppCreatorSelect value={author} onChange={handleAuthor} />}
         <Autocomplete
           sx={style.textField}
           options={categoryOptions.sort(

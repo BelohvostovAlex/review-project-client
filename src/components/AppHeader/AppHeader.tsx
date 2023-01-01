@@ -79,21 +79,24 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
       <AppBar sx={style.headerAppBar}>
         <Toolbar sx={style.headerToolbar}>
           <AppBurgerMenu onClick={handleDrawerToggle} />
-          <Typography
-            sx={style.headerTitle}
-            onClick={() => navigate(AppPathes.MAIN)}
-          >
-            {title}
-            {<APP_LOGO sx={style.headerLogo} />}
-          </Typography>
-          <IconButton onClick={toggleColorMode} sx={style.modeBtn}>
-            {theme.palette.mode === "dark" ? (
-              <DarkModeOutlined />
-            ) : (
-              <LightModeOutlined />
-            )}
-          </IconButton>
-          <AppLangSelect />
+          <Box sx={style.headerTitleWrapper}>
+            <Typography
+              sx={style.headerTitle}
+              onClick={() => navigate(AppPathes.MAIN)}
+            >
+              {title}
+              {<APP_LOGO sx={style.headerLogo} />}
+            </Typography>
+            <IconButton onClick={toggleColorMode} sx={style.modeBtn}>
+              {theme.palette.mode === "dark" ? (
+                <DarkModeOutlined />
+              ) : (
+                <LightModeOutlined />
+              )}
+            </IconButton>
+            <AppLangSelect />
+          </Box>
+
           <AppSearch />
           <AppNavMenu />
           {!isAuth ? (

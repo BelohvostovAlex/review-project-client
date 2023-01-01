@@ -1,7 +1,7 @@
 export const makeStyles = () => ({
   bannerWrapper: {
     width: "600px",
-    heihgt: "400px",
+    height: "400px",
     border: "1px solid black",
     borderRadius: "10px",
     boxSizing: "border-box",

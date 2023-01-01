@@ -8,3 +8,12 @@ export interface IUser {
   likedReviews: string[];
   ratedArtItems: string[];
 }
+
+export interface IUserFull extends IUser {
+  _id: string;
+  password: string;
+  status: string;
+  enteredBySocial: boolean;
+  fromGoogle: boolean;
+  fromTwitter: boolean;
+}

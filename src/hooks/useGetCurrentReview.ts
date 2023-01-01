@@ -13,7 +13,8 @@ interface useGetCurrentReviewOutput {
 
 export const useGetCurrentReview = (
   id: string,
-  userId: string
+  userId: string,
+  isAdmin: boolean
 ): useGetCurrentReviewOutput => {
   const [isLoading, setIsLoading] = useState(true);
   const [review, setReview] = useState<IReview>({} as IReview);
@@ -26,9 +27,14 @@ export const useGetCurrentReview = (
 
   const handleFullReviewLikes = () => {
     setReview((prev) =>
-      prev.likes.includes(userId)
-        ? { ...prev, likes: prev.likes.filter((item) => item !== userId) }
-        : { ...prev, likes: [...prev.likes, userId] }
+      prev.likes.includes(isAdmin ? review.creator : userId)
+        ? {
+            ...prev,
+            likes: prev.likes.filter(
+              (item) => item !== (isAdmin ? review.creator : userId)
+            ),
+          }
+        : { ...prev, likes: [...prev.likes, isAdmin ? review.creator : userId] }
     );
   };
 

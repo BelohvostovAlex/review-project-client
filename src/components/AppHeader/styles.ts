@@ -11,9 +11,14 @@ export const makeStyles = (props: makeStylesProps) => ({
   },
   headerTitle: {
     display: { xs: "none", sm: "flex" },
+    marginRight: { xs: "none", sm: "20px", lg: "100px" },
     fontWeight: "bold",
     alignItems: "center",
     cursor: "pointer",
+  },
+  headerTitleWrapper: {
+    display: "flex",
+    alignItems: "center",
   },
   headerAppBar: {
     position: "fixed",
@@ -47,7 +52,7 @@ export const makeStyles = (props: makeStylesProps) => ({
     width: "40px",
     height: "40px",
     background: props.modeBtnColor,
-    marginRight: "20px",
+    marginRight: { xs: "10px", sm: "20px" },
     "&:hover": {
       background: props.modeBtnColorHover,
     },

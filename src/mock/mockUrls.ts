@@ -1,5 +1,3 @@
-// export const CLOUDINARY_UPLOAD_URL =
-//   "https://api.cloudinary.com/v1_1/dujpbjyhd/image/upload";
 export const AUTH_URLS = {
   SIGNIN: "/auth/signin",
   SIGNIN_WITH_GOOGLE: "/auth/google",
@@ -37,5 +35,13 @@ export const REVIEWS_URLS = {
 
 export const CATEGORY_URLS = {
   GET_CATEGORIES: "/category",
-  CREATE_CATEGORY: "/category",
+};
+
+export const ADMIN_URLS = {
+  GET_USERS: "/admin/users",
+  DELETE_USER: "/admin/users/",
+  CHANGE_STATUS: "/admin/users/status/",
+  CHANGE_ROLE: "admin/users/role/",
+  CREATE_CATEGORY: "admin/create-category",
+  DELETE_CATEGORY: "admin/category/",
 };

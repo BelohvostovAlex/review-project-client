@@ -69,12 +69,22 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
         open={Boolean(anchorElUser)}
         onClose={() => setAnchorElUser(null)}
       >
+        {user.role !== 1 && (
+          <MenuItem onClick={() => handleCloseUserMenu("/profile/" + user.id)}>
+            {t(`ProfileMenu.1`)}
+          </MenuItem>
+        )}
+        {user.role === 1 && (
+          <MenuItem onClick={() => handleCloseUserMenu("/admin")}>
+            {t(`ProfileMenu.2`)}
+          </MenuItem>
+        )}
         {APP_PROFILE_MENU.map((item, i) => (
           <MenuItem
             key={item.text}
             onClick={() => handleCloseUserMenu(item.path)}
           >
-            {t(`ProfileMenu.${i + 1}`)}
+            {t(`ProfileMenu.${i + 3}`)}
           </MenuItem>
         ))}
       </Menu>

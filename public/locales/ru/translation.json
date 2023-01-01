@@ -13,7 +13,8 @@
   "ProfileMenu": {
     "0": "Открыть настройки профиля",
     "1": "Профиль",
-    "2": "Создать обзор"
+    "2": "Админ панель",
+    "3": "Создать обзор"
   },
   "Search": {
     "placeholder": "Поиск"
@@ -129,7 +130,7 @@
       "dialogueTitle": "Добавить новый тэг"
     },
     "alert": {
-      "edit": "Ваше отзыв успешно изменен!",
+      "edit": "Ваш отзыв успешно изменен!",
       "create": "Ваш отзыв успешно создан!"
     },
     "submitBtn": {
@@ -150,6 +151,28 @@
     "image": "Картинка",
     "tags": "Тэги"
   },
+  "AppTableUsers": {
+    "id": "ID",
+    "username": "Имя пользователя",
+    "email": "Эл.адрес",
+    "role": "Роль",
+    "password": "Пароль",
+    "status": "Статус",
+    "enteredBySocial": "Вошел с помощью соц.сети",
+    "fromGoogle": "с помощью Google",
+    "fromTwitter": "с помощью Twitter",
+    "createdReviews": "созданные отзывы",
+    "likedReviews": "лайки",
+    "ratedReviews": "рейты",
+    "lastEnter": "последний вход"
+  },
+  "AppMainTagSection": {
+    "bannerTitle": "Не найдено",
+    "bannerText": "Нет ни одного обзора с данным тэгом. Пожалуйста, выберите друго тэг."
+  },
+  "AppCreatorSelect": {
+    "label": "Автор"
+  },
   "NotFound": {
     "text": "Не найдено"
   },
@@ -158,6 +181,14 @@
     "myReviews": "Мои отзывы",
     "noReviewsTitle": "Нет отзывов",
     "noReviewsSubtitle": "Создайте отзыв и он появится в таблице. Вы,также, можете изменить, удалить отзыв в любое время"
+  },
+  "Admin": {
+    "title": "Все пользователи",
+    "categoryTitle": "Создать категорию",
+    "createCategoryBtn": "Создать"
+  },
+  "Divider": {
+    "title": "Или"
   },
   "Footer": {
     "title": "Copyright © 2022 - Все права защищены"

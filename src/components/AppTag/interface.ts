@@ -12,4 +12,5 @@ export interface AppTagProps {
   onDelete?: (tag: string) => void;
   onClick?: () => void;
   styles?: SxProps;
+  isActive?: boolean;
 }

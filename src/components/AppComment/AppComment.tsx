@@ -18,7 +18,6 @@ export const AppComment: React.FC<AppCommentProps> = ({ comment }) => {
     setLikes(data);
   };
 
-  console.log(comment);
   useEffect(() => {
     getUserLikes();
   }, [comment]);

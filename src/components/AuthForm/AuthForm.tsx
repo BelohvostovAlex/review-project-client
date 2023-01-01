@@ -17,6 +17,7 @@ import { AuthFormProps, FormInputs } from "./interfaces";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GoogleIcon from "@mui/icons-material/Google";
 import { makeStyles } from "./styles";
+import { AppDivider } from "../AppDivider/AppDivider";
 
 export const AuthForm: React.FC<AuthFormProps> = ({
   signUp = true,
@@ -124,33 +125,34 @@ export const AuthForm: React.FC<AuthFormProps> = ({
         type="submit"
         text={authFormText.submitBtn}
         disabled={!isValid}
+        styles={style.submitBtn}
       />
-      {!signUp && (
-        <>
-          <AppButton
-            startIcon={<GoogleIcon />}
-            text={authFormText.googleBtn}
-            onClick={googleLogin}
-          />
-          <AppButton
-            startIcon={<TwitterIcon />}
-            text={authFormText.twitterBtn}
-            onClick={twitterLogin}
-          />
-        </>
-      )}
+      {!signUp && <></>}
       {!signUp ? (
         <>
-          <Typography>{authFormText.needAcc}</Typography>
+          <Typography sx={style.subText}>{authFormText.needAcc}</Typography>
           <AppButtonLink
             path={AppPathes.REGISTRATION}
             text={authFormText.signUp}
             styles={style.signUpBtn}
           />
+          <AppDivider />
+          <AppButton
+            startIcon={<GoogleIcon />}
+            text={authFormText.googleBtn}
+            onClick={googleLogin}
+            styles={style.socialBtn}
+          />
+          <AppButton
+            startIcon={<TwitterIcon />}
+            text={authFormText.twitterBtn}
+            onClick={twitterLogin}
+            styles={style.socialBtn}
+          />
         </>
       ) : (
         <>
-          <Typography>{authFormText.alreadyAcc}</Typography>
+          <Typography sx={style.subText}>{authFormText.alreadyAcc}</Typography>
           <AppButtonLink
             path={AppPathes.LOGIN}
             text={authFormText.singIn}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { IReview } from "../models/IReview";
 import { reviewServiceGetCreatorReviews } from "../services/reviewService/reviewService";
+
+import { IReview } from "../models/IReview";
 
 export const useFetchCreatorReviews = (id: string) => {
   const [reviews, setReviews] = useState([] as IReview[]);

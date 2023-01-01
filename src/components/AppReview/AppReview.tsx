@@ -73,35 +73,36 @@ export const AppReview: React.FC<AppReviewProps> = ({
   } = review;
 
   const { like } = useActions();
-  const [reviewCreator, reviewCreatorLikes] = useGetUser(creator);
+  const [reviewCreator, reviewCreatorLikes] = useGetUser(creator, review._id);
   const StarIcon = handleStarIcon(artItem.averageRating || "0");
   const LikeIcon = handleLikeIcon(likes, user.id);
   const croppedTitle = isFull ? title : handleReviewCardText(title, 45);
   const croppedText = isFull ? text : handleReviewCardText(text, 135);
+  const isAdmin = user.role === 1;
 
   const handleLikeReview = async () => {
     if (!isAuth) {
       navigate(AppPathes.LOGIN);
       return;
     }
-    like(_id);
+    if (!isAdmin) like(_id);
     if (!isFull && !isRelated) {
-      likedReview!(_id, user.id);
+      likedReview!(_id, isAdmin ? creator : user.id);
     }
     if (isRelated) {
-      likeRelatedReview!(_id, user.id);
+      likeRelatedReview!(_id, isAdmin ? creator : user.id);
     }
     if (isFull) {
       handleFullReviewLikes!();
     }
-    await reviewServiceLikeReview(_id, user.id);
+    await reviewServiceLikeReview(_id, isAdmin ? creator : user.id);
   };
 
   return (
     <Card sx={style.cardWrapper}>
       <CardHeader
         action={
-          creator === user.id && (
+          (creator === user.id || isAdmin) && (
             <AppButtonLink
               text={<EditIcon />}
               path={AppPathes.NEW_REVIEW}

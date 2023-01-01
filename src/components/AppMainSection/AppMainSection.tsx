@@ -5,7 +5,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { AppBanner } from "../AppBanner/AppBanner";
 import { AppReview } from "../AppReview/AppReview";
 import { AppButtonLink } from "../Buttons/AppButtonLink";
-import { AppSkeletonReviewCard } from "../AppSkeletonReviewCard/AppSkeletonReviewCard";
+import { AppSkeletonReviewCard } from "../AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
 
 import { tokens } from "../../theme/theme";
 import { useFetchReviews } from "../../hooks/useFetchReviews";

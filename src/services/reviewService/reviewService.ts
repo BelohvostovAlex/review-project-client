@@ -8,7 +8,6 @@ import { ReviewsResponse } from "../../models/response/ReviewsResponse";
 import {
   reviewServiceCreateCommentInput,
   reviewServiceCreateReviewInput,
-  reviewServiceGetReviewsByTagInput,
   reviewServiceGetReviewsInput,
 } from "./interfaces";
 import { IComment } from "../../models/IComment";
@@ -25,11 +24,12 @@ export const reviewServiceGetReviews = async (
 };
 
 export const reviewServiceGetReviewsByTag = async (
-  data: reviewServiceGetReviewsByTagInput
-): Promise<AxiosResponse<ReviewsResponse>> => {
-  const { page = 1, limit = 10, tag = "" } = data;
-  return $api.get(
-    REVIEWS_URLS.GET_REVIEWS_BY_TAG + `?page=${page}&limit=${limit}&tag=${tag}`
+  tag: string
+): Promise<AxiosResponse<IReview[]>> => {
+  return axios.get(
+    process.env.REACT_APP_SERVER_URL +
+      REVIEWS_URLS.GET_REVIEWS_BY_TAG +
+      `/${tag}`
   );
 };
 

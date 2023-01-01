@@ -5,7 +5,7 @@ import { authServiceGetUser } from "../services/authService/authService";
 import { IUser } from "../models/IUser";
 import { reviewServiceGetCreatorLikes } from "../services/reviewService/reviewService";
 
-export const useGetUser = (id: string): [IUser, number] => {
+export const useGetUser = (id: string, reviewId?: string): [IUser, number] => {
   const [user, setUser] = useState({} as IUser);
   const [creatorLikes, setCreatorLikes] = useState(0);
 
@@ -22,7 +22,7 @@ export const useGetUser = (id: string): [IUser, number] => {
   useEffect(() => {
     getUser();
     getCreatorLikes();
-  }, []);
+  }, [reviewId]);
 
   return [user, creatorLikes];
 };

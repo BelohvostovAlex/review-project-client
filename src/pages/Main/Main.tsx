@@ -11,13 +11,13 @@ import { useMainText } from "./config/useMainText";
 import { makeStyles } from "./styles";
 
 export const Main: React.FC = () => {
-  const { viaSocial } = useAppSelector((state) => state.auth);
+  const { viaSocial, isAuth } = useAppSelector((state) => state.auth);
   const { authSignInWithSocialMedia } = useActions();
   const mainText = useMainText();
   const style = makeStyles();
 
   useEffect(() => {
-    if (viaSocial) {
+    if (viaSocial && !isAuth) {
       authSignInWithSocialMedia();
     }
   }, []);
@@ -25,7 +25,7 @@ export const Main: React.FC = () => {
   return (
     <Box sx={style.mainWrapper}>
       <AppMainSection title={mainText.recentTitle} sort="updatedAt" />
-      <AppMainSection title={mainText.ratedTitle} sort="rating" />
+      <AppMainSection title={mainText.ratedTitle} sort="grade" />
       <AppMainTagSection title={mainText.tagsTitle} />
     </Box>
   );

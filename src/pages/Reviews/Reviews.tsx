@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { Box, Pagination, Stack, Typography } from "@mui/material";
 import { AppReview } from "../../components/AppReview/AppReview";
-import { AppSkeletonReviewCard } from "../../components/AppSkeletonReviewCard/AppSkeletonReviewCard";
+import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
 import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
 
 import { useFetchReviews } from "../../hooks/useFetchReviews";

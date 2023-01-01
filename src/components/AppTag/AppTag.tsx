@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Chip } from "@mui/material";
+import { Chip, useTheme } from "@mui/material";
 
 import { AppTagProps, AppTagVariant } from "./interface";
 import { makeStyles } from "./styles";
+import { tokens } from "../../theme/theme";
 
 export const AppTag: React.FC<AppTagProps> = ({
   title,
@@ -12,8 +13,11 @@ export const AppTag: React.FC<AppTagProps> = ({
   onDelete,
   isDelete = true,
   styles,
+  isActive,
 }) => {
-  const style = makeStyles({ styles });
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const style = makeStyles({ styles, isActive, activeBg: colors.grey[700] });
 
   return (
     <Chip

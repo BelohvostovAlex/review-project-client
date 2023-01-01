@@ -46,12 +46,6 @@ export const authServiceGetUser = async (
   return $api.get(AUTH_URLS.GET_USER_BY_ID + id);
 };
 
-export const authServiceGetUsers = async (): Promise<
-  AxiosResponse<IUser[]>
-> => {
-  return $api.get(AUTH_URLS.GET_USER_BY_ID);
-};
-
 export const authServiceRefreshToken = async (): Promise<
   AxiosResponse<AuthResponse>
 > => {

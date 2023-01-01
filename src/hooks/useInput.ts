@@ -12,7 +12,8 @@ export const useInput = (initialValue: string): UseInput => {
   const handleValue = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setValue(e.target.value);
+    const value = e.target.value;
+    setValue(value);
   };
 
   const clearValue = () => {

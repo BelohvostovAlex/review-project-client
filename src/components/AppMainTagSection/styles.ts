@@ -24,4 +24,9 @@ export const makeStyles = (props: makeStylesProps) => ({
     fontSize: "18px",
     cursor: "pointer",
   },
+  tagSectionFoundReviewsWrapper: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
 });

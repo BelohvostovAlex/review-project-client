@@ -22,11 +22,6 @@ export interface reviewServiceGetReviewsInput extends reviewServiceGetReviews {
   category?: string;
 }
 
-export interface reviewServiceGetReviewsByTagInput
-  extends reviewServiceGetReviews {
-  tag?: string;
-}
-
 export interface reviewServiceCreateCommentInput {
   id: string;
   userId: string;

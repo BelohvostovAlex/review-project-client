@@ -12,11 +12,13 @@ import { useActions } from "../../hooks/useActions";
 
 import { APP_LANGUAGES } from "../../mock/constants";
 import { useTranslation } from "react-i18next";
+import { makeStyles } from "./styles";
 
 export const AppLangSelect: React.FC = () => {
   const { lang } = useAppSelector((state) => state.auth);
   const { changeLang } = useActions();
   const { t, i18n } = useTranslation();
+  const style = makeStyles();
 
   const handleLang = (e: SelectChangeEvent) => {
     const value = e.target.value;
@@ -24,16 +26,15 @@ export const AppLangSelect: React.FC = () => {
     changeLang(value);
   };
   return (
-    <FormControl sx={{ m: 1, minWidth: 80 }}>
-      <InputLabel id="demo-simple-select-autowidth-label">
-        {t("Lang.title")}
-      </InputLabel>
+    <FormControl sx={style.appLangSelectWrapper}>
+      <InputLabel id="lang">{t("Lang.title")}</InputLabel>
       <Select
-        labelId="demo-simple-select-autowidth-label"
+        labelId="lang"
         value={lang}
         onChange={handleLang}
         autoWidth
         label="Lang"
+        sx={style.appLangSelect}
       >
         {APP_LANGUAGES.map((lang) => (
           <MenuItem value={lang} key={lang}>

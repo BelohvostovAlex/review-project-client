@@ -17,5 +17,17 @@ export const makeStyles = () => ({
   },
   signUpBtn: {
     textDecoration: "underline",
+    minWidth: "200px",
+  },
+  submitBtn: {
+    minWidth: "200px",
+  },
+  socialBtn: {
+    marginTop: "10px",
+    minWidth: "200px",
+  },
+  subText: {
+    fontSize: "12px",
+    marginTop: "10px",
   },
 });

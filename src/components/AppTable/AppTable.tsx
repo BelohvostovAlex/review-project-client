@@ -4,23 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-import { useAppTableConfig } from "./config/config";
-
 import { makeStyles } from "./styles";
 import { AppTableProps } from "./interface";
 
 export const AppTable: React.FC<AppTableProps> = ({
-  reviews,
+  rows,
   handleSelectedRow,
+  columns,
+  navigateTo,
 }) => {
-  const style = makeStyles();
   const navigate = useNavigate();
-  const { columns } = useAppTableConfig();
+  const style = makeStyles();
   return (
     <Box sx={style.tableWrapper}>
       <DataGrid
         getRowId={(row) => row._id}
-        rows={reviews}
+        rows={rows}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
@@ -30,7 +29,9 @@ export const AppTable: React.FC<AppTableProps> = ({
         onSelectionModelChange={(id) => {
           handleSelectedRow(id);
         }}
-        onRowClick={({ id }) => navigate("/reviews" + `/${id}`)}
+        onRowClick={({ id }) => {
+          navigate(navigateTo + `/${id}`);
+        }}
       />
     </Box>
   );

@@ -13,7 +13,8 @@
   "ProfileMenu": {
     "0": "Open profile settings",
     "1": "Profile",
-    "2": "New Review"
+    "2": "Admin dashboard",
+    "3": "New Review"
   },
   "Search": {
     "placeholder": "Search"
@@ -150,6 +151,28 @@
     "image": "Image",
     "tags": "Tags"
   },
+  "AppTableUsers": {
+    "id": "ID",
+    "username": "Username",
+    "email": "Email",
+    "role": "Role",
+    "password": "Pass",
+    "status": "Status",
+    "enteredBySocial": "entered by social",
+    "fromGoogle": "from Google",
+    "fromTwitter": "from Twitter",
+    "createdReviews": "created reviews",
+    "likedReviews": "liked",
+    "ratedReviews": "rated",
+    "lastEnter": "last enter"
+  },
+  "AppMainTagSection": {
+    "bannerTitle": "Not found",
+    "bannerText": "There are no any review with dat tag. Please, choose another one."
+  },
+  "AppCreatorSelect": {
+    "label": "Author"
+  },
   "NotFound": {
     "text": "Not found"
   },
@@ -158,6 +181,14 @@
     "myReviews": "My reviews",
     "noReviewsTitle": "No reviews",
     "noReviewsSubtitle": "Create a review and all your reviews will appear here in the table. You also can edit, delete it at anytime"
+  },
+  "Admin": {
+    "title": "All users",
+    "categoryTitle": "Create Category",
+    "createCategoryBtn": "Create"
+  },
+  "Divider": {
+    "title": "Or"
   },
   "Footer": {
     "title": "Copyright © 2022 - All right reserved"

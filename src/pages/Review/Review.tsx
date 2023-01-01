@@ -6,7 +6,7 @@ import type { Socket } from "socket.io-client";
 import { Box, TextField, Typography } from "@mui/material";
 import { AppReview } from "../../components/AppReview/AppReview";
 import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
-import { AppSkeletonReviewCard } from "../../components/AppSkeletonReviewCard/AppSkeletonReviewCard";
+import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
 import { AppButton } from "../../components/Buttons/AppButton";
 import { AppComment } from "../../components/AppComment/AppComment";
 
@@ -37,13 +37,15 @@ export const Review: React.FC<ReviewProps> = () => {
   const [commentText, handleCommentText, clearCommentText] = useInput("");
   const [relatedReviews, setRelatedReviews] = useState([] as IReview[]);
   const { user, isAuth } = useAppSelector((state) => state.auth);
+  const isAdmin = user.role === 1;
   const {
     currentReview,
     isLoading,
     handleFullReviewLikes,
     handleReviewComments,
-  } = useGetCurrentReview(id!, user.id);
+  } = useGetCurrentReview(id!, user.id, isAdmin);
   const reviewText = useReviewText();
+
   const style = makeStyles();
 
   const handleRating = async (rate: number) => {
@@ -51,20 +53,22 @@ export const Review: React.FC<ReviewProps> = () => {
       navigate(AppPathes.LOGIN);
       return;
     }
-    setRating((prev) => (prev = rate));
+    setRating(rate);
     const updatedArtItem = await artItemsServiceRateItem({
       id: currentReview.artItem._id!,
-      userId: user.id,
+      userId: isAdmin ? currentReview.creator : user.id,
       rate: rate,
     });
-    if (updatedArtItem) addRatedArtItem(currentReview.artItem._id!);
+    if (updatedArtItem && !isAdmin) addRatedArtItem(currentReview.artItem._id!);
   };
 
   const getCurrentRating = useCallback(() => {
     if (currentReview) {
-      const isAlreadyRated = currentReview?.artItem?.rating?.find(
-        (item) => item.user === user.id
-      );
+      const isAlreadyRated = !isAdmin
+        ? currentReview?.artItem?.rating?.find((item) => item.user === user.id)
+        : currentReview?.artItem?.rating?.find(
+            (item) => item.user === currentReview.creator
+          );
       if (isAlreadyRated) {
         setRating(isAlreadyRated.rate);
       }

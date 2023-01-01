@@ -22,7 +22,7 @@ export const useAppTableConfig = (): { columns: GridColDef[] } => {
       {
         field: "rating",
         headerName: `${t("AppTable.rating")}`,
-        width: 50,
+        width: 90,
         valueGetter: (params: GridValueGetterParams) =>
           `${params.row.artItem.averageRating || 0}`,
       },
@@ -38,7 +38,7 @@ export const useAppTableConfig = (): { columns: GridColDef[] } => {
       },
       {
         field: "likes",
-        headerName: `${t("AppTable.category")}`,
+        headerName: `${t("AppTable.likes")}`,
         width: 40,
         valueGetter: (params: GridValueGetterParams) =>
           `${params.row.likes.length || 0}`,
@@ -60,7 +60,7 @@ export const useAppTableConfig = (): { columns: GridColDef[] } => {
       {
         field: "image",
         headerName: `${t("AppTable.image")}`,
-        width: 50,
+        width: 80,
         valueGetter: (params: GridValueGetterParams) =>
           `${params.row.image ? "yes" : "no"}`,
       },

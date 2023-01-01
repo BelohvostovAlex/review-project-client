@@ -1,7 +1,8 @@
-import { useTheme } from "@mui/material";
 import React from "react";
 import ContentLoader from "react-content-loader";
-import { tokens } from "../../theme/theme";
+
+import { useTheme } from "@mui/material";
+import { tokens } from "../../../theme/theme";
 
 import { AppSkeletonReviewCardProps } from "./interface";
 

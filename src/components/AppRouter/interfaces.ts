@@ -23,7 +23,7 @@ export enum AppPathes {
   NEW_REVIEW = "/new-review",
   REVIEW = "/reviews/:id",
   REVIEWS = "/reviews/all/:sort",
-  PROFILE = "/profile",
+  PROFILE = "/profile/:id",
   ADMIN = "/admin",
 }
 
@@ -38,9 +38,3 @@ export const publicRoutes: IRoute[] = [
   { path: AppPathes.PROFILE, element: Profile },
 ];
 export const privateRoutes: IRoute[] = [];
-
-//   { path: Pathes.MOVIE, element: MoviePage },
-//   { path: Pathes.RESERVE, element: ReservePage },
-//   { path: Pathes.USER, element: User },
-//   { path: Pathes.ERROR, element: NotFound },
-//   { path: Pathes.NOTHING_FOUND, element: NothingFound },
