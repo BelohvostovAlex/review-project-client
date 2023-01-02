@@ -7,7 +7,7 @@ export const makeStyles = ({ isFull, cardTitleColor }: makeStylesProps) => ({
   cardWrapper: {
     width: isFull ? "100%" : "340px",
     height: "auto",
-    minHeight: "548.5px",
+    minHeight: "578.5px",
     margin: isFull ? "10px 0px" : "10px",
   },
   cardTitleWrapper: {
