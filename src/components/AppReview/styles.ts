@@ -46,7 +46,7 @@ export const makeStyles = ({ isFull, cardTitleColor }: makeStylesProps) => ({
     margin: isFull ? "20px 0px" : "10px 0px",
   },
   cardContent: {
-    minHeight: isFull ? "200px" : "334px",
+    minHeight: isFull ? "200px" : "364px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",

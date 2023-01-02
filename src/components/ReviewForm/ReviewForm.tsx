@@ -41,7 +41,7 @@ import { makeStyles } from "./styles";
 export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
   const { user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
-  const [tags, handleAddTag] = useFetchTags();
+  const { tags, handleAddTag } = useFetchTags();
   const [artItems, handleAddArtItem] = useFetchArtItems();
   const categoryOptions = useFetchCategoriesOptions();
   const [currentTags, setCurrentTags] = useState<ITag[]>([]);

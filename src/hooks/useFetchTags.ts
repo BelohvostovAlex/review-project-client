@@ -3,21 +3,44 @@ import { useEffect, useState } from "react";
 import { tagServiceGetAllTags } from "../services/tagService/tagService";
 import { ITag } from "../models/ITag";
 
-export const useFetchTags = (): [ITag[], (item: ITag) => void] => {
+interface useFetchOutPut {
+  tags: ITag[];
+  handleAddTag: (item: ITag) => void;
+  handlePage: () => void;
+}
+
+export const useFetchTags = (getAll: boolean = true): useFetchOutPut => {
   const [items, setItems] = useState<ITag[]>([]);
+  const [page, setPage] = useState<number>(getAll ? 0 : 1);
+  const [total, setTotal] = useState<number>();
+  const [limit, setLimit] = useState<number>(getAll ? 0 : 4);
 
   const fetchItems = async () => {
-    const response = await tagServiceGetAllTags();
-    setItems(response.data);
+    const { data } = await tagServiceGetAllTags(page, limit);
+    console.log(data);
+    if (data) {
+      setLimit(data.limit);
+      setPage(data.page);
+      setTotal(data.total);
+      if (page > 1) {
+        setItems((prev) => [...prev, ...data.tags]);
+      } else {
+        setItems(data.tags);
+      }
+    }
   };
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [page]);
 
-  const handleAddItem = async (value: ITag) => {
+  const handleAddTag = async (value: ITag) => {
     setItems((prev) => [...prev, value]);
   };
 
-  return [items, handleAddItem];
+  const handlePage = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  return { tags: items, handleAddTag, handlePage };
 };

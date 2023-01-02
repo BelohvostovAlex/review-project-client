@@ -16,7 +16,7 @@ import { AppBanner } from "../AppBanner/AppBanner";
 import { useAppMainTagSectionText } from "./config/useAppMainTagSectionText";
 
 export const AppMainTagSection: React.FC<AppMainSectionProps> = ({ title }) => {
-  const [tags] = useFetchTags();
+  const { tags, handlePage } = useFetchTags(false);
   const [active, setActive] = useState("");
   const { reviews, likedReview, isLoading } = useFetchReviewsByTag(active);
   const text = useAppMainTagSectionText();
@@ -46,7 +46,7 @@ export const AppMainTagSection: React.FC<AppMainSectionProps> = ({ title }) => {
           styles={style.tag}
         />
       ))}
-      {tags.length > 7 && <AppButton text={text.button} />}
+      {tags.length > 3 && <AppButton text={text.button} onClick={handlePage} />}
       {isLoading &&
         [1, 2, 3, 4].map((_, i) => <AppSkeletonReviewCard key={i} />)}
       {!isLoading && reviews && (
