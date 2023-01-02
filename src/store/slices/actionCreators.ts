@@ -8,8 +8,6 @@ import { changeLang } from "./authSlice/authSlice";
 import { authSignInWithSocialMedia } from "./authSlice/thunks/authSignInWithSocialMediaThunk";
 import { enteredViaSocial } from "./authSlice/authSlice";
 
-import { handleLoading } from "./authSlice/authSlice";
-
 export const allActionCreators = {
   authSignIn,
   authSignOut,
@@ -20,5 +18,4 @@ export const allActionCreators = {
   changeTheme,
   authSignInWithSocialMedia,
   enteredViaSocial,
-  handleLoading,
 };

@@ -12,7 +12,7 @@ import { makeStyles } from "./styles";
 
 export const Main: React.FC = () => {
   const { viaSocial, isAuth } = useAppSelector((state) => state.auth);
-  const { authSignInWithSocialMedia, handleLoading } = useActions();
+  const { authSignInWithSocialMedia } = useActions();
   const mainText = useMainText();
   const style = makeStyles();
 
@@ -20,7 +20,6 @@ export const Main: React.FC = () => {
     if (viaSocial && !isAuth) {
       authSignInWithSocialMedia();
     }
-    handleLoading();
   }, []);
 
   return (
