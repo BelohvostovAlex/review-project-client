@@ -176,7 +176,7 @@ export const Review: React.FC<ReviewProps> = () => {
             </Box>
           </>
         )}
-        {currentReview.comments && (
+        {currentReview.comments && currentReview.comments.length > 0 && (
           <>
             <Typography variant="h5" sx={style.commentsBlockTitle}>
               {reviewText.comments}:

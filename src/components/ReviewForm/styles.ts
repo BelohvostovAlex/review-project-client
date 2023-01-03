@@ -34,5 +34,10 @@ export const makeStyles = () => ({
   },
   reviewRatingWrapper: {
     display: "flex",
+    alignItems: "center",
+    marginBottom: "20px",
+  },
+  reviewZeroGradeBtn: {
+    height: "33px",
   },
 });

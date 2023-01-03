@@ -36,6 +36,7 @@ import { AppRatingSize } from "../AppRating/interface";
 import { AppAlertSeverity } from "../AppAlert/interface";
 import { ReviewFormInputs, ReviewFormProps } from "./interface";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import { makeStyles } from "./styles";
 
 export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
@@ -261,6 +262,8 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
           <AppButton
             onClick={() => handleGrade(0)}
             text={formTextValues.grade.buttonText}
+            startIcon={<ThumbDownOffAltIcon />}
+            styles={style.reviewZeroGradeBtn}
           />
         </Box>
         <AppCreatableAutoComplete

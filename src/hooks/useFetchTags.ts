@@ -7,12 +7,13 @@ interface useFetchOutPut {
   tags: ITag[];
   handleAddTag: (item: ITag) => void;
   handlePage: () => void;
+  total: number;
 }
 
 export const useFetchTags = (getAll: boolean = true): useFetchOutPut => {
   const [items, setItems] = useState<ITag[]>([]);
   const [page, setPage] = useState<number>(getAll ? 0 : 1);
-  const [total, setTotal] = useState<number>();
+  const [total, setTotal] = useState<number>(0);
   const [limit, setLimit] = useState<number>(getAll ? 0 : 4);
 
   const fetchItems = async () => {
@@ -42,5 +43,5 @@ export const useFetchTags = (getAll: boolean = true): useFetchOutPut => {
     setPage((prev) => prev + 1);
   };
 
-  return { tags: items, handleAddTag, handlePage };
+  return { tags: items, handleAddTag, handlePage, total };
 };
