@@ -4,7 +4,7 @@ export const makeStyles = () => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    width: "50vw",
+    width: { xs: "96%", sm: "50vw" },
     margin: "0 auto",
   },
   textField: {
@@ -34,10 +34,12 @@ export const makeStyles = () => ({
   },
   reviewRatingWrapper: {
     display: "flex",
+    flexDirection: { xs: "column", sm: "row" },
     alignItems: "center",
     marginBottom: "20px",
   },
   reviewZeroGradeBtn: {
+    marginTop: { xs: "10px", sm: "0px" },
     height: "33px",
   },
 });

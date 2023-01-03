@@ -1,5 +1,5 @@
 export const makeStyles = () => ({
   navWrapper: {
-    display: { xs: "none", sm: "block" },
+    display: { xs: "none", md: "block" },
   },
 });

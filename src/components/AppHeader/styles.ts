@@ -34,6 +34,7 @@ export const makeStyles = (props: makeStylesProps) => ({
   },
   headerSwitchWrapper: {
     marginRight: "10px",
+    display: { xs: "none", md: "inline-block" },
   },
   headerSwitch: {
     "& .MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track": {
@@ -50,6 +51,10 @@ export const makeStyles = (props: makeStylesProps) => ({
   },
   headerLoginBtn: {
     marginRight: "10px",
+    display: { xs: "none", md: "inline-block" },
+  },
+  headerRegisterBtn: {
+    display: { xs: "none", md: "inline-block" },
   },
   modeBtn: {
     width: "40px",

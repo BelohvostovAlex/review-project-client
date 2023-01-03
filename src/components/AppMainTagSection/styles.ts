@@ -7,6 +7,7 @@ export const makeStyles = (props: makeStylesProps) => ({
   tagSectionTitle: {
     margin: "10px",
     fontWeight: "bold",
+    fontSize: { xs: "16px", sm: "24px" },
     display: "flex",
     alignItems: "center",
     background: props.tagSectionTitleWrapperBg,

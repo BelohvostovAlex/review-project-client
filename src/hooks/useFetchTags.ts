@@ -18,7 +18,7 @@ export const useFetchTags = (getAll: boolean = true): useFetchOutPut => {
 
   const fetchItems = async () => {
     const { data } = await tagServiceGetAllTags(page, limit);
-    console.log(data);
+
     if (data) {
       setLimit(data.limit);
       setPage(data.page);

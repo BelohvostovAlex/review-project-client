@@ -48,8 +48,6 @@ export const Profile: React.FC = () => {
     handleReviews(currReviews);
   };
 
-  console.log(reviews);
-
   if (!isAuth) return <Navigate to={AppPathes.MAIN} />;
 
   return (

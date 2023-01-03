@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
+import ReactToPrint from "react-to-print";
 
 import {
   Box,
@@ -34,6 +35,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import imagePlaceHolder from "../../assets/images/image-placeholder.jpg";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { makeStyles } from "./styles";
+import { AppButton } from "../Buttons/AppButton";
 
 export const AppReview: React.FC<AppReviewProps> = ({
   review,
@@ -47,6 +49,7 @@ export const AppReview: React.FC<AppReviewProps> = ({
 }) => {
   const { user, isAuth } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+  const componentRef = useRef(null);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const appReviewText = useAppReviewText();
@@ -99,7 +102,7 @@ export const AppReview: React.FC<AppReviewProps> = ({
   };
 
   return (
-    <Card sx={style.cardWrapper}>
+    <Card sx={style.cardWrapper} ref={componentRef}>
       <CardHeader
         action={
           (creator === user.id || isAdmin) && (
@@ -163,12 +166,18 @@ export const AppReview: React.FC<AppReviewProps> = ({
         </CardContent>
         <CardActions sx={style.cardActionsWrapper}>
           {isFull ? (
-            <AppRating
-              rating={rating!}
-              onChange={handleRating!}
-              max={5}
-              size={AppRatingSize.LARGE}
-            />
+            <>
+              <AppRating
+                rating={rating!}
+                onChange={handleRating!}
+                max={5}
+                size={AppRatingSize.LARGE}
+              />
+              <ReactToPrint
+                content={() => componentRef.current}
+                trigger={() => <AppButton text="PDF" />}
+              />
+            </>
           ) : (
             <AppButtonLink
               text={appReviewText.buttonMore}

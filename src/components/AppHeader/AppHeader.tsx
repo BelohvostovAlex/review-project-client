@@ -109,6 +109,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
               <AppButtonLink
                 path={AppPathes.REGISTRATION}
                 text={headerText.signUp}
+                styles={style.headerRegisterBtn}
               />
             </Box>
           ) : (

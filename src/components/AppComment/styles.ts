@@ -1,6 +1,6 @@
 export const makeStyles = () => ({
   commentWrapper: {
-    width: "60%",
+    width: { xs: "90%", sm: "60%" },
     height: "auto",
     maxHeight: "300px",
     overflowY: "scroll",

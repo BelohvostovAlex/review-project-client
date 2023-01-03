@@ -1,18 +1,19 @@
 export const makeStyles = () => ({
   reviewWrapper: {
-    width: "60vw",
+    width: { xs: "98vw", sm: "60vw" },
     margin: "0 auto",
     paddingTop: "20px",
   },
   relatedReviews: {
     display: "flex",
-    alignItems: "start",
+    flexDirection: { xs: "column", sm: "row" },
+    alignItems: { xs: "center", sm: "start" },
     flexWrap: "wrap",
   },
   reviewBackBtn: {
     position: "fixed",
-    top: "13vh",
-    left: "10vh",
+    top: { xs: "7vh", sm: "13vh" },
+    left: { xs: "1vh", sm: "10vh" },
   },
   relatedReviewsTitle: {
     textAlign: "center",

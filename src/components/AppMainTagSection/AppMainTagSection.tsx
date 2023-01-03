@@ -5,15 +5,15 @@ import { AppTag } from "../AppTag/AppTag";
 import { AppButton } from "../Buttons/AppButton";
 import { AppReview } from "../AppReview/AppReview";
 import { AppSkeletonReviewCard } from "../AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
+import { AppBanner } from "../AppBanner/AppBanner";
 
 import { useFetchTags } from "../../hooks/useFetchTags";
 import { useFetchReviewsByTag } from "../../hooks/useFetchReviewsByTag";
+import { useAppMainTagSectionText } from "./config/useAppMainTagSectionText";
 import { tokens } from "../../theme/theme";
 
 import { AppMainSectionProps } from "../AppMainSection/interface";
 import { makeStyles } from "./styles";
-import { AppBanner } from "../AppBanner/AppBanner";
-import { useAppMainTagSectionText } from "./config/useAppMainTagSectionText";
 
 export const AppMainTagSection: React.FC<AppMainSectionProps> = ({ title }) => {
   const { tags, handlePage, total } = useFetchTags(false);

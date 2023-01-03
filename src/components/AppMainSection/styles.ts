@@ -14,6 +14,7 @@ export const makeStyles = (props: makeStylesProps) => ({
   },
   mainSectionTitle: {
     fontWeight: "bold",
+    fontSize: { xs: "16px", sm: "24px" },
     marginRight: "20px",
   },
   mainSectionReviewsWrapper: {

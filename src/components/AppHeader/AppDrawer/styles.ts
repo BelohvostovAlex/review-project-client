@@ -5,7 +5,7 @@ interface makeStylesProps {
 
 export const makeStyles = (props: makeStylesProps) => ({
   drawerWrapper: {
-    display: { xs: "block", sm: "none" },
+    display: { xs: "block", md: "none" },
     "& .MuiDrawer-paper": {
       boxSizing: "border-box",
       width: props.drawerWidth,

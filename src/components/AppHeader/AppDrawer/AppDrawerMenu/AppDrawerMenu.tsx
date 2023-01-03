@@ -12,13 +12,17 @@ import {
   useTheme,
 } from "@mui/material";
 
+import { useAppSelector } from "../../../../hooks/useAppSelector";
+
 import { APP_LOGO, APP_NAV_MENU } from "../../../../mock/constants";
 import { tokens } from "../../../../theme/theme";
 
 import { AppDrawerMenuProps } from "./interface";
 import { makeStyles } from "./styles";
+import { AppPathes } from "../../../AppRouter/interfaces";
 
 export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
+  const { isAuth } = useAppSelector((state) => state.auth);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { t } = useTranslation();
@@ -49,6 +53,26 @@ export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
             </ListItemButton>
           </ListItem>
         ))}
+        {!isAuth && (
+          <>
+            <ListItem
+              disablePadding
+              onClick={() => handleItemOnClick(AppPathes.LOGIN)}
+            >
+              <ListItemButton sx={style.listItemBtn}>
+                <ListItemText primary={t(`AuthButtons.signIn`)} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem
+              disablePadding
+              onClick={() => handleItemOnClick(AppPathes.REGISTRATION)}
+            >
+              <ListItemButton sx={style.listItemBtn}>
+                <ListItemText primary={t(`AuthButtons.signUp`)} />
+              </ListItemButton>
+            </ListItem>
+          </>
+        )}
       </List>
     </Box>
   );

@@ -4,11 +4,11 @@ export const makeStyles = () => ({
   },
   newReviewTitle: {
     textAlign: "center",
-    fontSize: "30px",
+    fontSize: { xs: "24px", sm: "30px" },
   },
   newReviewBackBtn: {
     position: "fixed",
-    top: "13vh",
-    left: "10vh",
+    top: { xs: "10vh", sm: "13vh" },
+    left: { xs: "1vh", sm: "10vh" },
   },
 });

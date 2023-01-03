@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   Box,
@@ -13,16 +14,18 @@ import {
 } from "@mui/material";
 
 import { tokens } from "../../../theme/theme";
+import { useActions } from "../../../hooks/useActions";
 import { useAppSelector } from "../../../hooks/useAppSelector";
 import { stringAvatar } from "../../../helpers/stringAvatar";
+import { authServiceSignOutWithSocialMedia } from "../../../services/authService/authService";
 
 import { APP_PROFILE_MENU } from "../../../mock/constants";
 import { AppProfileMenuProps } from "./interface";
 import { makeStyles } from "./styles";
-import { useTranslation } from "react-i18next";
 
 export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
-  const { user } = useAppSelector((state) => state.auth);
+  const { user, viaSocial } = useAppSelector((state) => state.auth);
+  const { authSignOut } = useActions();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const theme = useTheme();
@@ -42,6 +45,17 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
   const handleCloseUserMenu = (path: string) => {
     setAnchorElUser(null);
     navigate(path);
+  };
+
+  const signOut = async () => {
+    if (!viaSocial) {
+      authSignOut();
+    }
+
+    if (viaSocial) {
+      const response = await authServiceSignOutWithSocialMedia();
+      if (response.data === "done") authSignOut();
+    }
   };
 
   return (
@@ -87,6 +101,7 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
             {t(`ProfileMenu.${i + 3}`)}
           </MenuItem>
         ))}
+        <MenuItem onClick={signOut}>{t(`AuthButtons.signOut`)}</MenuItem>
       </Menu>
     </Box>
   );
