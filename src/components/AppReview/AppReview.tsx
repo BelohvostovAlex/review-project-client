@@ -18,6 +18,7 @@ import {
 import { AppButtonLink } from "../Buttons/AppButtonLink";
 import { AppTag } from "../AppTag/AppTag";
 import { AppRating } from "../AppRating/AppRating";
+import { AppButton } from "../Buttons/AppButton";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { handleReviewCardText } from "../../helpers/handleReviewCardText";
@@ -26,8 +27,8 @@ import { reviewServiceLikeReview } from "../../services/reviewService/reviewServ
 import { tokens } from "../../theme/theme";
 import { useGetUser } from "../../hooks/useGetUser";
 import { useAppReviewText } from "./config/useAppReviewText";
-
 import { handleLikeIcon, handleStarIcon } from "./config/config";
+
 import { AppPathes } from "../AppRouter/interfaces";
 import { AppRatingSize } from "../AppRating/interface";
 import { AppReviewProps } from "./interface";
@@ -35,7 +36,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import imagePlaceHolder from "../../assets/images/image-placeholder.jpg";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { makeStyles } from "./styles";
-import { AppButton } from "../Buttons/AppButton";
 
 export const AppReview: React.FC<AppReviewProps> = ({
   review,

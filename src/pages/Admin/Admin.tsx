@@ -16,6 +16,8 @@ import {
   adminServiceHanldeUserStatus,
 } from "../../services/adminService/adminService";
 import { useInput } from "../../hooks/useInput";
+import { useAppAdminText } from "./config/useAppAdminText";
+import { USER_ROLE, USER_STATUS } from "../../mock/constants";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonAddDisabledIcon from "@mui/icons-material/PersonAddDisabled";
@@ -25,8 +27,6 @@ import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import { IUserFull } from "../../models/IUser";
 import { GridRowId } from "@mui/x-data-grid";
 import { AppPathes } from "../../components/AppRouter/interfaces";
-import { USER_ROLE, USER_STATUS } from "../../mock/constants";
-import { useAppAdminText } from "./config/useAppAdminText";
 import { makeStyles } from "./styles";
 
 export const Admin: React.FC = () => {

@@ -6,6 +6,7 @@ import { Box, TextField, Typography } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
 import { AppButtonLink } from "../Buttons/AppButtonLink";
 import { AppLoader } from "../AppLoader/AppLoader";
+import { AppDivider } from "../AppDivider/AppDivider";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useActions } from "../../hooks/useActions";
@@ -17,7 +18,6 @@ import { AuthFormProps, FormInputs } from "./interfaces";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GoogleIcon from "@mui/icons-material/Google";
 import { makeStyles } from "./styles";
-import { AppDivider } from "../AppDivider/AppDivider";
 
 export const AuthForm: React.FC<AuthFormProps> = ({
   signUp = true,

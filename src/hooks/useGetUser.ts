@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 import { authServiceGetUser } from "../services/authService/authService";
+import { reviewServiceGetCreatorLikes } from "../services/reviewService/reviewService";
 
 import { IUser } from "../models/IUser";
-import { reviewServiceGetCreatorLikes } from "../services/reviewService/reviewService";
 
 export const useGetUser = (id: string, reviewId?: string): [IUser, number] => {
   const [user, setUser] = useState({} as IUser);

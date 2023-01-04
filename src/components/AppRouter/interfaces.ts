@@ -37,4 +37,3 @@ export const publicRoutes: IRoute[] = [
   { path: AppPathes.REVIEWS, element: Reviews },
   { path: AppPathes.PROFILE, element: Profile },
 ];
-export const privateRoutes: IRoute[] = [];

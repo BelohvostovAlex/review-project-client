@@ -7,7 +7,7 @@ export const authGetCreatorLikes = createAsyncThunk(
   async (id: string, { rejectWithValue }) => {
     try {
       const { data } = await reviewServiceGetCreatorLikes(id);
-      console.log(data);
+
       return data;
     } catch (error: any) {
       return rejectWithValue(error.response.data.message);

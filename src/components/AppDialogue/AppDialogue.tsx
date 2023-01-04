@@ -9,8 +9,10 @@ import {
   TextField,
 } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
-import { AppDialogueProps } from "./interfaces";
+
 import { useDialogText } from "./config/useDialogText";
+
+import { AppDialogueProps } from "./interfaces";
 
 export const AppDialogue: React.FC<AppDialogueProps> = ({
   open,

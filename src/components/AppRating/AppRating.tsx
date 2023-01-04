@@ -2,9 +2,10 @@ import React from "react";
 
 import { Box, Typography, Rating } from "@mui/material";
 
+import { useRatingSubTitle } from "./config";
+
 import { AppRatingProps, AppRatingSize } from "./interface";
 import { makeStyle } from "./styles";
-import { useRatingSubTitle } from "./config";
 
 export const AppRating: React.FC<AppRatingProps> = ({
   defaultValue = 1,

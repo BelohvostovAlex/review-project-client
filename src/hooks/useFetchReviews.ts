@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
 import { reviewServiceGetReviews } from "../services/reviewService/reviewService";
-import { IReview } from "../models/IReview";
 import { handleLike } from "../helpers/handleLike";
+
+import { IReview } from "../models/IReview";
 
 interface useFetchReviewsOutput {
   reviews: IReview[];

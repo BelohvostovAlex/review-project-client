@@ -20,8 +20,8 @@ import {
   reviewServiceGetRelatedReviews,
 } from "../../services/reviewService/reviewService";
 import { useReviewText } from "./config/useReviewText";
-
 import { handleLike } from "../../helpers/handleLike";
+
 import { IReview } from "../../models/IReview";
 import { ReviewProps } from "./interface";
 import { IComment } from "../../models/IComment";

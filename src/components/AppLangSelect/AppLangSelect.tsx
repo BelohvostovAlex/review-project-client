@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   FormControl,
@@ -7,11 +8,11 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
+
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useActions } from "../../hooks/useActions";
 
 import { APP_LANGUAGES } from "../../mock/constants";
-import { useTranslation } from "react-i18next";
 import { makeStyles } from "./styles";
 
 export const AppLangSelect: React.FC = () => {

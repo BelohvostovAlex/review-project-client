@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 
 import { uploadFileService } from "../../services/uploadFileService/uploadFileService";
+import { useAppUploadImgText } from "./config/useAppUploadImgText";
 import { tokens } from "../../theme/theme";
 
 import { AppUploadImgProps } from "./interface";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { makeStyles } from "./styles";
-import { useAppUploadImgText } from "./config/useAppUploadImgText";
 
 export const AppUploadImg: React.FC<AppUploadImgProps> = ({ handleImage }) => {
   const [drag, setDrag] = useState(false);

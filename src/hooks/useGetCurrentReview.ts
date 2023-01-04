@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import { IComment } from "../models/IComment";
 
-import { IReview } from "../models/IReview";
 import { reviewServiceGetReview } from "../services/reviewService/reviewService";
+
+import { IComment } from "../models/IComment";
+import { IReview } from "../models/IReview";
 
 interface useGetCurrentReviewOutput {
   currentReview: IReview;

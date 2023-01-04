@@ -3,7 +3,6 @@ interface makeStylesProps {
 }
 
 export const makeStyles = (props: makeStylesProps) => ({
-  tagSectionWrapper: {},
   tagSectionTitle: {
     margin: "10px",
     fontWeight: "bold",

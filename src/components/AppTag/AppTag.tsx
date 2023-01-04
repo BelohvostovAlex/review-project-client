@@ -2,9 +2,10 @@ import React from "react";
 
 import { Chip, useTheme } from "@mui/material";
 
+import { tokens } from "../../theme/theme";
+
 import { AppTagProps, AppTagVariant } from "./interface";
 import { makeStyles } from "./styles";
-import { tokens } from "../../theme/theme";
 
 export const AppTag: React.FC<AppTagProps> = ({
   title,

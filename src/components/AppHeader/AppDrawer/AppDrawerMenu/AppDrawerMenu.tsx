@@ -13,13 +13,12 @@ import {
 } from "@mui/material";
 
 import { useAppSelector } from "../../../../hooks/useAppSelector";
-
-import { APP_LOGO, APP_NAV_MENU } from "../../../../mock/constants";
 import { tokens } from "../../../../theme/theme";
 
 import { AppDrawerMenuProps } from "./interface";
-import { makeStyles } from "./styles";
+import { APP_LOGO, APP_NAV_MENU } from "../../../../mock/constants";
 import { AppPathes } from "../../../AppRouter/interfaces";
+import { makeStyles } from "./styles";
 
 export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
   const { isAuth } = useAppSelector((state) => state.auth);

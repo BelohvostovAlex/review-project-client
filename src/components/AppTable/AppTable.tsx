@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-import { makeStyles } from "./styles";
 import { AppTableProps } from "./interface";
+import { makeStyles } from "./styles";
 
 export const AppTable: React.FC<AppTableProps> = ({
   rows,

@@ -2,8 +2,8 @@ import React from "react";
 
 import { Button } from "@mui/material";
 
-import { makeStyles } from "./styles";
 import { AppButtonProps, AppButtonVariant } from "./interfaces";
+import { makeStyles } from "./styles";
 
 export const AppButton: React.FC<AppButtonProps> = ({
   color,

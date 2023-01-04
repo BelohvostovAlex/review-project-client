@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { IArtItem } from "../models/IArtItem";
 import { artItemsServiceGetAllItems } from "../services/artItemsService/artItemsService";
+
+import { IArtItem } from "../models/IArtItem";
 
 export const useFetchArtItems = (): [IArtItem[], (item: IArtItem) => void] => {
   const [items, setItems] = useState<IArtItem[]>([]);

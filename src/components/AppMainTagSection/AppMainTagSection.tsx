@@ -32,7 +32,7 @@ export const AppMainTagSection: React.FC<AppMainSectionProps> = ({ title }) => {
   };
 
   return (
-    <Box sx={style.tagSectionWrapper}>
+    <Box>
       <Typography variant="h3" sx={style.tagSectionTitle}>
         {title}
       </Typography>

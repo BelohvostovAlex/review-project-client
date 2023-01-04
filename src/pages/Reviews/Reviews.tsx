@@ -7,9 +7,9 @@ import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeleton
 import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
 
 import { useFetchReviews } from "../../hooks/useFetchReviews";
+import { useReviewText } from "./config/useReviewText";
 
 import { makeStyles } from "./styles";
-import { useReviewText } from "./config/useReviewText";
 
 export const Reviews: React.FC = () => {
   const { sort } = useParams();
