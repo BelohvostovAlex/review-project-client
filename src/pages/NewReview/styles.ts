@@ -8,7 +8,8 @@ export const makeStyles = () => ({
   },
   newReviewBackBtn: {
     position: "fixed",
-    top: { xs: "10vh", sm: "13vh" },
+    top: { xs: "70px", sm: "13vh" },
     left: { xs: "1vh", sm: "10vh" },
+    zIndex: "100",
   },
 });

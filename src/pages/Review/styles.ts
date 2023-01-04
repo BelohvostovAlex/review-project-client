@@ -2,7 +2,7 @@ export const makeStyles = () => ({
   reviewWrapper: {
     width: { xs: "98vw", sm: "60vw" },
     margin: "0 auto",
-    paddingTop: "20px",
+    paddingTop: { xs: "40px", sm: "20px" },
   },
   relatedReviews: {
     display: "flex",
@@ -12,8 +12,9 @@ export const makeStyles = () => ({
   },
   reviewBackBtn: {
     position: "fixed",
-    top: { xs: "7vh", sm: "13vh" },
+    top: { xs: "70px", sm: "13vh" },
     left: { xs: "1vh", sm: "10vh" },
+    zIndex: "100",
   },
   relatedReviewsTitle: {
     textAlign: "center",

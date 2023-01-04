@@ -175,7 +175,7 @@ export const AppReview: React.FC<AppReviewProps> = ({
               />
               <ReactToPrint
                 content={() => componentRef.current}
-                trigger={() => <AppButton text="PDF" />}
+                trigger={() => <AppButton text="print" />}
               />
             </>
           ) : (
