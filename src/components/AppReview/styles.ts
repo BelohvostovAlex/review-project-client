@@ -58,6 +58,9 @@ export const makeStyles = ({ isFull, cardTitleColor }: makeStylesProps) => ({
   },
   cardImg: {
     height: isFull ? "360px" : "140px",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   },
   cardReviewCreatorWrapper: {
     display: "flex",

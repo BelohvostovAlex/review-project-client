@@ -14,6 +14,7 @@ export const makeStyles = () => ({
   },
   textField: {
     marginBottom: "15px",
+    minWidth: "200px",
   },
   signUpBtn: {
     textDecoration: "underline",

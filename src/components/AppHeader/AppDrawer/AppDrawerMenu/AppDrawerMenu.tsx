@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 
 import { useAppSelector } from "../../../../hooks/useAppSelector";
+import { authSelector } from "../../../../store/slices/authSlice/authSelectors";
 import { tokens } from "../../../../theme/theme";
 
 import { AppDrawerMenuProps } from "./interface";
@@ -21,7 +22,7 @@ import { AppPathes } from "../../../AppRouter/interfaces";
 import { makeStyles } from "./styles";
 
 export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { isAuth } = useAppSelector(authSelector);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { t } = useTranslation();

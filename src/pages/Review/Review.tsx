@@ -12,6 +12,7 @@ import { AppComment } from "../../components/AppComment/AppComment";
 
 import { useGetCurrentReview } from "../../hooks/useGetCurrentReview";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { useInput } from "../../hooks/useInput";
 import { artItemsServiceRateItem } from "../../services/artItemsService/artItemsService";
 import { addRatedArtItem } from "../../store/slices/authSlice/authSlice";
@@ -36,7 +37,7 @@ export const Review: React.FC<ReviewProps> = () => {
   const [rating, setRating] = useState(0);
   const [commentText, handleCommentText, clearCommentText] = useInput("");
   const [relatedReviews, setRelatedReviews] = useState([] as IReview[]);
-  const { user, isAuth } = useAppSelector((state) => state.auth);
+  const { user, isAuth } = useAppSelector(authSelector);
   const isAdmin = user.role === 1;
   const {
     currentReview,

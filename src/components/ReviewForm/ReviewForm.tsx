@@ -27,6 +27,7 @@ import { tagServiceCreateTag } from "../../services/tagService/tagService";
 import { useFetchTags } from "../../hooks/useFetchTags";
 import { useFetchArtItems } from "../../hooks/useFetchArtItems";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { useFetchCategoriesOptions } from "../../hooks/useFetchCategoriesOptions";
 import { useHandleTextForm } from "./config/useHandleTextForm";
 
@@ -40,7 +41,7 @@ import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import { makeStyles } from "./styles";
 
 export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector(authSelector);
   const navigate = useNavigate();
   const { tags, handleAddTag } = useFetchTags();
   const [artItems, handleAddArtItem] = useFetchArtItems();

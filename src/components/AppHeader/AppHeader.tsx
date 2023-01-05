@@ -24,6 +24,7 @@ import { AppSearch } from "../AppSearch/AppSearch";
 
 import { tokens } from "../../theme/theme";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { useActions } from "../../hooks/useActions";
 import { authServiceSignOutWithSocialMedia } from "../../services/authService/authService";
 import { useTextHeader } from "./config/useTextHeader";
@@ -35,7 +36,7 @@ import { AppHeaderProps } from "./interfaces";
 import { makeStyles } from "./styles";
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
-  const { isAuth, isError, viaSocial } = useAppSelector((state) => state.auth);
+  const { isAuth, isError, viaSocial } = useAppSelector(authSelector);
   const { authSignOut, changeTheme } = useActions();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();

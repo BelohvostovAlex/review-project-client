@@ -7,6 +7,7 @@ import { ReviewForm } from "../../components/ReviewForm/ReviewForm";
 import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { useNewReviewText } from "./config/useNewReviewText";
 
 import { AppPathes } from "../../components/AppRouter/interfaces";
@@ -15,7 +16,7 @@ import { makeStyles } from "./styles";
 export const NewReview: React.FC = () => {
   const location = useLocation();
   const isEdit = location.state;
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { isAuth } = useAppSelector(authSelector);
   const newReviewTitle = useNewReviewText(isEdit);
   const style = makeStyles();
 

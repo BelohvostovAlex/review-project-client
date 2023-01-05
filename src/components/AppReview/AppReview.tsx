@@ -21,6 +21,7 @@ import { AppRating } from "../AppRating/AppRating";
 import { AppButton } from "../Buttons/AppButton";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { handleReviewCardText } from "../../helpers/handleReviewCardText";
 import { useActions } from "../../hooks/useActions";
 import { reviewServiceLikeReview } from "../../services/reviewService/reviewService";
@@ -47,7 +48,7 @@ export const AppReview: React.FC<AppReviewProps> = ({
   likedReview,
   handleFullReviewLikes,
 }) => {
-  const { user, isAuth } = useAppSelector((state) => state.auth);
+  const { user, isAuth } = useAppSelector(authSelector);
   const navigate = useNavigate();
   const componentRef = useRef(null);
   const theme = useTheme();

@@ -10,13 +10,14 @@ import {
 } from "@mui/material";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { useActions } from "../../hooks/useActions";
 
 import { APP_LANGUAGES } from "../../mock/constants";
 import { makeStyles } from "./styles";
 
 export const AppLangSelect: React.FC = () => {
-  const { lang } = useAppSelector((state) => state.auth);
+  const { lang } = useAppSelector(authSelector);
   const { changeLang } = useActions();
   const { t, i18n } = useTranslation();
   const style = makeStyles();

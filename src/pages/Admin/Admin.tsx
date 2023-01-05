@@ -8,6 +8,7 @@ import { AppSkeletonTable } from "../../components/AppSkeletons/AppSkeletonTable
 
 import { useAppTableConfig } from "./config/useAppTableConfig";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import {
   adminServiceCreateCategory,
   adminServiceDeleteUser,
@@ -30,7 +31,7 @@ import { AppPathes } from "../../components/AppRouter/interfaces";
 import { makeStyles } from "./styles";
 
 export const Admin: React.FC = () => {
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector(authSelector);
   const [users, setUsers] = useState<IUserFull[]>([]);
   const [category, handleCategory, resetCategoryVal] = useInput("");
   const [isLoading, setIsLoading] = useState(true);

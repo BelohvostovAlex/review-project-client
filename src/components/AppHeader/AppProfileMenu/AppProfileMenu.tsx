@@ -16,6 +16,7 @@ import {
 import { tokens } from "../../../theme/theme";
 import { useActions } from "../../../hooks/useActions";
 import { useAppSelector } from "../../../hooks/useAppSelector";
+import { authSelector } from "../../../store/slices/authSlice/authSelectors";
 import { stringAvatar } from "../../../helpers/stringAvatar";
 import { authServiceSignOutWithSocialMedia } from "../../../services/authService/authService";
 
@@ -24,7 +25,7 @@ import { AppProfileMenuProps } from "./interface";
 import { makeStyles } from "./styles";
 
 export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
-  const { user, viaSocial } = useAppSelector((state) => state.auth);
+  const { user, viaSocial } = useAppSelector(authSelector);
   const { authSignOut } = useActions();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();

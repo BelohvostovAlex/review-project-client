@@ -9,6 +9,7 @@ import { AppLoader } from "../AppLoader/AppLoader";
 import { AppDivider } from "../AppDivider/AppDivider";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { useActions } from "../../hooks/useActions";
 import { useAuthFormText } from "./config/useAuthFormText";
 
@@ -23,7 +24,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
   signUp = true,
   onFormSubmit,
 }) => {
-  const { isLoading, isAuth, user } = useAppSelector((state) => state.auth);
+  const { isLoading, isAuth, user } = useAppSelector(authSelector);
   const { enteredViaSocial } = useActions();
   const authFormText = useAuthFormText(signUp);
   const style = makeStyles();

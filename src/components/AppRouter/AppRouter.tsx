@@ -4,11 +4,12 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Admin } from "../../pages/Admin/Admin";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 
 import { publicRoutes, AppPathes } from "./interfaces";
 
 const AppRouter: React.FC = () => {
-  const { isAuth, user } = useAppSelector((state) => state.auth);
+  const { isAuth, user } = useAppSelector(authSelector);
   const isAdmin = user.role === 1;
 
   return (

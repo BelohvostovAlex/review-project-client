@@ -11,6 +11,7 @@ import { AppSkeletonTable } from "../../components/AppSkeletons/AppSkeletonTable
 import { reviewServiceDeleteReview } from "../../services/reviewService/reviewService";
 import { useFetchCreatorReviews } from "../../hooks/useFetchCreatorReviews";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { authSelector } from "../../store/slices/authSlice/authSelectors";
 import { useProfileText } from "./config/useProfileText";
 import { useAppTableConfig } from "./config/useAppTableConfig";
 import { useGetUser } from "../../hooks/useGetUser";
@@ -26,7 +27,7 @@ import { IReview } from "../../models/IReview";
 
 export const Profile: React.FC = () => {
   const { id } = useParams();
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { isAuth } = useAppSelector(authSelector);
   const [user, creatorLikes] = useGetUser(id!);
   const { reviews, isLoading, handleReviews } = useFetchCreatorReviews(id!);
   const [selected, setSelected] = useState([] as GridRowId[]);
