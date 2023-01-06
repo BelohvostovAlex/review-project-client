@@ -23,6 +23,16 @@ export const reviewServiceGetReviews = async (
   );
 };
 
+export const reviewServiceSearchReviews = async (
+  query: string
+): Promise<AxiosResponse<IReview[]>> => {
+  return axios.get(
+    process.env.REACT_APP_SERVER_URL +
+      REVIEWS_URLS.GET_REVIEWS_WITH_SEARCH +
+      `?query=${query}`
+  );
+};
+
 export const reviewServiceGetReviewsByTag = async (
   tag: string
 ): Promise<AxiosResponse<IReview[]>> => {

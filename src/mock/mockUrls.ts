@@ -24,6 +24,7 @@ export const ART_ITEMS_URLS = {
 
 export const REVIEWS_URLS = {
   GET_REVIEWS: "/reviews",
+  GET_REVIEWS_WITH_SEARCH: "/reviews/search",
   GET_RELATED_REVIEWS: "/reviews/related",
   GET_CREATOR_REVIEWS: "/reviews/creator",
   GET_REVIEWS_BY_TAG: "/reviews/tag",
