@@ -4,7 +4,10 @@ import TextsmsIcon from "@mui/icons-material/Textsms";
 export const APP_TITLE = "Reviews blog";
 export const APP_LOGO = TextsmsIcon;
 
-export const APP_LANGUAGES = ["en", "ru"];
+export const APP_LANGUAGES = [
+  { lang: "en-EN", title: "en" },
+  { lang: "ru-RU", title: "ru" },
+];
 
 export const APP_NAV_MENU = [{ text: "Reviews", path: AppPathes.MAIN }];
 

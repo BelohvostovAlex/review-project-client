@@ -148,6 +148,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
       setGrade(0);
       setCurrentTags([]);
       setCurrentArtItem(null);
+      setImage("");
     }
     if (isEdit && review) {
       setCurrentTags(review.tags);

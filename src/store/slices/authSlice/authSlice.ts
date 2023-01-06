@@ -12,7 +12,6 @@ import { IUser } from "../../../models/IUser";
 const initialState: AuthState = {
   user: {} as IUser,
   mode: "light",
-  lang: "en",
   isAuth: false,
   isLoading: false,
   isError: "",
@@ -40,9 +39,6 @@ export const authSlice = createSlice({
     },
     changeTheme: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
-    },
-    changeLang: (state, action: PayloadAction<string>) => {
-      state.lang = action.payload;
     },
     enteredViaSocial: (state, action: PayloadAction<boolean>) => {
       state.viaSocial = action.payload;
@@ -169,7 +165,6 @@ export const {
   like,
   addRatedArtItem,
   changeTheme,
-  changeLang,
   enteredViaSocial,
   enteredWithTwitter,
   enteredWithGoogle,
