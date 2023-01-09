@@ -25,7 +25,7 @@ export const AppLangSelect: React.FC = () => {
       <InputLabel id="lang">{t("Lang.title")}</InputLabel>
       <Select
         labelId="lang"
-        value={i18n.language}
+        value={i18n.language || "en-EN"}
         onChange={handleLang}
         autoWidth
         label="Lang"
