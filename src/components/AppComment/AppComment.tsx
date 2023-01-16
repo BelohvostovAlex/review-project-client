@@ -20,7 +20,7 @@ export const AppComment: React.FC<AppCommentProps> = ({ comment }) => {
 
   useEffect(() => {
     getUserLikes();
-  }, [comment]);
+  }, [comment, getUserLikes]);
 
   return (
     <Card sx={style.commentWrapper}>

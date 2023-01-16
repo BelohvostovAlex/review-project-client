@@ -74,7 +74,7 @@ export const Review: React.FC<ReviewProps> = () => {
         setRating(isAlreadyRated.rate);
       }
     }
-  }, [currentReview, user.id]);
+  }, [currentReview, user.id, isAdmin]);
 
   const getRelatedReviews = useCallback(async () => {
     if (currentReview.artItem) {
