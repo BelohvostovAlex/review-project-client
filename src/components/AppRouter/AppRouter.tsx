@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Admin } from "../../pages/Admin/Admin";
@@ -8,7 +8,7 @@ import { authSelector } from "../../store/slices/authSlice/authSelectors";
 
 import { publicRoutes, AppPathes } from "./interfaces";
 
-const AppRouter: React.FC = () => {
+const AppRouter: FunctionComponent = () => {
   const { isAuth, user } = useAppSelector(authSelector);
   const isAdmin = user.role === 1;
 

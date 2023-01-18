@@ -1,10 +1,13 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Backdrop } from "@mui/material";
 
 import { AppBackDropProps } from "./interface";
 
-export const AppBackDrop: React.FC<AppBackDropProps> = ({ children, open }) => {
+export const AppBackDrop: FunctionComponent<AppBackDropProps> = ({
+  children,
+  open,
+}) => {
   return (
     <Backdrop
       sx={{

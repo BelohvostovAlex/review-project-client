@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { FunctionComponent, useEffect } from "react";
 
 import { Box } from "@mui/material";
 import { AppMainSection } from "../../components/AppMainSection/AppMainSection";
@@ -11,7 +11,7 @@ import { useMainText } from "./config/useMainText";
 
 import { makeStyles } from "./styles";
 
-export const Main: React.FC = () => {
+export const Main: FunctionComponent = () => {
   const { viaSocial, isAuth } = useAppSelector(authSelector);
   const { authSignInWithSocialMedia } = useActions();
   const mainText = useMainText();

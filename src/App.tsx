@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from "react";
+import React, { Suspense, useMemo, FunctionComponent } from "react";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
@@ -11,7 +11,7 @@ import { authSelector } from "./store/slices/authSlice/authSelectors";
 const AppLayout = React.lazy(() => import("./layout/AppLayout/AppLayout"));
 const AppRouter = React.lazy(() => import("./components/AppRouter/AppRouter"));
 
-export const App: React.FC = () => {
+export const App: FunctionComponent = () => {
   const { mode } = useAppSelector(authSelector);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 

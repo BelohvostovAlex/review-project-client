@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState, FunctionComponent } from "react";
 
 import { Alert, Snackbar } from "@mui/material";
 
 import { AppAlertProps, AppAlertSeverity } from "./interface";
 import { makeStyles } from "./styles";
 
-export const AppAlert: React.FC<AppAlertProps> = ({
+export const AppAlert: FunctionComponent<AppAlertProps> = ({
   open,
   severity = AppAlertSeverity.ERROR,
   text,

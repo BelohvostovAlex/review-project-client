@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
 
 import { Box, Pagination, Stack, Typography } from "@mui/material";
@@ -11,7 +11,7 @@ import { useReviewText } from "./config/useReviewText";
 
 import { makeStyles } from "./styles";
 
-export const Reviews: React.FC = () => {
+export const Reviews: FunctionComponent = () => {
   const { sort } = useParams();
   const { reviews, total, limit, isLoading, page, likedReview, handlePage } =
     useFetchReviews({

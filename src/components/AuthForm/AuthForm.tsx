@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GoogleIcon from "@mui/icons-material/Google";
 import { makeStyles } from "./styles";
 
-export const AuthForm: React.FC<AuthFormProps> = ({
+export const AuthForm: FunctionComponent<AuthFormProps> = ({
   signUp = true,
   onFormSubmit,
 }) => {

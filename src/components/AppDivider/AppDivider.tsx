@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Divider, Box } from "@mui/material";
@@ -6,7 +6,7 @@ import { Divider, Box } from "@mui/material";
 import { AppDividerProps } from "./interface";
 import { makeStyles } from "./styles";
 
-export const AppDivider: React.FC<AppDividerProps> = ({ title }) => {
+export const AppDivider: FunctionComponent<AppDividerProps> = ({ title }) => {
   const { t } = useTranslation();
   const style = makeStyles();
   const text = !title && t("Divider.title");

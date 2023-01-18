@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Box, Typography, useTheme } from "@mui/material";
 
@@ -9,7 +9,7 @@ import { APP_LOGO } from "../../mock/constants";
 import { FooterProps } from "./interface";
 import { makeStyles } from "./styles";
 
-export const AppFooter: React.FC<FooterProps> = ({ text }) => {
+export const AppFooter: FunctionComponent<FooterProps> = ({ text }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const textInfo = useFooterText();

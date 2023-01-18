@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Box } from "@mui/material";
@@ -7,7 +7,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { AppTableProps } from "./interface";
 import { makeStyles } from "./styles";
 
-export const AppTable: React.FC<AppTableProps> = ({
+export const AppTable: FunctionComponent<AppTableProps> = ({
   rows,
   handleSelectedRow,
   columns,

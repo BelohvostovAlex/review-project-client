@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, MouseEvent, FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -24,7 +24,9 @@ import { APP_PROFILE_MENU } from "../../../mock/constants";
 import { AppProfileMenuProps } from "./interface";
 import { makeStyles } from "./styles";
 
-export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
+export const AppProfileMenu: FunctionComponent<AppProfileMenuProps> = ({
+  title,
+}) => {
   const { user, viaSocial } = useAppSelector(authSelector);
   const { authSignOut } = useActions();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -39,7 +41,7 @@ export const AppProfileMenu: React.FC<AppProfileMenuProps> = ({ title }) => {
         : colors.primary[500],
   });
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 

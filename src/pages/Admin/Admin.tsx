@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import { Box, TextField, Typography } from "@mui/material";
@@ -30,7 +30,7 @@ import { GridRowId } from "@mui/x-data-grid";
 import { AppPathes } from "../../components/AppRouter/interfaces";
 import { makeStyles } from "./styles";
 
-export const Admin: React.FC = () => {
+export const Admin: FunctionComponent = () => {
   const { user } = useAppSelector(authSelector);
   const [users, setUsers] = useState<IUserFull[]>([]);
   const [category, handleCategory, resetCategoryVal] = useInput("");

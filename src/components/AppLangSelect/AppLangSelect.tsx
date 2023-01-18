@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -12,7 +12,7 @@ import {
 import { APP_LANGUAGES } from "../../mock/constants";
 import { makeStyles } from "./styles";
 
-export const AppLangSelect: React.FC = () => {
+export const AppLangSelect: FunctionComponent = () => {
   const { t, i18n } = useTranslation();
   const style = makeStyles();
 

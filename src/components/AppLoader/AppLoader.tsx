@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { AppBackDrop } from "../AppBackDrop/AppBackDrop";
 import { Box, CircularProgress } from "@mui/material";
@@ -6,7 +6,7 @@ import { Box, CircularProgress } from "@mui/material";
 import { AppLoaderProps } from "./interface";
 import { makeStyles } from "./styles";
 
-export const AppLoader: React.FC<AppLoaderProps> = ({ open }) => {
+export const AppLoader: FunctionComponent<AppLoaderProps> = ({ open }) => {
   const style = makeStyles();
   return (
     <AppBackDrop open={open}>

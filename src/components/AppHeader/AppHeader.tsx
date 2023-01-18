@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -35,10 +35,10 @@ import { AppPathes } from "../AppRouter/interfaces";
 import { AppHeaderProps } from "./interfaces";
 import { makeStyles } from "./styles";
 
-export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
+export const AppHeader: FunctionComponent<AppHeaderProps> = ({ title }) => {
   const { isAuth, isError, viaSocial } = useAppSelector(authSelector);
   const { authSignOut, changeTheme } = useActions();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const headerText = useTextHeader();
 
@@ -55,7 +55,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ title }) => {
         : colors.primary[500],
   });
 
-  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.checked;
     if (!value && !viaSocial) {
       authSignOut();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -40,7 +40,10 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import { makeStyles } from "./styles";
 
-export const ReviewForm: React.FC<ReviewFormProps> = ({ isEdit, review }) => {
+export const ReviewForm: FunctionComponent<ReviewFormProps> = ({
+  isEdit,
+  review,
+}) => {
   const { user } = useAppSelector(authSelector);
   const navigate = useNavigate();
   const { tags, handleAddTag } = useFetchTags();

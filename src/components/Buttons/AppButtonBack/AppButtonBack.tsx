@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AppButton } from "../AppButton";
@@ -7,7 +7,9 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { AppButtonBackProps } from "./interface";
 import { makeStyles } from "../styles";
 
-export const AppButtonBack: React.FC<AppButtonBackProps> = ({ styles }) => {
+export const AppButtonBack: FunctionComponent<AppButtonBackProps> = ({
+  styles,
+}) => {
   const navigate = useNavigate();
   const style = makeStyles({ styles });
 

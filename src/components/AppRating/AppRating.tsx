@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Box, Typography, Rating } from "@mui/material";
 
@@ -7,7 +7,7 @@ import { useRatingSubTitle } from "./config";
 import { AppRatingProps, AppRatingSize } from "./interface";
 import { makeStyle } from "./styles";
 
-export const AppRating: React.FC<AppRatingProps> = ({
+export const AppRating: FunctionComponent<AppRatingProps> = ({
   defaultValue = 1,
   max = 5,
   onChange,

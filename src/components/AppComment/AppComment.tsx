@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import moment from "moment";
 
 import { Card, Box, Typography, Avatar } from "@mui/material";
@@ -9,7 +9,7 @@ import { AppCommentProps } from "./interface";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { makeStyles } from "./styles";
 
-export const AppComment: React.FC<AppCommentProps> = ({ comment }) => {
+export const AppComment: FunctionComponent<AppCommentProps> = ({ comment }) => {
   const [likes, setLikes] = useState(0);
   const style = makeStyles();
 

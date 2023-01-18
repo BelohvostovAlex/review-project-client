@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Box } from "@mui/material";
 import { AuthForm } from "../../components/AuthForm/AuthForm";
@@ -8,7 +8,7 @@ import { useActions } from "../../hooks/useActions";
 import { authServiceSignUpInput } from "../../services/authService/interfaces";
 import { makeStyles } from "./styles";
 
-export const Registration: React.FC = () => {
+export const Registration: FunctionComponent = () => {
   const { authSignUp } = useActions();
   const style = makeStyles();
 

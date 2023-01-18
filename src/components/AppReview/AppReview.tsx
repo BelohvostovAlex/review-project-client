@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { FunctionComponent, useRef } from "react";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +38,7 @@ import imagePlaceHolder from "../../assets/images/image-placeholder.jpg";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { makeStyles } from "./styles";
 
-export const AppReview: React.FC<AppReviewProps> = ({
+export const AppReview: FunctionComponent<AppReviewProps> = ({
   review,
   isFull,
   isRelated,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, FunctionComponent } from "react";
 
 import { Box, Typography, useTheme } from "@mui/material";
 import { AppTag } from "../AppTag/AppTag";
@@ -15,7 +15,9 @@ import { tokens } from "../../theme/theme";
 import { AppMainSectionProps } from "../AppMainSection/interface";
 import { makeStyles } from "./styles";
 
-export const AppMainTagSection: React.FC<AppMainSectionProps> = ({ title }) => {
+export const AppMainTagSection: FunctionComponent<AppMainSectionProps> = ({
+  title,
+}) => {
   const { tags, handlePage, total } = useFetchTags(false);
   const [active, setActive] = useState("");
   const { reviews, likedReview, isLoading } = useFetchReviewsByTag(active);

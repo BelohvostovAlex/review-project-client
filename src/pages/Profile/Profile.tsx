@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import { Box, Typography } from "@mui/material";
@@ -25,7 +25,7 @@ import { makeStyles } from "./style";
 import { GridRowId } from "@mui/x-data-grid";
 import { IReview } from "../../models/IReview";
 
-export const Profile: React.FC = () => {
+export const Profile: FunctionComponent = () => {
   const { id } = useParams();
   const { isAuth } = useAppSelector(authSelector);
   const [user, creatorLikes] = useGetUser(id!);

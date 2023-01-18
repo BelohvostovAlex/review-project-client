@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Chip, useTheme } from "@mui/material";
 
@@ -7,7 +7,7 @@ import { tokens } from "../../theme/theme";
 import { AppTagProps, AppTagVariant } from "./interface";
 import { makeStyles } from "./styles";
 
-export const AppTag: React.FC<AppTagProps> = ({
+export const AppTag: FunctionComponent<AppTagProps> = ({
   title,
   variant = AppTagVariant.OUTLINED,
   onClick,

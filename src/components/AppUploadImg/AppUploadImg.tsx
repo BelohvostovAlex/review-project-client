@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, FunctionComponent, DragEvent } from "react";
 
 import { Box, Typography, useTheme } from "@mui/material";
 
@@ -10,7 +10,9 @@ import { AppUploadImgProps } from "./interface";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { makeStyles } from "./styles";
 
-export const AppUploadImg: React.FC<AppUploadImgProps> = ({ handleImage }) => {
+export const AppUploadImg: FunctionComponent<AppUploadImgProps> = ({
+  handleImage,
+}) => {
   const [drag, setDrag] = useState(false);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -24,17 +26,17 @@ export const AppUploadImg: React.FC<AppUploadImgProps> = ({ handleImage }) => {
 
   const { title } = useAppUploadImgText(drag);
 
-  const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragStartHandler = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setDrag(true);
   };
 
-  const dragLeaveHandler = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragLeaveHandler = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setDrag(false);
   };
 
-  const dropHandler = async (e: React.DragEvent<HTMLDivElement>) => {
+  const dropHandler = async (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     let file = e.dataTransfer.files[0];
     const uploadedFile = await uploadFileService(file);

@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Drawer, useTheme } from "@mui/material";
 
@@ -7,7 +7,7 @@ import { tokens } from "../../../theme/theme";
 import { AppDrawerProps } from "./interfaces";
 import { makeStyles } from "./styles";
 
-export const AppDrawer: React.FC<AppDrawerProps> = ({
+export const AppDrawer: FunctionComponent<AppDrawerProps> = ({
   children,
   open,
   onClose,

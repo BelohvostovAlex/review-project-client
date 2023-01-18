@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Box, Typography, useTheme } from "@mui/material";
 import { AppBanner } from "../AppBanner/AppBanner";
@@ -13,7 +13,7 @@ import { AppMainSectionProps } from "./interface";
 import { makeStyles } from "./styles";
 import { useMainSectionText } from "./config/useMainSectionText";
 
-export const AppMainSection: React.FC<AppMainSectionProps> = ({
+export const AppMainSection: FunctionComponent<AppMainSectionProps> = ({
   title,
   sort,
   category,
@@ -37,7 +37,7 @@ export const AppMainSection: React.FC<AppMainSectionProps> = ({
         </Typography>
         <AppButtonLink
           text={reviewsText.button}
-          path={"/reviews/all" + `/${sort}`}
+          path={`/reviews/all/${sort}`}
         />
       </Box>
       <Box sx={style.mainSectionReviewsWrapper}>

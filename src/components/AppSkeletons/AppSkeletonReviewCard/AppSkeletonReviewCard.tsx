@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import ContentLoader from "react-content-loader";
 
 import { useTheme } from "@mui/material";
@@ -6,9 +6,9 @@ import { tokens } from "../../../theme/theme";
 
 import { AppSkeletonReviewCardProps } from "./interface";
 
-export const AppSkeletonReviewCard: React.FC<AppSkeletonReviewCardProps> = ({
-  isFull = false,
-}) => {
+export const AppSkeletonReviewCard: FunctionComponent<
+  AppSkeletonReviewCardProps
+> = ({ isFull = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (

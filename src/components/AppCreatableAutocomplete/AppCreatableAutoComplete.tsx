@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 
 import { TextField, Autocomplete } from "@mui/material";
 import { AppDialogue } from "../AppDialogue/AppDialogue";
@@ -16,7 +16,7 @@ import { ITag } from "../../models/ITag";
 import { IArtItem } from "../../models/IArtItem";
 import { makeStyles } from "./styles";
 
-export const AppCreatableAutoComplete: React.FC<
+export const AppCreatableAutoComplete: FunctionComponent<
   AppTagsAutoCompleteProps | AppArtItemsAutoCompleteProps
 > = ({
   items,

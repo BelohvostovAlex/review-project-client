@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import {
   Dialog,
@@ -14,7 +14,7 @@ import { useDialogText } from "./config/useDialogText";
 
 import { AppDialogueProps } from "./interfaces";
 
-export const AppDialogue: React.FC<AppDialogueProps> = ({
+export const AppDialogue: FunctionComponent<AppDialogueProps> = ({
   open,
   onClick,
   setDialogValue,

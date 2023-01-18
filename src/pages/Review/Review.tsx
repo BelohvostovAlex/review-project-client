@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useCallback, FormEvent } from "react";
+import {
+  FunctionComponent,
+  useEffect,
+  useState,
+  useCallback,
+  FormEvent,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import type { Socket } from "socket.io-client";
@@ -29,7 +35,7 @@ import { IComment } from "../../models/IComment";
 import { AppPathes } from "../../components/AppRouter/interfaces";
 import { makeStyles } from "./styles";
 
-export const Review: React.FC<ReviewProps> = () => {
+export const Review: FunctionComponent<ReviewProps> = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [socket, setSocket] = useState<Socket | null>(null);

@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -21,7 +21,9 @@ import { APP_LOGO, APP_NAV_MENU } from "../../../../mock/constants";
 import { AppPathes } from "../../../AppRouter/interfaces";
 import { makeStyles } from "./styles";
 
-export const AppDrawerMenu: React.FC<AppDrawerMenuProps> = ({ onClick }) => {
+export const AppDrawerMenu: FunctionComponent<AppDrawerMenuProps> = ({
+  onClick,
+}) => {
   const { isAuth } = useAppSelector(authSelector);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

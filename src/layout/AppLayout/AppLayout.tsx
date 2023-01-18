@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 
 import { Box } from "@mui/material";
 import { AppHeader } from "../../components/AppHeader/AppHeader";
@@ -9,7 +9,7 @@ import { APP_TITLE } from "../../mock/constants";
 import { AppLayoutProps } from "./interface";
 import { makeStyles } from "./styles";
 
-const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+const AppLayout: FunctionComponent<AppLayoutProps> = ({ children }) => {
   const style = makeStyles();
   return (
     <Box sx={style.appLayoutWrapper}>

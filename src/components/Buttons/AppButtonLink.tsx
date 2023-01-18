@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 
 import { Button } from "@mui/material";
@@ -10,7 +10,7 @@ import {
 } from "./interfaces";
 import { makeStyles } from "./appBtnLinkStyles";
 
-export const AppButtonLink: React.FC<AppButtonLinkProps> = ({
+export const AppButtonLink: FunctionComponent<AppButtonLinkProps> = ({
   text,
   path,
   state,

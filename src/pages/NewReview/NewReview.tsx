@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import { Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import { useNewReviewText } from "./config/useNewReviewText";
 import { AppPathes } from "../../components/AppRouter/interfaces";
 import { makeStyles } from "./styles";
 
-export const NewReview: React.FC = () => {
+export const NewReview: FunctionComponent = () => {
   const location = useLocation();
   const isEdit = location.state;
   const { isAuth } = useAppSelector(authSelector);

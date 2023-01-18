@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
@@ -9,7 +9,7 @@ import { IUserFull } from "../../models/IUser";
 import { AppCreatorSelectProps } from "./interfaces";
 import { makeStyles } from "./styles";
 
-export const AppCreatorSelect: React.FC<AppCreatorSelectProps> = ({
+export const AppCreatorSelect: FunctionComponent<AppCreatorSelectProps> = ({
   onChange,
   value,
 }) => {
