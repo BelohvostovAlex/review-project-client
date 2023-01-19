@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useState, ChangeEvent } from "react";
+import { FunctionComponent, useState, ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
@@ -17,16 +17,17 @@ export const AppSearch: FunctionComponent = () => {
 
   const style = makeStyles();
 
-  const onChangeOne = useCallback(
-    debounce(async (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const onChangeOne = debounce(
+    async (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
       const value = e.target.value;
       if (value) {
         const response = await reviewServiceSearchReviews(value);
         setOptions(response.data);
       }
-    }, 750),
-    []
+    },
+    750
   );
+
   return (
     <Autocomplete
       freeSolo
