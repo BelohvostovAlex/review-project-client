@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
 
-export interface AppLayoutProps {
+export interface AppThemeProps {
   children: ReactNode;
 }
