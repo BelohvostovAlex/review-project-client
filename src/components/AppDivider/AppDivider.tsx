@@ -9,10 +9,12 @@ import { makeStyles } from "./styles";
 export const AppDivider: FunctionComponent<AppDividerProps> = ({ title }) => {
   const { t } = useTranslation();
   const style = makeStyles();
-  const text = !title && t("Divider.title");
+  const text = !title ? t("Divider.title") : title;
   return (
     <Box sx={style.dividerWrapper}>
-      <Divider sx={style.divider}>{text}</Divider>
+      <Divider sx={style.divider} data-testid="divider-text">
+        {text}
+      </Divider>
     </Box>
   );
 };
