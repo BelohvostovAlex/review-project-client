@@ -15,6 +15,7 @@ export const AppBackDrop: FunctionComponent<AppBackDropProps> = ({
         background: "rgba(0,0,0,0.1)",
       }}
       open={open}
+      data-testid="backDrop-testId"
     >
       {children}
     </Backdrop>
