@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`backdrop AppBanner exists with only title prop 1`] = `
+<p
+  class="MuiTypography-root MuiTypography-body1 css-1b4m6mh-MuiTypography-root"
+>
+  AppBanner title
+</p>
+`;
