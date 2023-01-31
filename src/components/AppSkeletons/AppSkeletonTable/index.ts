@@ -1,0 +1,1 @@
+export { AppSkeletonTable } from "./AppSkeletonTable";

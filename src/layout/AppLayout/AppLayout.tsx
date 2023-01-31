@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 
 import { Box } from "@mui/material";
-import { AppHeader } from "../../components/AppHeader/AppHeader";
-import { AppFooter } from "../../components/AppFooter/AppFooter";
+import { AppHeader } from "../../components/AppHeader";
+import { AppFooter } from "../../components/AppFooter";
 
 import { APP_TITLE } from "../../mock/constants";
 

@@ -12,15 +12,15 @@ import {
   useTheme,
   IconButton,
 } from "@mui/material";
-import { AppButtonLink } from "../Buttons/AppButtonLink";
+import { AppButtonLink } from "../Buttons";
 import { AppAlert } from "../AppAlert";
-import { AppProfileMenu } from "./AppProfileMenu/AppProfileMenu";
-import { AppNavMenu } from "./AppNavMenu/AppNavMenu";
-import { AppBurgerMenu } from "./AppBurgerMenu/AppBurgerMenu";
-import { AppDrawer } from "./AppDrawer/AppDrawer";
-import { AppDrawerMenu } from "./AppDrawer/AppDrawerMenu/AppDrawerMenu";
-import { AppLangSelect } from "../AppLangSelect/AppLangSelect";
-import { AppSearch } from "../AppSearch/AppSearch";
+import { AppProfileMenu } from "./AppProfileMenu";
+import { AppNavMenu } from "./AppNavMenu";
+import { AppBurgerMenu } from "./AppBurgerMenu";
+import { AppDrawer } from "./AppDrawer";
+import { AppDrawerMenu } from "./AppDrawer/AppDrawerMenu";
+import { AppLangSelect } from "../AppLangSelect";
+import { AppSearch } from "../AppSearch";
 
 import { tokens } from "../../theme/theme";
 import { useAppSelector } from "../../hooks/useAppSelector";

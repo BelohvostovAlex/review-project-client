@@ -8,7 +8,7 @@ import {
   DialogActions,
   TextField,
 } from "@mui/material";
-import { AppButton } from "../Buttons/AppButton";
+import { AppButton } from "../Buttons";
 
 import { useDialogText } from "./config/useDialogText";
 

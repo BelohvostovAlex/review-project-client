@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 
 import { TextField, Autocomplete } from "@mui/material";
-import { AppDialogue } from "../AppDialogue/AppDialogue";
+import { AppDialogue } from "../AppDialogue";
 
 import {
   useCreatableAutoCompleteText,

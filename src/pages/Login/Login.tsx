@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 
 import { Box } from "@mui/material";
-import { AuthForm } from "../../components/AuthForm/AuthForm";
+import { AuthForm } from "../../components/AuthForm";
 
 import { useActions } from "../../hooks/useActions";
 

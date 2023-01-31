@@ -2,9 +2,9 @@ import { FunctionComponent } from "react";
 import { useParams } from "react-router-dom";
 
 import { Box, Pagination, Stack, Typography } from "@mui/material";
-import { AppReview } from "../../components/AppReview/AppReview";
-import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
-import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
+import { AppReview } from "../../components/AppReview";
+import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeletonReviewCard";
+import { AppButtonBack } from "../../components/Buttons/AppButtonBack";
 
 import { useFetchReviews } from "../../hooks/useFetchReviews";
 import { useReviewText } from "./config/useReviewText";

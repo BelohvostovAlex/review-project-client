@@ -3,10 +3,9 @@ import { Navigate, useParams } from "react-router-dom";
 
 import { Box, Typography } from "@mui/material";
 import { AppBanner } from "../../components/AppBanner";
-import { AppTable } from "../../components/AppTable/AppTable";
-import { AppButton } from "../../components/Buttons/AppButton";
-import { AppButtonLink } from "../../components/Buttons/AppButtonLink";
-import { AppSkeletonTable } from "../../components/AppSkeletons/AppSkeletonTable/AppSkeletonTable";
+import { AppTable } from "../../components/AppTable";
+import { AppButton, AppButtonLink } from "../../components/Buttons";
+import { AppSkeletonTable } from "../../components/AppSkeletons/AppSkeletonTable";
 
 import { reviewServiceDeleteReview } from "../../services/reviewService/reviewService";
 import { useFetchCreatorReviews } from "../../hooks/useFetchCreatorReviews";

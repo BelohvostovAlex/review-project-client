@@ -2,9 +2,9 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import { Box, TextField, Typography } from "@mui/material";
-import { AppTable } from "../../components/AppTable/AppTable";
-import { AppButton } from "../../components/Buttons/AppButton";
-import { AppSkeletonTable } from "../../components/AppSkeletons/AppSkeletonTable/AppSkeletonTable";
+import { AppTable } from "../../components/AppTable";
+import { AppButton } from "../../components/Buttons";
+import { AppSkeletonTable } from "../../components/AppSkeletons/AppSkeletonTable";
 
 import { useAppTableConfig } from "./config/useAppTableConfig";
 import { useAppSelector } from "../../hooks/useAppSelector";

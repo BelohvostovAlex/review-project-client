@@ -10,10 +10,10 @@ import { io } from "socket.io-client";
 import type { Socket } from "socket.io-client";
 
 import { Box, TextField, Typography } from "@mui/material";
-import { AppReview } from "../../components/AppReview/AppReview";
-import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
-import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
-import { AppButton } from "../../components/Buttons/AppButton";
+import { AppReview } from "../../components/AppReview";
+import { AppButtonBack } from "../../components/Buttons/AppButtonBack";
+import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeletonReviewCard";
+import { AppButton } from "../../components/Buttons";
 import { AppComment } from "../../components/AppComment";
 
 import { useGetCurrentReview } from "../../hooks/useGetCurrentReview";

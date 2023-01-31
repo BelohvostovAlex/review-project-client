@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Box } from "@mui/material";
-import { AppButtonLink } from "../../Buttons/AppButtonLink";
+import { AppButtonLink } from "../../Buttons";
 
 import { APP_NAV_MENU } from "../../../mock/constants";
 import { makeStyles } from "./styles";

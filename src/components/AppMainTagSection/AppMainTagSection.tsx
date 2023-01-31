@@ -1,10 +1,10 @@
 import { useState, FunctionComponent } from "react";
 
 import { Box, Typography, useTheme } from "@mui/material";
-import { AppTag } from "../AppTag/AppTag";
-import { AppButton } from "../Buttons/AppButton";
-import { AppReview } from "../AppReview/AppReview";
-import { AppSkeletonReviewCard } from "../AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
+import { AppTag } from "../AppTag";
+import { AppButton } from "../Buttons";
+import { AppReview } from "../AppReview";
+import { AppSkeletonReviewCard } from "../AppSkeletons/AppSkeletonReviewCard";
 import { AppBanner } from "../AppBanner";
 
 import { useFetchTags } from "../../hooks/useFetchTags";

@@ -1,11 +1,10 @@
-import React from "react";
-
+import { FunctionComponent } from "react";
 import ContentLoader from "react-content-loader";
 
 import { useTheme } from "@mui/material";
 import { tokens } from "../../../theme/theme";
 
-export const AppSkeletonTable = () => {
+export const AppSkeletonTable: FunctionComponent = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 

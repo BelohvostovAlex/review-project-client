@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AppButton } from "../AppButton";
+import { AppButton } from "../";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { AppButtonBackProps } from "./interface";

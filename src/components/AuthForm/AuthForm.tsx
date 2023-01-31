@@ -3,10 +3,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
 import { Box, TextField, Typography } from "@mui/material";
-import { AppButton } from "../Buttons/AppButton";
-import { AppButtonLink } from "../Buttons/AppButtonLink";
-import { AppLoader } from "../AppLoader/AppLoader";
-import { AppDivider } from "../AppDivider/AppDivider";
+import { AppButton, AppButtonLink } from "../Buttons";
+import { AppLoader } from "../AppLoader";
+import { AppDivider } from "../AppDivider";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { authSelector } from "../../store/slices/authSlice/authSelectors";

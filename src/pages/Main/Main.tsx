@@ -1,8 +1,8 @@
 import { FunctionComponent, useEffect } from "react";
 
 import { Box } from "@mui/material";
-import { AppMainSection } from "../../components/AppMainSection/AppMainSection";
-import { AppMainTagSection } from "../../components/AppMainTagSection/AppMainTagSection";
+import { AppMainSection } from "../../components/AppMainSection";
+import { AppMainTagSection } from "../../components/AppMainTagSection";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { authSelector } from "../../store/slices/authSlice/authSelectors";

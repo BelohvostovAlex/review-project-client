@@ -10,12 +10,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { AppButton } from "../Buttons/AppButton";
+import { AppButton } from "../Buttons";
 import { AppCreatableAutoComplete } from "../AppCreatableAutocomplete";
-import { AppTag } from "../AppTag/AppTag";
-import { AppUploadImg } from "../AppUploadImg/AppUploadImg";
+import { AppTag } from "../AppTag";
+import { AppUploadImg } from "../AppUploadImg";
 import { AppAlert } from "../AppAlert";
-import { AppRating } from "../AppRating/AppRating";
+import { AppRating } from "../AppRating";
 import { AppCreatorSelect } from "../AppCreatorSelect";
 
 import { artItemsServiceCreateItem } from "../../services/artItemsService/artItemsService";

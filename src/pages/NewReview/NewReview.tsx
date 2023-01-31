@@ -3,8 +3,8 @@ import { Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 import { Box, Typography } from "@mui/material";
-import { ReviewForm } from "../../components/ReviewForm/ReviewForm";
-import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
+import { ReviewForm } from "../../components/ReviewForm";
+import { AppButtonBack } from "../../components/Buttons/AppButtonBack";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { authSelector } from "../../store/slices/authSlice/authSelectors";

@@ -15,10 +15,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { AppButtonLink } from "../Buttons/AppButtonLink";
-import { AppTag } from "../AppTag/AppTag";
-import { AppRating } from "../AppRating/AppRating";
-import { AppButton } from "../Buttons/AppButton";
+import { AppButtonLink, AppButton } from "../Buttons";
+import { AppTag } from "../AppTag";
+import { AppRating } from "../AppRating";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { authSelector } from "../../store/slices/authSlice/authSelectors";

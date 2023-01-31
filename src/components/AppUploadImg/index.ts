@@ -1,0 +1,1 @@
+export { AppUploadImg } from "./AppUploadImg";
