@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { Admin } from "../../pages/Admin/Admin";
+import { Admin } from "../../pages/Admin";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { authSelector } from "../../store/slices/authSlice/authSelectors";

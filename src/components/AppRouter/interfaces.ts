@@ -1,13 +1,13 @@
 import React from "react";
 
-import { Login } from "../../pages/Login/Login";
-import { Main } from "../../pages/Main/Main";
-import { NewReview } from "../../pages/NewReview/NewReview";
-import { NotFound } from "../../pages/NotFound/NotFound";
-import { Profile } from "../../pages/Profile/Profile";
-import { Registration } from "../../pages/Registration/Registration";
-import { Review } from "../../pages/Review/Review";
-import { Reviews } from "../../pages/Reviews/Reviews";
+import { Login } from "../../pages/Login";
+import { Main } from "../../pages/Main";
+import { NewReview } from "../../pages/NewReview";
+import { NotFound } from "../../pages/NotFound";
+import { Profile } from "../../pages/Profile";
+import { Registration } from "../../pages/Registration";
+import { Review } from "../../pages/Review";
+import { Reviews } from "../../pages/Reviews";
 
 export interface IRoute {
   path: string;
