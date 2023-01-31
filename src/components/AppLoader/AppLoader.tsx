@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 
-import { AppBackDrop } from "../AppBackDrop/AppBackDrop";
+import { AppBackDrop } from "../AppBackDrop";
 import { Box, CircularProgress } from "@mui/material";
 
 import { AppLoaderProps } from "./interface";

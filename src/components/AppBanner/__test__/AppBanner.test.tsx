@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { AppBanner } from "../AppBanner";
+import { AppBanner } from "../";
 
 import "@testing-library/jest-dom";
 

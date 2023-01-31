@@ -13,7 +13,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { AppButtonLink } from "../Buttons/AppButtonLink";
-import { AppAlert } from "../AppAlert/AppAlert";
+import { AppAlert } from "../AppAlert";
 import { AppProfileMenu } from "./AppProfileMenu/AppProfileMenu";
 import { AppNavMenu } from "./AppNavMenu/AppNavMenu";
 import { AppBurgerMenu } from "./AppBurgerMenu/AppBurgerMenu";

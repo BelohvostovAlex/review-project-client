@@ -14,7 +14,7 @@ import { AppReview } from "../../components/AppReview/AppReview";
 import { AppButtonBack } from "../../components/Buttons/AppButtonBack/AppButtonBack";
 import { AppSkeletonReviewCard } from "../../components/AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";
 import { AppButton } from "../../components/Buttons/AppButton";
-import { AppComment } from "../../components/AppComment/AppComment";
+import { AppComment } from "../../components/AppComment";
 
 import { useGetCurrentReview } from "../../hooks/useGetCurrentReview";
 import { useAppSelector } from "../../hooks/useAppSelector";

@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { AppDivider } from "../AppDivider";
 import { useTranslation } from "react-i18next";
+
+import { AppDivider } from "../AppDivider";
 
 import "@testing-library/jest-dom";
 

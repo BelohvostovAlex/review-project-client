@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
 import { Box, Typography } from "@mui/material";
-import { AppBanner } from "../../components/AppBanner/AppBanner";
+import { AppBanner } from "../../components/AppBanner";
 import { AppTable } from "../../components/AppTable/AppTable";
 import { AppButton } from "../../components/Buttons/AppButton";
 import { AppButtonLink } from "../../components/Buttons/AppButtonLink";

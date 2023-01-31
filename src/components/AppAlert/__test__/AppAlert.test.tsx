@@ -1,6 +1,7 @@
 import { render, screen, act } from "@testing-library/react";
-import { AppAlert } from "../AppAlert";
 import { useTranslation } from "react-i18next";
+
+import { AppAlert } from "../AppAlert";
 
 import "@testing-library/jest-dom";
 

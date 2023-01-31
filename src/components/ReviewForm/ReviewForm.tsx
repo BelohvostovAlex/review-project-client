@@ -11,12 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import { AppButton } from "../Buttons/AppButton";
-import { AppCreatableAutoComplete } from "../AppCreatableAutocomplete/AppCreatableAutoComplete";
+import { AppCreatableAutoComplete } from "../AppCreatableAutocomplete";
 import { AppTag } from "../AppTag/AppTag";
 import { AppUploadImg } from "../AppUploadImg/AppUploadImg";
-import { AppAlert } from "../AppAlert/AppAlert";
+import { AppAlert } from "../AppAlert";
 import { AppRating } from "../AppRating/AppRating";
-import { AppCreatorSelect } from "../AppCreatorSelect/AppCreatorSelect";
+import { AppCreatorSelect } from "../AppCreatorSelect";
 
 import { artItemsServiceCreateItem } from "../../services/artItemsService/artItemsService";
 import {

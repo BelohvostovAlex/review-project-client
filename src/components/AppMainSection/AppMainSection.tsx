@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 
 import { Box, Typography, useTheme } from "@mui/material";
-import { AppBanner } from "../AppBanner/AppBanner";
+import { AppBanner } from "../AppBanner";
 import { AppReview } from "../AppReview/AppReview";
 import { AppButtonLink } from "../Buttons/AppButtonLink";
 import { AppSkeletonReviewCard } from "../AppSkeletons/AppSkeletonReviewCard/AppSkeletonReviewCard";

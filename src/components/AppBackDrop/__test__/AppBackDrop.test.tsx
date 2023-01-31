@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { AppBackDrop } from "../AppBackDrop";
+import { AppBackDrop } from "../";
 
 import "@testing-library/jest-dom";
 
