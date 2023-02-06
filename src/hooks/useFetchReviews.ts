@@ -32,7 +32,7 @@ export const useFetchReviews = ({
   const [total, setTotal] = useState<number>(0);
   const [limit, setLimit] = useState<number>(8);
   const [error, setError] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getReviews = async () => {
     try {

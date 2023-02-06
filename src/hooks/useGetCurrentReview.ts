@@ -17,7 +17,7 @@ export const useGetCurrentReview = (
   userId: string,
   isAdmin: boolean
 ): useGetCurrentReviewOutput => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [review, setReview] = useState<IReview>({} as IReview);
 
   const getReview = useCallback(async () => {

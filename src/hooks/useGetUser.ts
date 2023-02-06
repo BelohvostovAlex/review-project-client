@@ -7,7 +7,7 @@ import { IUser } from "../models/IUser";
 
 export const useGetUser = (id: string, reviewId?: string): [IUser, number] => {
   const [user, setUser] = useState({} as IUser);
-  const [creatorLikes, setCreatorLikes] = useState(0);
+  const [creatorLikes, setCreatorLikes] = useState<number>(0);
 
   const getUser = async () => {
     const { data } = await authServiceGetUser(id);

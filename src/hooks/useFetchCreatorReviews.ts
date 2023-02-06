@@ -6,7 +6,7 @@ import { IReview } from "../models/IReview";
 
 export const useFetchCreatorReviews = (id: string) => {
   const [reviews, setReviews] = useState([] as IReview[]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const getReviews = async (id: string) => {
     try {
