@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { authServiceGetUser } from "../services/authService/authService";
 import { reviewServiceGetCreatorLikes } from "../services/reviewService/reviewService";
@@ -9,20 +9,20 @@ export const useGetUser = (id: string, reviewId?: string): [IUser, number] => {
   const [user, setUser] = useState({} as IUser);
   const [creatorLikes, setCreatorLikes] = useState<number>(0);
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     const { data } = await authServiceGetUser(id);
     setUser(data);
-  };
+  }, [id]);
 
-  const getCreatorLikes = async () => {
+  const getCreatorLikes = useCallback(async () => {
     const { data } = await reviewServiceGetCreatorLikes(id);
     setCreatorLikes(data);
-  };
+  }, [id]);
 
   useEffect(() => {
     getUser();
     getCreatorLikes();
-  }, [reviewId]);
+  }, [reviewId, getUser, getCreatorLikes]);
 
   return [user, creatorLikes];
 };
