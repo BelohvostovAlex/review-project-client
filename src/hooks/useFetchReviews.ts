@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { reviewServiceGetReviews } from "../services/reviewService/reviewService";
 import { handleLike } from "../helpers/handleLike";
@@ -34,7 +34,7 @@ export const useFetchReviews = ({
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const getReviews = async () => {
+  const getReviews = useCallback(async () => {
     try {
       const { data } = await reviewServiceGetReviews({
         limit,
@@ -58,7 +58,7 @@ export const useFetchReviews = ({
       setPage(1);
       setTotal(0);
     }
-  };
+  }, [page, limit, category, search, sort]);
 
   const likedReview = (id: string, userId: string) => {
     setReviews((prev) => {
@@ -72,7 +72,7 @@ export const useFetchReviews = ({
 
   useEffect(() => {
     getReviews();
-  }, [page]);
+  }, [page, getReviews]);
 
   return {
     limit,
