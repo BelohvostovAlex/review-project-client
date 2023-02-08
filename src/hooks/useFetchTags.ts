@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { tagServiceGetAllTags } from "../services/tagService/tagService";
 
@@ -15,9 +15,9 @@ export const useFetchTags = (getAll: boolean = true): useFetchOutPut => {
   const [items, setItems] = useState<ITag[]>([]);
   const [page, setPage] = useState<number>(getAll ? 0 : 1);
   const [total, setTotal] = useState<number>(0);
-  const [limit, setLimit] = useState<number>(getAll ? 0 : 4);
+  const [limit, setLimit] = useState<number>(getAll ? 0 : 8);
 
-  const fetchItems = async () => {
+  const fetchItems = useCallback(async () => {
     const { data } = await tagServiceGetAllTags(page, limit);
 
     if (data) {
@@ -30,11 +30,11 @@ export const useFetchTags = (getAll: boolean = true): useFetchOutPut => {
         setItems(data.tags);
       }
     }
-  };
+  }, [limit, page]);
 
   useEffect(() => {
     fetchItems();
-  }, [page]);
+  }, [page, fetchItems]);
 
   const handleAddTag = async (value: ITag) => {
     setItems((prev) => [...prev, value]);
