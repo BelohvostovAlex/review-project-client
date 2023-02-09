@@ -51,8 +51,13 @@ export const AppMainTagSection: FunctionComponent<AppMainSectionProps> = ({
       {tags.length > 3 && tags.length !== total && (
         <AppButton text={text.button} onClick={handlePage} />
       )}
-      {isLoading &&
-        [1, 2, 3, 4].map((_, i) => <AppSkeletonReviewCard key={i} />)}
+      {isLoading && (
+        <Box sx={style.tagSectionFoundReviewsWrapper}>
+          {[1, 2, 3, 4].map((_, i) => (
+            <AppSkeletonReviewCard key={i} />
+          ))}
+        </Box>
+      )}
       {!isLoading && reviews && (
         <Box sx={style.tagSectionFoundReviewsWrapper}>
           {reviews.map((review) => (
