@@ -1,4 +1,4 @@
-build: 
+build-dev: 
 	docker build -t client-app . -f Dockerfile.dev
 
 build-production:
